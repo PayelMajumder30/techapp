@@ -4,6 +4,43 @@
     <div class="row">
         <div class="card-12">
             <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6">
+                            <form action="" method="get">
+                                <div class="d-flex justify-content-end">
+                                    <div class="form-group ml-2">
+                                        <label class="text-sm">Start Date</label>
+                                        <input type="datetime-local" name="start_date" id="start_date" class="form-control form-control-sm" value="{{request()->input('start_date')}}">
+                                    </div>
+                                    <div class="form-group ml-2">
+                                        <label class="text-sm">End Date</label>
+                                        <input type="datetime-local" name="end_date" id="end_date" class="form-control form-control-sm" value="{{request()->input('end_date')}}">
+                                    </div>
+                                    <div class="form-group ml-2 mt-2">
+                                        <label class=""></label>
+                                        <input type="search" style="width: 250px;" class="form-control form-control-sm" name="keyword" id="keyword" value="{{request()->input('keyword')}}" placeholder="search something....">
+                                    </div>
+                                    <div class="form-group ml-2 mt-4">
+                                        <div class="btn-group">
+                                            <button type="submit" class="btn btn-sm btn-primary">
+                                                <i class="fa fa-filter"></i>
+                                            </button>
+                                            <a href="{{ url()->current()}}" data-toggle="tooltip" title="clear filter">
+                                                <i class="fa fa-times"></i>
+                                            </a>
+                                            <a href="{{ route('admission.list') }}" data-toggle="tooltip" title="Export data" class="btn btn-sm btn-primary">
+                                                Export
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="card-body">
                     <table class="table table-sm table-hover">
                         <thead>
