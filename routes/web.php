@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\{DashboardController,IndexController,JobController};
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
+Route::match(['get', 'post'],'/admission-form', [IndexController::class, 'formView'])->name('admission.index');
+Route::get('/admission/applications', [JobController::class, 'filterApplication'])->name('admission.list');
