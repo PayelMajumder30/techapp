@@ -32,8 +32,8 @@ class CareerController extends Controller
         $query = Post::query();
 
         $posts = Post::orderby('id','DESC')
-            ->when($keyword, function ($query) use ($keyword) {        
-                $query->where('title', 'like', '%'.$keyword.'%');           
+            ->when($keyword, function ($query) use ($keyword) {
+                $query->where('title', 'like', '%'.$keyword.'%');
         })->get();
         return view('career.index', compact('posts'));
     }
@@ -64,5 +64,12 @@ class CareerController extends Controller
         }else{
             return back()->with('error', 'please provide the valid credentials');
         }
+    }
+    public function changePostStatus(Request $request) {
+        $status = (int) $request->status == 1 ? 0 : 1;
+        Post::where('id', $request->id)->update([
+            'status' => $status,
+        ]);
+        return json_encode(['message' => 'Post status updated sucessfully']);
     }
 }

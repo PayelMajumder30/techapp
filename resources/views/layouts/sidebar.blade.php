@@ -4,7 +4,7 @@
             <a href="{{ route('dashboard') }}"
                 class="nav-link {{ (request()->is('/dashboard')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
-                <p>Dashboard</p> 
+                <p>Dashboard</p>
             </a>
         </li>
          <!-- Admision Management -->
@@ -93,7 +93,7 @@
                     </a>
                 </li>
                 {{-- @endif --}}
-              
+
                 <!--<li class="nav-item">-->
                 {{-- <!--    <a href="{{ route('admin.admission.application.list') }}"--> --}}
                 <!--        class="nav-link {{ (request()->is('admin/career/admission/applications*')) ? 'active active_nav_link' : '' }}">-->

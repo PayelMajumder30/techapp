@@ -15,7 +15,7 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 
     {{-- <script src="//cdn.ckeditor.com/4.9.2/full/ckeditor.js"></script> --}}
-    
+
     @yield('style')
 </head>
 
@@ -117,7 +117,7 @@
                     <a href="#" class="d-block">{{ Auth::check() ? Auth::user()->type : "" }}</a>
                 </div>
             </div>
-            
+
             <div class="form-inline">
                 <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
@@ -128,9 +128,9 @@
                 </div>
                 </div>
             </div>
-               
+
             @include('layouts.sidebar')
-           
+
             </div>
         </aside>
 
@@ -186,15 +186,13 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
-    <script>
-        @if(Session::get('success'))
-            toastFire('success', '{{Session::get("success")}}');
-        @endif
+    @if(Session::get('success'))
+        toastFire('success', '{{Session::get("success")}}');
+    @endif
 
-        @if(Session::get('failure'))
-            toastFire('error', '{{Session::get("failure")}}');
-        @endif
-    </script>
+    @if(Session::get('failure'))
+        toastFire('error', '{{Session::get("failure")}}');
+    @endif
 
     @yield('script')
 </body>
