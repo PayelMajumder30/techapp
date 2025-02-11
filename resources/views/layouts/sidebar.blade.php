@@ -50,7 +50,7 @@
                 {{-- @endif    --}}
                 {{-- @if(in_array('Units', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('unit.index')}}"
                         class="nav-link {{ (request()->is('admin/career/unit*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Units</p>
@@ -59,7 +59,7 @@
                 {{-- @endif --}}
                 {{-- @if(in_array('Subjetcs', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('subject.index')}}"
                         class="nav-link {{ (request()->is('admin/career/subject*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Subjects</p>
@@ -68,7 +68,7 @@
                 {{-- @endif --}}
                 {{-- @if(in_array('Job Categories', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('jobct.index')}}"
                         class="nav-link {{ (request()->is('admin/career/job-category*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Job Categories</p>

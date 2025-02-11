@@ -1,6 +1,5 @@
 @extends('layouts.app')
 @section('content')
-
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -9,7 +8,7 @@
                     <div class="card-header">
                         <div class="row mb-3">
                             <div class="col-md-12 text-right">
-                                <a href="{{ route('career.create') }}" class="btn btn-sm btn-primary"> <i class="fa fa-plus"></i> Create</a>
+                                <a href="{{ route('subject.create') }}" class="btn btn-sm btn-primary"> <i class="fa fa-plus"></i> Create</a>
                             </div>
                         </div>
                         <div class="row">
@@ -47,7 +46,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($posts as $index => $item)
+                                @forelse ($subjects as $index => $item)
                                     <tr>
                                         <td>{{ $index+1}}</td>
                                         <td>{{ $item->title }}</td>
@@ -59,10 +58,10 @@
                                         </td>
                                         <td class="d-flex text-right">
                                             <div class="btn-group">
-                                                <a href="{{route('career.edit', ['id' => $item->id])}}" class="btn btn-sm btn-dark" data-toggle="tooltip" title="Edit">
+                                                <a href="{{route('subject.edit', ['id' => $item->id])}}" class="btn btn-sm btn-dark" data-toggle="tooltip" title="Edit">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <form action="{{route('career.delete', ['id' => $item->id])}}" method="POST" >
+                                                <form action="{{route('subject.delete', ['id' => $item->id])}}" method="POST" >
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
@@ -87,13 +86,12 @@
     </div>
 </section>
 @endsection
-
 @section('script')
 <script>
     function changeStatus (id, status) {
         if (confirm("Are you sure you want to change the status?")) {
             $.ajax({
-                url: "{{route('post.change-status')}}",
+                url: "{{route('subject.change-status')}}",
                 type: 'post',
                 data: {
                     'id' : id,
@@ -109,3 +107,5 @@
     }
 </script>
 @endsection
+
+

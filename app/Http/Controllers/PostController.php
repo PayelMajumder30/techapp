@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use App\Models\Post;
 
-class CareerController extends Controller
+
+class PostController extends Controller
 {
     //
     public function createPost(){
@@ -13,7 +15,7 @@ class CareerController extends Controller
     }
     public function storePost(Request $request){
         $request->validate([
-            'title' =>'required|string',
+            'title' =>'required|string|max:255|unique:posts,title',
         ]);
         $post = Post::create([
             'title' =>$request->title,
@@ -44,13 +46,19 @@ class CareerController extends Controller
     }
 
     public function updatePost(Request $request, $id){
+        $post = Post::find($id);
         $request->validate([
-            'title'   => 'required|string',
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('posts', 'title')->ignore($id),
+                ],
         ]);
         Post::where('id', $id)->update([
             'title' => $request->title,
         ]);
-        $post = Post::find($id);
+       
 
         return to_route('career.index', ['id' => $id])->with([
             'post' => $post,
@@ -72,4 +80,6 @@ class CareerController extends Controller
         ]);
         return json_encode(['message' => 'Post status updated sucessfully']);
     }
+
+    
 }
