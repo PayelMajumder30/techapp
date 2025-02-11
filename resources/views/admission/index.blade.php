@@ -1,4 +1,4 @@
- @extends('layouts.app')
+@extends('layouts.app')
 @section('content') 
 <section class="container">
     <div class="row">
@@ -30,7 +30,7 @@
                                             <a href="{{ url()->current()}}" data-toggle="tooltip" title="clear filter">
                                                 <i class="fa fa-times"></i>
                                             </a>
-                                            <a href="{{ route('admission.list') }}" data-toggle="tooltip" title="Export data" class="btn btn-sm btn-primary">
+                                            <a href="" data-toggle="tooltip" title="Export data" class="btn btn-sm btn-primary">
                                                 Export
                                             </a>
                                         </div>

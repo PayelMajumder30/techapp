@@ -41,7 +41,7 @@
             <ul class="nav nav-treeview">
                 {{-- @if(in_array('Posts', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('career.index')}}"
                         class="nav-link {{ (request()->is('admin/career/posts*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Posts</p>
