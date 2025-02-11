@@ -24,6 +24,8 @@ Auth::routes();
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::match(['get', 'post'],'/admission-form', [IndexController::class, 'formView'])->name('admission.index');
+
+
 Route::get('career/post/create', [CareerController::class, 'createPost'])->name('career.create');
 Route::post('career/post/create', [CareerController::class, 'storePost'])->name('career.store');
 Route::get('career/index', [CareerController::class, 'postList'])->name('career.index');

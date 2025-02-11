@@ -66,7 +66,7 @@
                                                     <form action="{{route('career.delete', ['id' => $item->id])}}" method="POST" >
                                                         @csrf 
                                                         @method('DELETE') 
-                                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
+                                                        <button type="submit" class="btn btn-sm btn-outline-danger" data-id="{{ $item->id }}" onclick="return confirm('Are you sure you want to delete this post?')">
                                                             <i class="fa fa-trash"></i>    
                                                         </button>   
                                                     </form> 
