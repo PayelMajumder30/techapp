@@ -19,10 +19,16 @@ class IndexController extends Controller
         $query = AdmissionForm::query();
 
         // Apply date filters using correct `when()` syntax
-        $query->when($start_date && $end_date, function ($q) use ($start_date, $end_date) {
-            $q->where('created_at', '>=', $start_date)
-                ->where('created_at', '<=', $end_date);
-        });
+        if ($start_date && $end_date) {
+            $query->when($start_date && $end_date, function ($q) use ($start_date, $end_date) {
+                $q->where('created_at', '>=', $start_date)
+                    ->where('created_at', '<=', $end_date);
+            });
+        } else if ($start_date) {
+            $query->when($start_date, function ($q) use ($start_date) {
+                $q->where('created_at', '>=', $start_date);
+            });
+        }
 
         // Apply keyword search
         $query->when($keyword, function ($q) use ($keyword) {

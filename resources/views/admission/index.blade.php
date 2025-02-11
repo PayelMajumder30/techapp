@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content') 
+@section('content')
 <section class="container">
     <div class="row">
         <div class="card-12">
@@ -8,7 +8,8 @@
                     <div class="row">
                         <div class="col-md-6"></div>
                         <div class="col-md-6">
-                            <form action="" method="get">
+                            <form action="{{route('admission.index')}}" method="post">
+                                @csrf
                                 <div class="d-flex justify-content-end">
                                     <div class="form-group ml-2">
                                         <label class="text-sm">Start Date</label>
@@ -62,7 +63,7 @@
                             @forelse($admissionform as $index => $item)
                             <tr>
                                 <td>{{ $admissionform->firstItem() + $index }}</td>
-                               
+
                                 <td style="min-width: 160px">
                                     <div class="title-part">
                                         <p class="text-muted mb-0"><strong>Name: </strong>{{ $item->name }}</p>
@@ -123,11 +124,11 @@
                                     </div>
                                 </td>
                             </tr>
-                            @empty 
+                            @empty
                             <tr>
                                 <td colspan="100%" class="text-center">No records found</td>
                             </tr>
-                            
+
                             @endforelse
                         </tbody>
                     </table>

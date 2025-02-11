@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content') 
+@section('content')
 
 <section class="content">
     <div class="container-fluid">
@@ -51,9 +51,9 @@
                                     <tr>
                                         <td>{{ $index+1}}</td>
                                         <td>{{ $item->title }}</td>
-                                        <td> 
+                                        <td>
                                             <div class="custom-control custom-switch mt-1" data-toggle="tooltip" title="Toggle status">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" {{ ($item->status == 1) ? 'checked' : '' }} onchange="">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" onchange="changeStatus('{{$item->id}}', '{{$item->status}}')" {{ ($item->status == 1) ? 'checked' : '' }} />
                                             <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
                                         </div>
                                     </td>
@@ -62,16 +62,14 @@
                                                 <a href="{{route('career.edit', ['id' => $item->id])}}" class="btn btn-sm btn-dark" data-toggle="tooltip" title="Edit">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                {{-- <a href="{{route('career.delete',['id'=> $item->id])}}" class="btn btn-sm btn-danger delete-btn" data-toggle="tooltip" title="Delete"> --}}
-                                                    <form action="{{route('career.delete', ['id' => $item->id])}}" method="POST" >
-                                                        @csrf 
-                                                        @method('DELETE') 
-                                                        <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
-                                                            <i class="fa fa-trash"></i>    
-                                                        </button>   
-                                                    </form> 
-                                                    
-                                                {{-- </a> --}}
+                                                <form action="{{route('career.delete', ['id' => $item->id])}}" method="POST" >
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>
+
                                             </div>
                                         </td>
                                     </tr>
@@ -88,4 +86,26 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('script')
+<script>
+    function changeStatus (id, status) {
+        if (confirm("Are you sure you want to change the status?")) {
+            $.ajax({
+                url: "{{route('career.change-status')}}",
+                type: 'post',
+                data: {
+                    'id' : id,
+                    'status': status,
+                    '_token': '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    const responseData = JSON.parse(response);
+                    alert(responseData.message);
+                }
+            });
+        }
+    }
+</script>
 @endsection
