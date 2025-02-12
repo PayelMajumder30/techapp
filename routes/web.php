@@ -20,4 +20,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Admin
+Route::prefix('admin')->group(function() {
+    require 'custom/admin.php';
+});
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('/status/{id}',[CareerController::class, 'PostStatus'])->name('post.status');
