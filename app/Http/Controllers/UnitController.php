@@ -40,7 +40,8 @@ class UnitController extends Controller
     }
 
     public function changeUnitStatus(Request $request) {
-        $status = (int) $request->status == 1 ? 0 : 1;
+        $data = Unit::find($request->id);
+        $status = $data->status == 1 ? 0 : 1;
         Unit::where('id', $request->id)->update([
             'status' => $status,
         ]);

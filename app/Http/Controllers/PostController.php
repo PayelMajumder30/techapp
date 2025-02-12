@@ -74,8 +74,8 @@ class PostController extends Controller
         }
     }
     public function changePostStatus(Request $request) {
-        $post = Post::find($request->id);
-        $status = (int) $post->status == 1 ? 0 : 1;
+        $data = Post::find($request->id);
+        $status = $data->status == 1 ? 0 : 1;
         Post::where('id', $request->id)->update([
             'status' => $status,
         ]);
