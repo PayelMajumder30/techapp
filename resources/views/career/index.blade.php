@@ -98,10 +98,10 @@
                 'id' : id,
                 '_token': '{{ csrf_token() }}'
             },
-            success: function(response) {
-                const responseData = JSON.parse(response);
-                alert(responseData.message);
-            }
+            // success: function(response) {
+            //     const responseData = JSON.parse(response);
+            //     alert(responseData.message);
+            // }
         });
     }
 </script>

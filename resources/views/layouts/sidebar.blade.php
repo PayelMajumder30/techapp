@@ -77,7 +77,7 @@
                 {{-- @endif --}}
                 {{-- @if(in_array('Job Vacancies', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('jobvc.index')}}"
                         class="nav-link {{ (request()->is('admin/career/job-vacancy*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Job Vacancies</p>

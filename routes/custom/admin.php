@@ -2,7 +2,8 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\{DashboardController,IndexController,PostController,UnitController,SubjectController,JobController};
+use App\Http\Controllers\{DashboardController,IndexController,PostController,UnitController,SubjectController,
+    JobController,JobvcController};
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::match(['get', 'post'],'/admission-form', [IndexController::class, 'formView'])->name('admission.index');
@@ -51,6 +52,17 @@ Route::prefix('career')->middleware(['auth'])->group(function () {
         Route::get('/edit/{id}', [JobController::class, 'editJob'])->name('jobct.edit');
         Route::post('edit/{id}', [JobController::class, 'updateJob'])->name('jobct.update');
         Route::delete('/delete/{id}', [JobController::class, 'desrtroyJob'])->name('jobct.delete');
+    });
+
+    //job vacancies
+    Route::prefix('job_vacancies')->middleware(['auth'])->group(function(){
+        Route::get('/create', [JobvcController::class, 'createJobvc'])->name('jobvc.create');
+        Route::post('/create', [JobvcController::class, 'storeJobvc'])->name('jobvc.store');
+        Route::get('/index', [JobvcController::class, 'vacancyList'])->name('jobvc.index');
+        Route::post('/change-status', [JobvcController::class, 'changeVcStatus'])->name('jobvc.change-status');
+        Route::get('update/{id}', [JobvcController::class, 'editJob'])->name('jobvc.edit');
+        Route::post('update/{id}', [JobvcController::class, 'updateJob'])->name('jobvc.update');
+        Route::delete('/delete/{id}', [JobvcController::class, 'desrtroyJob'])->name('jobvc.delete');
     });
 });
 

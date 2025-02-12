@@ -89,7 +89,7 @@
 @section('script')
 <script>
     function changeStatus (id, status) {
-        if (confirm("Are you sure you want to change the status?")) {
+        //if (confirm("Are you sure you want to change the status?")) {
             $.ajax({
                 url: "{{route('jobct.change-status')}}",
                 type: 'post',
@@ -98,12 +98,11 @@
                     'status': status,
                     '_token': '{{ csrf_token() }}'
                 },
-                success: function(response) {
-                    const responseData = JSON.parse(response);
-                    alert(responseData.message);
-                }
+                // success: function(response) {
+                //     const responseData = JSON.parse(response);
+                //     alert(responseData.message);
+                // }
             });
-        }
     }
 </script>
 @endsection

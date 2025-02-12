@@ -40,7 +40,8 @@ class SubjectController extends Controller
     }
 
     public function changeSubStatus(Request $request) {
-        $status = (int) $request->status == 1 ? 0 : 1;
+        $data = Subject::find($request->id);
+        $status = $data->status == 1 ? 0 : 1;
         Subject::where('id', $request->id)->update([
             'status' => $status,
         ]);
