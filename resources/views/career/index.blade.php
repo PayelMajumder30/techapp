@@ -53,7 +53,7 @@
                                         <td>{{ $item->title }}</td>
                                         <td>
                                             <div class="custom-control custom-switch mt-1" data-toggle="tooltip" title="Toggle status">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" onchange="changeStatus('{{$item->id}}', '{{$item->status}}')" {{ ($item->status == 1) ? 'checked' : '' }} />
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" onchange="changeStatus('{{$item->id}}')" {{ ($item->status == 1) ? 'checked' : '' }} />
                                             <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
                                             </div>
                                         </td>
@@ -90,22 +90,19 @@
 
 @section('script')
 <script>
-    function changeStatus (id, status) {
-        if (confirm("Are you sure you want to change the status?")) {
-            $.ajax({
-                url: "{{route('post.change-status')}}",
-                type: 'post',
-                data: {
-                    'id' : id,
-                    'status': status,
-                    '_token': '{{ csrf_token() }}'
-                },
-                success: function(response) {
-                    const responseData = JSON.parse(response);
-                    alert(responseData.message);
-                }
-            });
-        }
+    function changeStatus (id) {
+        $.ajax({
+            url: "{{route('post.change-status')}}",
+            type: 'post',
+            data: {
+                'id' : id,
+                '_token': '{{ csrf_token() }}'
+            },
+            success: function(response) {
+                const responseData = JSON.parse(response);
+                alert(responseData.message);
+            }
+        });
     }
 </script>
 @endsection

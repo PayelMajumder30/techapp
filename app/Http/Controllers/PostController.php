@@ -58,7 +58,7 @@ class PostController extends Controller
         Post::where('id', $id)->update([
             'title' => $request->title,
         ]);
-       
+
 
         return to_route('career.index', ['id' => $id])->with([
             'post' => $post,
@@ -74,12 +74,13 @@ class PostController extends Controller
         }
     }
     public function changePostStatus(Request $request) {
-        $status = (int) $request->status == 1 ? 0 : 1;
+        $post = Post::find($request->id);
+        $status = (int) $post->status == 1 ? 0 : 1;
         Post::where('id', $request->id)->update([
             'status' => $status,
         ]);
         return json_encode(['message' => 'Post status updated sucessfully']);
     }
 
-    
+
 }
