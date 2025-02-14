@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{DashboardController,IndexController,PostController,UnitController,SubjectController,
-    JobController,JobvcController};
+    JobController,JobvcController, DepartmentController};
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::match(['get', 'post'],'/admission-form', [IndexController::class, 'formView'])->name('admission.index');
@@ -64,6 +64,32 @@ Route::prefix('career')->middleware(['auth'])->group(function () {
         Route::post('update/{id}', [JobvcController::class, 'updateJob'])->name('jobvc.update');
         Route::delete('/delete/{id}', [JobvcController::class, 'desrtroyJob'])->name('jobvc.delete');
     });
+});
+
+Route::prefix('master_module')->middleware(['auth'])->group(function(){
+    Route::prefix('class')->middleware(['auth'])->group(function() {
+        Route::get('/create', [DepartmentController::class, 'createClass'])->name('class.create');
+        Route::post('/create', [DepartmentController::class, 'storeClass'])->name('class.store');
+        Route::get('/index', [DepartmentController::class, 'classList'])->name('class.index');
+        Route::post('/change-status', [DepartmentController::class, 'classStatus'])->name('class.change-status');
+        Route::get('update/{id}', [DepartmentController::class, 'editClass'])->name('class.edit');
+        Route::post('update/{id}', [DepartmentController::class, 'updateClass'])->name('class.update');
+        Route::delete('/delete/{id}', [DepartmentController::class, 'destroyClass'])->name('class.delete');
+    });   
+    Route::prefix('facilities')->middleware(['auth'])->group(function(){
+        Route::get('/create', [DepartmentController::class, 'createFacility'])->name('facilities.create');
+        Route::post('/create', [DepartmentController::class, 'storeFacility'])->name('facilities.store');
+        Route::get('/index', [DepartmentController::class, 'facilityList'])->name('facilities.index');
+        Route::get('update/{id}',[DepartmentController::class, 'editFacility'])->name('facilities.edit');
+        Route::post('update/{id}',[DepartmentController::class, 'updateFacility'])->name('facilities.update');
+        Route::delete('delete/{id}', [DepartmentController::class, 'destroyFacility'])->name('facilities.delete');
+    });
+
+    Route::prefix('sub_facilities')->middleware(['auth'])->group(function(){
+        Route::get('/create', [DepartmentController::class, 'createSubFacility'])->name('sub_facilities.create');
+        Route::post('/create', [DepartmentController::class, 'storeSubFacility'])->name('sub_facilities.store');
+    });
+
 });
 
 ?>
