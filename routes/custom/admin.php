@@ -83,11 +83,16 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
         Route::get('update/{id}',[DepartmentController::class, 'editFacility'])->name('facilities.edit');
         Route::post('update/{id}',[DepartmentController::class, 'updateFacility'])->name('facilities.update');
         Route::delete('delete/{id}', [DepartmentController::class, 'destroyFacility'])->name('facilities.delete');
+        Route::get('/view/{id}', [DepartmentController::class, 'FacilityView'])->name('facilities.view'); 
     });
 
     Route::prefix('sub_facilities')->middleware(['auth'])->group(function(){
-        Route::get('/create', [DepartmentController::class, 'createSubFacility'])->name('sub_facilities.create');
-        Route::post('/create', [DepartmentController::class, 'storeSubFacility'])->name('sub_facilities.store');
+        //Route::get('/create', [DepartmentController::class, 'createSubFacility'])->name('sub_facilities.create');
+        Route::post('/store', [DepartmentController::class, 'SubfacilityStore'])->name('sub_facilities.store');
+        Route::get('/edit/{id}', [DepartmentController::class, 'SubfacilityEdit'])->name('sub_facilities.edit');
+        Route::post('/update', [DepartmentController::class, 'SubfacilityUpdate'])->name('sub_facilities.update');
+        Route::get('/delete/{id}', [DepartmentController::class, 'SubfacilityDelete'])->name('sub_facilities.delete');
+        Route::get('/status/{id}', [DepartmentController::class, 'SubfacilityStatus'])->name('sub_facilities.status');
     });
 
 });

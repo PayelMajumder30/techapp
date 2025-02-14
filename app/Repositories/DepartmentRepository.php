@@ -5,6 +5,7 @@
  use App\Interfaces\DepartmentInterface;
  use App\Models\StudentClass;
  use App\Models\Facilities;
+ use App\Models\SubFacilities;
 
 
  class DepartmentRepository implements DepartmentInterface{
@@ -33,6 +34,19 @@
     }
     public function findFacilityById($id){
         return Facilities::findOrFail($id);
+    }
+
+    //student subfacility
+    public function getSearchSubfacility(string $term){
+        return SubFacilities::where('name', 'LIKE', '%' . $term . '%')
+                            ->where('deleted_at', 1)
+                            ->get();
+    }
+    public function listAllSubfacilities(){
+        return SubFacilities::latest()->where('deleted_at', 1)->get();
+    }
+    public function findSubfacilityById($id){
+        return SubFacilities::findOrFail($id);
     }
 
  }

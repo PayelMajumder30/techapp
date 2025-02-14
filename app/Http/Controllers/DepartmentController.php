@@ -254,4 +254,39 @@ class DepartmentController extends Controller
             return redirect()->back()->with('failure', 'Failed to delete Facilities. Please try again.');
         }
     }
+
+    public function FacilityView(Request $request){
+        if(!empty($request->keyword)){
+            $subfacility = $this->DepartmentRepository->getSearchSubfacility($request->keyword);
+        }else{
+            $subfacility = $this->DepartmentRepository->listAllSubfacilities();
+        }
+        return view('facilities.view', compact('subfacility'));       
+    }
+
+    public function SubfacilityStore(Request $request){
+        DB::beginTransaction();
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+        
+        try {
+            $subfacility = new SubFacility();
+            $subfacility->title = $request->title;
+            $subfacility->desc = $request->description;
+            $subfacility->facility_id = $request->facilityId;
+            $subfacility->save();
+            // Commit the transaction if everything is successful
+            DB::commit();
+            return redirect()->back()->with('success', 'New SubFacility created');
+        } catch (\Exception $e) {
+            // Rollback the transaction if an exception occurs
+            DB::rollback();
+            // You can log the exception if needed
+            \Log::error($e);
+            // Redirect back with an error message
+            return redirect()->back()->with('failure', 'Failed to create SubFacility. Please try again.');
+        }
+    }
 }
