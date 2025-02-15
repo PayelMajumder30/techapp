@@ -44,7 +44,7 @@ class JobvcController extends Controller
         } catch (\Exception $e){
             DB::rollback();
             return redirect()->back()->with('failure', 'Failed to create job. Please try again.' .  $e->getMessage());
-        }        
+        }
     }
 
     public function vacancyList(Request $request){
@@ -70,14 +70,13 @@ class JobvcController extends Controller
         return json_encode(['message' => 'Vacancy status updated sucessfully']);
     }
 
-    
+
     public function editJob(Request $request, $id){
         $category = Jobcategories::orderBy('title', 'ASC')->where('status', 1)->where('deleted_at', 1)->get();
         $data = Jobvacancy::findOrFail($id);
         return view('jobvc.edit', compact('data','category'));
     }
     public function updateJob(Request $request){
-        //dd($request);
         DB::beginTransaction();
         try{
             $request->validate([
@@ -102,7 +101,7 @@ class JobvcController extends Controller
                 $job->save();
                 DB::commit();
                 return redirect()->route('jobvc.index')->with('success', 'Job Update');
-         
+
         } catch(\Exception $e){
             DB::rollback();
             //dd($e->getMessage());
