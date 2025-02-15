@@ -115,7 +115,7 @@
             <ul class="nav nav-treeview">
                 {{-- @if(in_array('classes', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('class.index')}}"
                         class="nav-link {{ (request()->is('admin/master-module/class*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Classes</p>
@@ -124,7 +124,7 @@
                 {{-- @endif
                 @if(in_array('Facilities', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('facilities.index')}}"
                         class="nav-link {{ (request()->is('admin/master-module/facility*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Facilities</p>
