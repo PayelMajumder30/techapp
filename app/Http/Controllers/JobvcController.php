@@ -61,7 +61,7 @@ class JobvcController extends Controller
         return view ('jobvc.index', compact('data'));
     }
 
-    public function changeVcStatus(){
+    public function changeVcStatus(Request $request){
         $data = Jobvacancy::find($request->id);
         $status = $data->status == 1 ? 0 : 1;
         Jobvacancy::where('id', $request->id)->update([
