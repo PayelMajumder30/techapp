@@ -7,6 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row mb-3">
+                            <h3>Facility List</h3>
                             <div class="col-md-12 text-right">
                                 <a href="{{ route('facilities.create') }}" class="btn btn-sm btn-primary"> <i class="fa fa-plus"></i> Create</a>
                             </div>
@@ -59,10 +60,10 @@
 
                                         <td> 
                                             <div class="custom-control custom-switch mt-1" data-toggle="tooltip" title="Toggle status">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" {{ ($item->status == 1) ? 'checked' : '' }} onchange="">
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" {{ ($item->status == 1) ? 'checked' : '' }} onchange="statusToggle('{{ route('facilities.status', $item->id) }}')">
                                             <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
-                                        </div>
-                                    </td>
+                                            </div>
+                                        </td>
                                         <td class="d-flex text-right">
                                             <div class="btn-group">
                                                 <a href="{{ route('facilities.view', $item->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" title="Sub facilities">
@@ -94,4 +95,21 @@
         </div>
     </div>
 </section>
+
+<script>
+    function statusToggle(url) {
+        fetch(url, { method: 'GET' })
+            .then(response => {
+            if (response.ok) {
+            location.reload(); 
+        } else {
+            alert("Failed to update status. Please try again.");
+        }
+        })
+            .catch(error => {
+            console.error("Error:", error);
+            alert("Something went wrong. Try again.");
+            });
+    }
+   </script>
 @endsection

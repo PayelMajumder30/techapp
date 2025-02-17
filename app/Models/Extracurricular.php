@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class SubFacilities extends Model
+class Extracurricular extends Model
 {
     use HasFactory;
-    protected $table = "sub_facilities";
-    protected $fillable = ['title', 'desc', 'facility_id'];
+    protected $table = "extra_curriculars";
+    //protected $fillable = ['id', 'title', 'desc', 'image'];
 }
