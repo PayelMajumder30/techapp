@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 use App\Models\StudentClass;
 use App\Models\Facilities;
+use App\Models\SubFacilities;
 use App\Interfaces\DepartmentInterface;
 
 
@@ -255,38 +256,59 @@ class DepartmentController extends Controller
         }
     }
 
-    public function FacilityView(Request $request){
+    public function FacilityView(Request $request, $id){
         if(!empty($request->keyword)){
             $subfacility = $this->DepartmentRepository->getSearchSubfacility($request->keyword);
         }else{
             $subfacility = $this->DepartmentRepository->listAllSubfacilities();
         }
-        return view('facilities.view', compact('subfacility'));       
+        return view('facilities.view', compact('subfacility','id'));       
+    }
+    
+
+    public function subfacilityCreate($id){
+        //dd($id);
+        return view('sub_facilities.create', compact('id'));
     }
 
     public function SubfacilityStore(Request $request){
+       //dd($request->all());
         DB::beginTransaction();
         $request->validate([
+            'facility_id' => 'required|exists:facilities,id',
             'title' => 'required|string|max:255',
             'description' => 'required|string',
         ]);
         
         try {
-            $subfacility = new SubFacility();
+            $subfacility = new SubFacilities();
             $subfacility->title = $request->title;
             $subfacility->desc = $request->description;
-            $subfacility->facility_id = $request->facilityId;
+            $subfacility->facility_id = $request->facility_id;
             $subfacility->save();
             // Commit the transaction if everything is successful
             DB::commit();
             return redirect()->back()->with('success', 'New SubFacility created');
         } catch (\Exception $e) {
             // Rollback the transaction if an exception occurs
+            $e->getMessage();
             DB::rollback();
+           
             // You can log the exception if needed
             \Log::error($e);
             // Redirect back with an error message
             return redirect()->back()->with('failure', 'Failed to create SubFacility. Please try again.');
         }
     }
+    public function SubfacilityStatus(Request $request, $id){
+        $subfacility = $this->DepartmentRepository->findFacilityById($id);
+        $subfacility->status = ($data->status == 1) ? 0: 1;
+        $subfacility->update();
+        return response()->json([
+            'status' => 200,
+            'message' => 'Status updated',
+        ]);
+    }
+ 
+    
 }

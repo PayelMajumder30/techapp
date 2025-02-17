@@ -87,7 +87,8 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
     });
 
     Route::prefix('sub_facilities')->middleware(['auth'])->group(function(){
-        //Route::get('/create', [DepartmentController::class, 'createSubFacility'])->name('sub_facilities.create');
+        //Route::get('/subfacilitylist/{id}',[DepartmentController::class, 'subfacilityList'])->name('sub_facilities.list');
+        Route::get('/create/{id}', [DepartmentController::class, 'subfacilityCreate'])->name('sub_facilities.create');
         Route::post('/store', [DepartmentController::class, 'SubfacilityStore'])->name('sub_facilities.store');
         Route::get('/edit/{id}', [DepartmentController::class, 'SubfacilityEdit'])->name('sub_facilities.edit');
         Route::post('/update', [DepartmentController::class, 'SubfacilityUpdate'])->name('sub_facilities.update');
