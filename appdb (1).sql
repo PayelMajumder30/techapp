@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 10, 2025 at 03:16 PM
+-- Generation Time: Feb 17, 2025 at 03:23 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -80,6 +80,56 @@ INSERT INTO `admission_forms` (`id`, `name`, `dob`, `class`, `parent_name`, `cou
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `extra_curriculars`
+--
+
+CREATE TABLE `extra_curriculars` (
+  `id` int(20) NOT NULL,
+  `title` varchar(250) DEFAULT NULL,
+  `desc` text DEFAULT NULL,
+  `image` varchar(250) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `extra_curriculars`
+--
+
+INSERT INTO `extra_curriculars` (`id`, `title`, `desc`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'Yoga', 'When young adults such as these become parents, they may transmit their tension to their children. In addition, children may internalize stress and hide distress from their parents to keep them from worrying.', 'uploads/faculty/173979099085945.jpg', '2025-02-17 05:46:30', '2025-02-17 05:46:30'),
+(2, 'Swimming classes', 'Swimming also helps strengthen the part of their brain that is associated with learning & memory. So, as your children master the breaststroke, butterfly, freestyle & backstroke, think about all the good it is doing, not only for their bodies but their minds as well.', 'uploads/faculty/173979347939828.jpg', '2025-02-17 05:50:07', '2025-02-17 06:27:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `facilities`
+--
+
+CREATE TABLE `facilities` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `desc` text NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT '1',
+  `deleted_at` varchar(255) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `facilities`
+--
+
+INSERT INTO `facilities` (`id`, `title`, `logo`, `image`, `desc`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(3, 'Travelling', 'uploads/facility/173977777210701.png', 'uploads/facility/173977777252190.png', 'Provide School bus', '1', '0', '2025-02-17 02:06:12', '2025-02-17 04:01:19'),
+(4, 'Hostel Facilities', 'uploads/facility/173978482786138.png', 'uploads/facility/173978482759529.jpg', 'Hostel room for students', '1', '1', '2025-02-17 04:03:47', '2025-02-17 08:29:47'),
+(5, 'Travelling', 'uploads/facility/173979409167881.jpg', 'uploads/facility/173979409170508.jpeg', 'jhjhl', '1', '0', '2025-02-17 06:38:11', '2025-02-17 06:38:18');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -92,6 +142,59 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_categories`
+--
+
+CREATE TABLE `job_categories` (
+  `id` int(20) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `status` int(20) NOT NULL DEFAULT 1,
+  `deleted_at` int(20) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `job_categories`
+--
+
+INSERT INTO `job_categories` (`id`, `title`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(2, 'Full Time', 1, 1, '2025-02-11 07:40:45', '2025-02-11 08:53:10'),
+(3, 'Part Time', 1, 1, '2025-02-11 07:43:40', '2025-02-12 00:59:02');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_vacancy`
+--
+
+CREATE TABLE `job_vacancy` (
+  `id` int(11) NOT NULL,
+  `title` varchar(250) DEFAULT NULL,
+  `sub_title` varchar(500) DEFAULT NULL,
+  `gender` varchar(250) DEFAULT NULL,
+  `experience` varchar(250) DEFAULT NULL,
+  `no_of_vacancy` varchar(250) DEFAULT NULL,
+  `school_name` varchar(500) DEFAULT NULL,
+  `location` varchar(250) DEFAULT NULL,
+  `category_id` int(11) NOT NULL,
+  `status` varchar(10) NOT NULL DEFAULT '1',
+  `deleted_at` int(11) NOT NULL DEFAULT 1 COMMENT '1: active, 0: deleted',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `job_vacancy`
+--
+
+INSERT INTO `job_vacancy` (`id`, `title`, `sub_title`, `gender`, `experience`, `no_of_vacancy`, `school_name`, `location`, `category_id`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'Principal', 'Admin', 'Male', '5', '2', 'TIG Siliguri', 'Siliguri', 2, '1', 1, '2025-02-12 06:19:36', '2025-02-12 06:19:36'),
+(3, 'Developer', 'Software', 'Mal/Female', '3', '1', 'TIGPS Kolkata', 'Kolkata', 3, '1', 1, '2025-02-13 00:44:52', '2025-02-13 00:44:52');
 
 -- --------------------------------------------------------
 
@@ -180,8 +283,113 @@ CREATE TABLE `posts` (
 
 INSERT INTO `posts` (`id`, `title`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (3, 'Technician', 1, 1, '2025-02-10 06:23:50', '2025-02-10 06:23:50'),
-(4, 'Teacher', 1, 1, '2025-02-10 08:08:44', '2025-02-10 08:08:44'),
-(5, 'Lab Assistance', 1, 1, '2025-02-10 08:08:58', '2025-02-10 08:08:58');
+(4, 'Teacher', 1, 1, '2025-02-10 08:08:44', '2025-02-11 01:07:32'),
+(7, 'Lab Assistant', 0, 1, '2025-02-11 01:07:28', '2025-02-11 08:40:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_classes`
+--
+
+CREATE TABLE `student_classes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT '1',
+  `deleted_at` varchar(255) NOT NULL DEFAULT '1',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student_classes`
+--
+
+INSERT INTO `student_classes` (`id`, `name`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'Class 1', '1', '0', '2025-02-13 04:09:19', '2025-02-14 02:09:00'),
+(2, 'Class 2', '1', '0', '2025-02-13 05:34:26', '2025-02-13 07:02:12'),
+(3, 'Class 3', '1', '0', '2025-02-13 05:35:05', '2025-02-14 00:40:15'),
+(4, 'Class 5', '1', '1', '2025-02-13 09:10:52', '2025-02-13 09:10:52'),
+(5, 'Class 2', '1', '1', '2025-02-13 09:27:49', '2025-02-13 09:27:49'),
+(6, 'Class 3', '1', '1', '2025-02-14 00:40:36', '2025-02-14 00:40:36');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subjects`
+--
+
+CREATE TABLE `subjects` (
+  `id` int(20) NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `status` int(20) NOT NULL DEFAULT 1,
+  `deleted_at` int(20) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `subjects`
+--
+
+INSERT INTO `subjects` (`id`, `title`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(2, 'Geography', 1, 1, '2025-02-11 05:35:40', '2025-02-11 06:36:51'),
+(3, 'English', 1, 1, '2025-02-11 05:35:52', '2025-02-12 00:53:33'),
+(4, 'Computer Science', 1, 1, '2025-02-11 06:37:18', '2025-02-11 06:37:18');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sub_facilities`
+--
+
+CREATE TABLE `sub_facilities` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `desc` text NOT NULL,
+  `status` varchar(255) NOT NULL DEFAULT '1',
+  `deleted_at` varchar(255) NOT NULL DEFAULT '1',
+  `facility_id` bigint(20) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sub_facilities`
+--
+
+INSERT INTO `sub_facilities` (`id`, `title`, `desc`, `status`, `deleted_at`, `facility_id`, `created_at`, `updated_at`) VALUES
+(1, 'erg', 'sdgsd', '1', '0', 3, '2025-02-17 03:29:56', '2025-02-17 04:10:12'),
+(2, 'Mass Food', 'Two times food are provided by hostel authority', '1', '0', 4, '2025-02-17 04:11:35', '2025-02-17 04:12:07'),
+(3, 'Food', 'Two times foods are povided by Hostel Authority', '1', '0', 4, '2025-02-17 04:12:39', '2025-02-17 04:19:20'),
+(4, 'Food', 'Two times foods are povided by Hostel Authority', '1', '1', 4, '2025-02-17 04:13:07', '2025-02-17 04:13:07'),
+(5, 'sss', 'ssss', '1', '0', 4, '2025-02-17 04:19:36', '2025-02-17 04:23:26'),
+(6, 'Library', 'Hostel personal library for study', '1', '1', 4, '2025-02-17 04:20:21', '2025-02-17 08:49:27'),
+(7, 'Room furniture', 'Bed, Study table, Almirah', '1', '1', 4, '2025-02-17 04:23:06', '2025-02-17 04:30:51');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `units`
+--
+
+CREATE TABLE `units` (
+  `id` int(20) NOT NULL,
+  `title` varchar(250) NOT NULL,
+  `status` int(20) DEFAULT 1,
+  `deleted_at` int(20) NOT NULL DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `units`
+--
+
+INSERT INTO `units` (`id`, `title`, `status`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(2, 'TIGPS Jalpaiguri', 1, 1, '2025-02-11 04:10:14', '2025-02-11 04:14:19'),
+(3, 'TIGPS Siliguri', 1, 1, '2025-02-11 04:10:40', '2025-02-12 00:53:05'),
+(4, 'TIGPS Kolkata', 1, 1, '2025-02-11 08:34:52', '2025-02-17 07:40:49');
 
 -- --------------------------------------------------------
 
@@ -220,11 +428,36 @@ ALTER TABLE `admission_forms`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `extra_curriculars`
+--
+ALTER TABLE `extra_curriculars`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `facilities`
+--
+ALTER TABLE `facilities`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `job_categories`
+--
+ALTER TABLE `job_categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `job_vacancy`
+--
+ALTER TABLE `job_vacancy`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_category` (`category_id`);
 
 --
 -- Indexes for table `migrations`
@@ -259,6 +492,31 @@ ALTER TABLE `posts`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `student_classes`
+--
+ALTER TABLE `student_classes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `subjects`
+--
+ALTER TABLE `subjects`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `sub_facilities`
+--
+ALTER TABLE `sub_facilities`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `facility_id` (`facility_id`);
+
+--
+-- Indexes for table `units`
+--
+ALTER TABLE `units`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -276,10 +534,34 @@ ALTER TABLE `admission_forms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `extra_curriculars`
+--
+ALTER TABLE `extra_curriculars`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `facilities`
+--
+ALTER TABLE `facilities`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `job_categories`
+--
+ALTER TABLE `job_categories`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `job_vacancy`
+--
+ALTER TABLE `job_vacancy`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -297,13 +579,53 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `student_classes`
+--
+ALTER TABLE `student_classes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `subjects`
+--
+ALTER TABLE `subjects`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `sub_facilities`
+--
+ALTER TABLE `sub_facilities`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `units`
+--
+ALTER TABLE `units`
+  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `job_vacancy`
+--
+ALTER TABLE `job_vacancy`
+  ADD CONSTRAINT `fk_category` FOREIGN KEY (`category_id`) REFERENCES `job_categories` (`id`);
+
+--
+-- Constraints for table `sub_facilities`
+--
+ALTER TABLE `sub_facilities`
+  ADD CONSTRAINT `sub_facilities_ibfk_1` FOREIGN KEY (`facility_id`) REFERENCES `facilities` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
