@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('content') 
+@section('content')
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -12,7 +12,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <h2 class="col-md-6">Facilities</h2>
+                            <div class="col-md-6"></div>
                             <div class="col-md-6">
                                 <form action="" method="get">
                                     <div class="d-flex justify-content-end">
@@ -59,22 +59,22 @@
 
                                         <td> 
                                             <div class="custom-control custom-switch mt-1" data-toggle="tooltip" title="Toggle status">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" {{ ($item->status == 1) ? 'checked' : '' }} >
+                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" {{ ($item->status == 1) ? 'checked' : '' }} onchange="">
                                             <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
                                         </div>
                                     </td>
                                         <td class="d-flex text-right">
                                             <div class="btn-group">
-                                                <a href="" class="btn btn-sm btn-info" data-toggle="tooltip" title="Sub facilities">
+                                                <a href="{{ route('facilities.view', $item->id) }}" class="btn btn-sm btn-info" data-toggle="tooltip" title="Sub facilities">
                                                     <i class="fa fa-eye"></i>
                                                 </a>
-                                                <a href="{{route('facilities.edit', ['id' => $item->id])}}" class="btn btn-sm btn-dark" data-toggle="tooltip" title="Edit">
+                                                <a href="{{ route('facilities.edit', $item->id) }}" class="btn btn-sm btn-dark" data-toggle="tooltip" title="Edit">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
                                                 <form action="{{route('facilities.delete', ['id' => $item->id])}}" method="POST" >
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this facility?')">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>

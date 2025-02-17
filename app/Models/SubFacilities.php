@@ -9,4 +9,5 @@ class SubFacilities extends Model
 {
     use HasFactory;
     protected $table = "sub_facilities";
+    protected $fillable = ['id', 'title', 'desc', 'status', 'deleted_at', 'facility_id', 'created_at', 'updated_at'];
 }

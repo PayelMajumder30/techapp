@@ -12,4 +12,9 @@ interface DepartmentInterface{
     public function getSearchFacility(string $term);
     public function listAllFacility();
     public function findFacilityById($id);
+
+    //sub-facility
+    public function getSearchSubfacility(string $term);
+    public function listAllSubfacilities();
+    public function findSubfacilityById($id);
 }
