@@ -7,6 +7,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row mb-3">
+                            <h3>Class List</h3>
                             <div class="col-md-12 text-right">
                                 <a href="{{ route('class.create') }}" class="btn btn-sm btn-primary"> <i class="fa fa-plus"></i> Create</a>
                             </div>

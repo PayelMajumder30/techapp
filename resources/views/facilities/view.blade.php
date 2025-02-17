@@ -35,10 +35,10 @@
                                     <td>{{ $index+1}}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->desc }}</td>
-                                    <td>
+                                    <td> 
                                         <div class="custom-control custom-switch mt-1" data-toggle="tooltip" title="Toggle status">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" {{ ($item->status == 1) ? 'checked' : '' }} onchange="statusToggle('{{ route('sub_facilities.status', $item->id) }}')">
-                                            <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" {{ ($item->status == 1) ? 'checked' : '' }} onchange="statusToggle('{{ route('sub_facilities.status', $item->id) }}')">
+                                        <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
                                         </div>
                                     </td>
                                     <td class="d-flex text-right">
@@ -46,7 +46,7 @@
                                             <button data-bs-toggle="modal" data-bs-target="#exampleModalEdit{{ $item->id }}" class="btn btn-sm btn-dark" data-toggle="tooltip" title="Edit">
                                                 <i class="fa fa-edit"></i>
                                             </button>
-                                            <form action="" method="POST" >
+                                            <form action="{{ route('sub_facilities.delete', $item->id) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')">
@@ -63,7 +63,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="" method="post" enctype="multipart/form-data">
+                                                        <form action="{{ route('sub_facilities.update', $item->id) }}" method="post" enctype="multipart/form-data">
                                                             @csrf
                                                             <input type="hidden" name="id" value="{{$item->id}}">
                                                             <input type="hidden" name="facility_id" value="{{$id}}">
@@ -139,5 +139,20 @@
     </div>
 </div>
 <!-- end modal -->
-
+<script>
+function statusToggle(url) {
+    fetch(url, { method: 'GET' })
+        .then(response => {
+        if (response.ok) {
+        location.reload(); 
+    } else {
+        alert("Failed to update status. Please try again.");
+    }
+    })
+        .catch(error => {
+        console.error("Error:", error);
+        alert("Something went wrong. Try again.");
+        });
+}
+</script>
 @endsection

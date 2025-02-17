@@ -133,7 +133,7 @@
                 {{-- @endif
                 @if(in_array('Extra Curricular', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('extraCurricular.index')}}"
                         class="nav-link {{ (request()->is('admin/master-module/extra-curricular*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Extra Curricular</p>
@@ -142,7 +142,7 @@
                 {{-- @endif
                 @if(in_array('Teaching Process', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href="
+                    <a href=""
                         class="nav-link {{ (request()->is('admin/master-module/teaching-process*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Teaching Process</p>

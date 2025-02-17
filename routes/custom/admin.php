@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{DashboardController,IndexController,PostController,UnitController,SubjectController,
-    JobController,JobvcController, DepartmentController};
+    JobController,JobvcController, DepartmentController, FacultyController};
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::match(['get', 'post'],'/admission-form', [IndexController::class, 'formView'])->name('admission.index');
@@ -68,20 +68,21 @@ Route::prefix('career')->middleware(['auth'])->group(function () {
 
 Route::prefix('master_module')->middleware(['auth'])->group(function(){
     Route::prefix('class')->middleware(['auth'])->group(function() {
-        Route::get('/create', [DepartmentController::class, 'createClass'])->name('class.create');
-        Route::post('/create', [DepartmentController::class, 'storeClass'])->name('class.store');
         Route::get('/index', [DepartmentController::class, 'classList'])->name('class.index');
+        Route::get('/create', [DepartmentController::class, 'createClass'])->name('class.create');
+        Route::post('/create', [DepartmentController::class, 'storeClass'])->name('class.store');       
         Route::post('/change-status', [DepartmentController::class, 'classStatus'])->name('class.change-status');
         Route::get('update/{id}', [DepartmentController::class, 'editClass'])->name('class.edit');
         Route::post('update/{id}', [DepartmentController::class, 'updateClass'])->name('class.update');
         Route::delete('/delete/{id}', [DepartmentController::class, 'destroyClass'])->name('class.delete');
     });   
     Route::prefix('facilities')->middleware(['auth'])->group(function(){
+        Route::get('/index', [DepartmentController::class, 'facilityList'])->name('facilities.index');
         Route::get('/create', [DepartmentController::class, 'createFacility'])->name('facilities.create');
         Route::post('/create', [DepartmentController::class, 'storeFacility'])->name('facilities.store');
-        Route::get('/index', [DepartmentController::class, 'facilityList'])->name('facilities.index');
         Route::get('update/{id}',[DepartmentController::class, 'editFacility'])->name('facilities.edit');
         Route::post('update/{id}',[DepartmentController::class, 'updateFacility'])->name('facilities.update');
+        Route::get('/status/{id}', [DepartmentController::class, 'facilityStatus'])->name('facilities.status');
         Route::delete('delete/{id}', [DepartmentController::class, 'destroyFacility'])->name('facilities.delete');
         Route::get('/view/{id}', [DepartmentController::class, 'FacilityView'])->name('facilities.view'); 
     });
@@ -92,8 +93,16 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
         Route::post('/store', [DepartmentController::class, 'SubfacilityStore'])->name('sub_facilities.store');
         Route::get('/edit/{id}', [DepartmentController::class, 'SubfacilityEdit'])->name('sub_facilities.edit');
         Route::post('/update', [DepartmentController::class, 'SubfacilityUpdate'])->name('sub_facilities.update');
-        Route::get('/delete/{id}', [DepartmentController::class, 'SubfacilityDelete'])->name('sub_facilities.delete');
+        Route::delete('/delete/{id}', [DepartmentController::class, 'SubfacilityDelete'])->name('sub_facilities.delete');
         Route::get('/status/{id}', [DepartmentController::class, 'SubfacilityStatus'])->name('sub_facilities.status');
+    });
+    Route::prefix('extra_curricular')->middleware(['auth'])->group(function(){
+        Route::get('/index', [FacultyController::class, 'curricularList'])->name('extraCurricular.index'); 
+        Route::get('/create', [FacultyController::class, 'createCurricular'])->name('extraCurricular.create');
+        Route::post('/create', [FacultyController::class, 'storeCurricular'])->name('extraCurricular.store');
+        Route::get('update/{id}',[FacultyController::class, 'editCurricular'])->name('extraCurricular.edit');
+        Route::post('update/{id}',[FacultyController::class, 'updateCurricular'])->name('extraCurricular.update');
+        Route::delete('delete/{id}', [FacultyController::class, 'destroyCurricular'])->name('extraCurricular.delete');
     });
 
 });
