@@ -324,7 +324,8 @@ class DepartmentController extends Controller
         DB::beginTransaction();
     
         try {
-            $subfacilities = SubFacilities::findOrFail($id);
+            $subfacilities = SubFacilities
+            ::findOrFail($id);
             $subfacilities->status = !$subfacilities->status;
             $subfacilities->save();
             DB::commit();

@@ -49,7 +49,7 @@ class JobvcController extends Controller
 
     public function vacancyList(Request $request){
         $keyword = $request->input('keyword');
-        $query = Jobvacancy::query();
+        $query = Jobvacancy::with('category');
 
         $query->when($keyword, function ($query) use ($keyword) {
             $query->where('title', 'like', '%'.$keyword.'%')
@@ -57,7 +57,7 @@ class JobvcController extends Controller
                 ->orWhere('school_name', 'like', '%'.$keyword.'%')
                 ->orWhere('location', 'like', '%'.$keyword.'%');
         })->get();
-        $data = $query->latest('id')->where('deleted_at', 1)->paginate(2);
+        $data = $query->latest('id')->where('deleted_at', 1)->SimplePaginate(3);
         return view ('jobvc.index', compact('data'));
     }
 
