@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ContentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,8 @@ Route::prefix('admin')->group(function() {
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/status/{id}',[CareerController::class, 'PostStatus'])->name('post.status');
+Route::name('front.')->group(function() {
+    Route::prefix('career')->name('career.')->group(function(){
+        Route::get('/',[ContentController::class, 'career'])->name('index');
+    });
+});
