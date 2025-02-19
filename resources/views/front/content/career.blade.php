@@ -75,7 +75,7 @@
                                     </ul>
                                     {{-- <p>With supporting text below as a natural lead-in to additional content.</p> --}}
                                     <div class="cta-panel">
-                                        <a href="" class="btn btn-theme btn-cta">Apply now</a>
+                                        <a href="{{ url('career/' . $item->slug) }}" class="btn btn-theme btn-cta">Apply now</a>
                                     </div>
                                 </div>
                             </div>

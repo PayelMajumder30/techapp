@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use App\Models\Jobcategories;
 use App\Models\Jobvacancy;
 
@@ -36,13 +37,16 @@ class JobvcController extends Controller
             $job->location      = $request->location;
             $job->category_id   = $request->category;
             $job->gender        = $request->gender;
-            $job->experience    = $request->experience;
+            $job->experience    = $request->experience;           
             $job->no_of_vacancy = $request->no_of_vacancy;
             $job->save();
+            $job->slug = $job->id . '-' . Str::slug($request->title);
+            $job->save();
             DB::commit();
-            return redirect()->route('jobvc.index')->with('success', 'Job created');
+            return redirect()->route('jobvc.index')->with('success', 'Job created'); 
         } catch (\Exception $e){
             DB::rollback();
+            dd($e->getMessage());
             return redirect()->back()->with('failure', 'Failed to create job. Please try again.' .  $e->getMessage());
         }
     }
@@ -99,6 +103,8 @@ class JobvcController extends Controller
                 $job->experience    = $request->experience;
                 $job->no_of_vacancy = $request->no_of_vacancy;
                 $job->save();
+                $job->slug = $job->id . '-' . Str::slug($request->title);
+                $job->save();
                 DB::commit();
                 return redirect()->route('jobvc.index')->with('success', 'Job Update');
 
@@ -117,12 +123,13 @@ class JobvcController extends Controller
             $data->save();
             // Commit the transaction if the deletion is successful
             DB::commit();
-            return redirect()->route('jobvc.list')->with('success', 'Job deleted');
+            return redirect()->route('jobvc.index')->with('success', 'Job deleted');
         } catch (\Exception $e) {
             // Rollback the transaction if an exception occurs
             DB::rollback();
             // Log the exception if needed
             \Log::error($e);
+            dd($e->getMessage());
             // Redirect back with an error message
             return redirect()->back()->with('failure', 'Failed to delete Job. Please try again.');
         }

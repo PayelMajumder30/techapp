@@ -32,5 +32,7 @@ Route::prefix('admin')->group(function() {
 Route::name('front.')->group(function() {
     Route::prefix('career')->name('career.')->group(function(){
         Route::get('/',[ContentController::class, 'career'])->name('index');
+        Route::get('/confirmation', [ContentController::class, 'confirmation'])->name('confirmation');
+        Route::get('/{slug}', [ContentController::class, 'CareerApplicationForm'])->name('application.form');
     });
 });
