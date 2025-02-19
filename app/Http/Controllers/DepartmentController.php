@@ -139,8 +139,9 @@ class DepartmentController extends Controller
         ]);
         try{
             $newFacilities = new Facilities;
-            $newFacilities->title    = $request->title;
-            $newFacilities->desc     = $request->description;
+            $newFacilities->title  = $request->title;
+            $newFacilities->slug   = slugGenerate($request->title, 'facilities');
+            $newFacilities->desc   = $request->description;
             //Facility logo
             if ($request->hasFile('logo')) {
                 $fileLogo = $request->file('logo');
@@ -315,7 +316,7 @@ class DepartmentController extends Controller
             DB::rollback();  
             // You can log the exception if needed
             \Log::error($e);
-             dd($e->getMessage());
+             //dd($e->getMessage());
             // Redirect back with an error message
             //return redirect()->back()->with('failure', 'Failed to create SubFacility. Please try again.');
         }

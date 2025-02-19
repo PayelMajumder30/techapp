@@ -185,7 +185,7 @@ padding: 20px 0px;
 }
 .mobile-sub .wsmenu-submenu li a:hover {
      text-decoration: none;
-     background: none !important; 
+     background: none !important;
 }
 
 
@@ -1888,7 +1888,7 @@ textarea::placeholder {
 }
 #customers-testimonials .item h5{
     font-family: 'Poppins', sans-serif;
-    font-weight: 600;    
+    font-weight: 600;
 }
 #customers-testimonials .item span {
     display: block;
@@ -2170,11 +2170,11 @@ textarea::placeholder {
     .overlay-content {
         top: 7%;
     }
-    
+
         .wsmenu>.wsmenu-list {
         width: 50%;
     }
-    
+
         #header img {
         width: 80%;
     }
@@ -2190,7 +2190,7 @@ textarea::placeholder {
     .important_announements span {
         padding-right: 0px;
     }
-    
+
     .important_announements p {
         padding-right: 0px;
     }
@@ -2201,7 +2201,7 @@ textarea::placeholder {
         font-size: 2rem;
         padding-right: 40px;
     }
-    
+
     .choose_us_cont {
         margin: 20px 0px;
         height: 230px;
@@ -2209,7 +2209,7 @@ textarea::placeholder {
     .core_values_cont span {
         padding: 0px 0px;
     }
-    
+
     .founders_cont .menbg {
         width: 100%;
     }
@@ -2217,14 +2217,14 @@ textarea::placeholder {
         width: 100%;
         padding-left: 0px;
     }
-    
+
     .founders_content span {
         font-size: 22px;
     }
     .founders_content h5 {
         font-size: 22px;
     }
-    
+
     .founders_content {
         padding: 15px;
         bottom: 60px;
@@ -2248,7 +2248,7 @@ textarea::placeholder {
     .gallery_slide {
         padding: 0px 30px;
     }
-    
+
     .gallery .owl-carousel .owl-nav .owl-next {
         right: -60px;
     }
@@ -2482,74 +2482,74 @@ textarea::placeholder {
         margin-right: -100%;
     }
     .desktopmenu{
-    
+
         display: none;
-    
+
     }
-    
+
     .mobilemenu{
-    
+
         display: block;
-    
+
         padding: 0px;
-    
+
     }
     .mobile-sub .wsmenu-submenu{
-    
+
         background: none;
         width: 100%;
         border: none;
-    
+
     }
     #panel{
-    
+
         width: 100%;
-    
+
         height: 55vh;
-    
+
         overflow: auto;
-    
+
         margin-top: 90px;
-    
+
     }
-    
+
     .overlay .closebtn {
         left: auto;
         right: -5px;
         width: 80px;
         display: inline-block;
     }
-    
+
     .wsmenu-list > li > a {
-    
+
         padding: 5px 0px 8px 0px;
-    
+
         font-size: 18px;
         color: #fff;
-    
+
     }
-    
+
     .wsmenu-list > li > a .fa {
-    
+
         font-size: 20px;
-    
+
         margin-right: 5px;
-    
+
         top: 1px;
-    
+
     }
     button.close {
-    
+
         margin-top: 0px;
-    
+
         z-index: 10001;
-    
+
         position: relative;
-    
+
         background: #fff;
-    
+
     }
-    
+
     #myNav button.close {
         background: none;
         padding-right: 12px;
@@ -2566,134 +2566,134 @@ textarea::placeholder {
         height: auto;
         text-transform: capitalize;
     }
-    
+
     .wsmenu-list {
-    
+
         width: 90%;
-    
+
         margin-top: 0px;
-    
+
         right: 4%;
-    
+
         z-index: 9999;
-    
+
         position: relative;
-    
+
     }
     .others_nav_cont .title_cont {
-    
+
         font-size: 14px;
-    
+
         margin-bottom: 10px;
-    
+
     }
-    
+
     .address_cont p{
-    
+
         font-size: 13px;
-    
+
     }
-    
+
     .others_nav_cont .social_link li a{
-    
+
         width: 25px;
-    
+
         height: 25px;
-    
+
         line-height: 26px;
-    
+
         font-size: 12px;
         background: #fce225;
         color: #293b8d;
-    
+
     }
     .others_nav_cont .social_link li a:hover {
         background: #14246e;
         color: #fff;
     }
     .overlay-content {
-    
+
         position: relative;
-    
+
         top: 0;
-    
+
         width: 100%;
-    
+
         text-align: center;
-    
+
         margin-top: 0;
-    
+
         height: 100%;
-    
+
         background: #293b8d;
-    
+
     }
-    
+
     .others_nav_cont {
-    
+
         width: 90%;
-    
+
         bottom: 10px;
-    
+
         /* left: 4%; */
-    
+
        /*  background: #fff; */
-    
+
        z-index: 3;
-    
+
     }
     .animated-arrow {
-    
+
         right: 3px;
-    
+
         left: auto;
-    
+
         top: 30px;
-    
+
     }
     .wsmenu{
-    
+
         width: 300px;
-    
+
     }
-    
+
     .wsoffcanvasopener .animated-arrow {
-    
+
         right: 300px;
-    
+
     }
-    
+
     .wsmenu {
-    
+
         right: -300px;
-    
+
     }
     .wsmenu-list > li > a .fa {
-    
+
         font-size: 20px;
-    
+
         margin-right: 0px;
         color: #fff;
-    
+
         float: none;
-    
+
         transform: rotate(-90deg);
-    
+
         margin: 0;
-    
+
         padding: 0;
-    
+
         top: 1px;
-    
+
         position: relative;
-    
+
         left: -10px;
-    
+
         margin-left: 12px;
         float: right;
-    
+
     }
-    
+
     .others_nav_cont {
         width: 90%;
         bottom: 100px;
@@ -2723,7 +2723,7 @@ textarea::placeholder {
         border-radius: 50%;
         background: #fff;
         color: #242556;
-    } 
+    }
     /*#header.active .wsmenu-list > li > a.active {
         color: #293b8d !important;
     } */
@@ -2873,7 +2873,7 @@ textarea::placeholder {
     .innerbanner h1 {
         font-size: 40px;
     }
-    
+
     #header {
         padding: 15px 0;
     }
@@ -2899,6 +2899,48 @@ textarea::placeholder {
         max-height: 200px;
     }
 }
+
+    /* Loader container */
+    #loader-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white background */
+        z-index: 1000; /* Make sure it appears on top of other elements */
+        display: none; /* Initially hidden */
+    }
+
+    .loader-holder {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Loader */
+    #loader {
+        /*position: absolute;*/
+        /*top: 50%;*/
+        /*left: 50%;*/
+        /*transform: translate(-50%, -50%);*/
+        width: 100px; /* Adjust the width */
+        height: 100px; /* Adjust the height */
+        background-image: url('backend-assets/images/loader.png'); /* Replace with your logo image path */
+        background-size: cover; /* Ensure the logo covers the entire area */
+        animation: spin 3s infinite linear; /* Add animation (rotation) */
+    }
+
+    /* Animation */
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
 
 
 
