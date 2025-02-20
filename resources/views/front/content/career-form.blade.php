@@ -50,7 +50,7 @@
                                         <div class="col-lg-6 col-12">
                                             <div class="form-group">
                                                 <label class="form-label">Date of Birth<span class="required">*</span></label>
-                                                <input type="text" name="date_of_birth" id="date_of_birth" class="form-control" placeholder="Enter your DOB" pattern="\d{2}-\d{2}-\d{4}">
+                                                <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" placeholder="Enter your DOB" pattern="\d{2}-\d{2}-\d{4}" max="">
                                                 <p id="error_date_ofb" class="text-danger err-msg"></p>
                                             </div>
                                         </div>
@@ -105,18 +105,18 @@
                                             <div class="form-group phone-input-group">
                                                 <div class="phone-number-col email-id-col">
                                                     <label class="form-label">Email ID<span class="required">*</span></label>
-                                                    <input type="email" placeholder="enter valid email address" name="email" id="email" class="form-control">
+                                                    <input type="email" placeholder="enter valid email address" name="email" id="email" class="form-control" value="admin@gmail.com">
                                                     <p id="verified_email" class="success-msg"></p>
                                                     <p id="error_email" class="text-danger err-msg"></p>
                                                 </div>
-                                                <div class="phone-cta-col">
+                                                {{-- <div class="phone-cta-col">
                                                     <button type="button" class="btn btn-theme btn-cta" id="Email_Send_OTP" disabled>Send OTP</button>
-                                                </div>
-                                                <p id="otp_message" class="font-weight-bold text-end success-msg"></p>
+                                                </div> --}}
+                                                {{-- <p id="otp_message" class="font-weight-bold text-end success-msg"></p> --}}
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-12">
                                             <label class="form-label">Enter OTP received on the email above<span class="required">*</span></label>
                                             <div class="form-group phone-input-group" id="otp_full_div">
@@ -138,7 +138,7 @@
                                                 <p id="valid_otp_message" class="font-weight-bold success-msg"></p>
                                             </div>                          
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="row">
                                         <div class="col-lg-6 col-12">
                                             <div class="form-group">
@@ -316,6 +316,7 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
+ $(function(){
     var currentDate = new Date();
     var month = currentDate.getMonth() + 1;
     var date = currentDate.getDate();
@@ -328,101 +329,322 @@
         date = '0' + date.toString();
     }
     var format = year + '-' + month + '-' + date;
+    alert(format);
     $('#date_of_birth').attr('max', format);
+});
+    
+    //OTP validation
+    // function validateOTP(){
+    //     //Retrieve OTP values
+    //     var otpValues = [];
+    //     $("input[name= 'valid_otp[]']").each(function(){
+    //         otpValues.push($(this).value());
+    //     });
+
+    //     // Check if all OTP fields are filled
+    //     var allFilled = otpValues.every(function(value){
+    //         return value !== '';
+    //     });
+
+    //     //If all OTP fields are filled, remove 'disabled' class from the button
+    //     if(allFilled){
+    //         var email = $('#email').val();
+    //         $('#validate_otp').removeClass('disabled');
+    //         var storeOTPArray = localStorage.getItem('otp');
+    //         var enteredOTP = otpValues.join('');
+    //         //check if entered otp matches stored otps
+    //         $('#validate_otp').html('Please wait ...');
+    //         if(storeOTPArray == enteredOTP){
+    //             localStorage.setItem('verified_email', 1); //Saves email verification status (verified_email = 1) in localStorage
+    //             localStorage.setItem('email', email); //Stores the email in localStorage
+    //             $('#validate_otp').prop('disabled', false);
+    //             $('#valid_otp_message').html('<span style="color: green;">OTP verified successfully. You can proceed further.</span>');
+    //             localStorage.removeItem('otp');
+
+    //             setTimeout(function(){
+    //                 $('#Email_Send_OTP').remove();
+    //                 $('#verified_email').text('Email verified');
+    //                 $('#validate_otp').html('Validate OTP');
+    //                 $('#valid_otp_message').html('');
+    //             },2000);
+    //         } else {
+    //             $('#validate_otp').prop('disabled', true);
+    //             setTimeout(function(){
+    //                 $('#validate_otp').html('Validate OTP');
+    //                 $('#valid_otp_message').html('<span style="color: red;">Entered OTP does not match the OTP from email.</span>');
+    //             },2000);             
+    //         }
+    //         setTimeout(function(){
+    //             $('#validate_otp').html('');
+    //         },5000)
+    //     } else{
+    //          // If any OTP field is empty, add 'disabled' class to the button
+    //          $('#validate_otp').addClass('disabled');
+    //     }
+    //     // Convert entered OTP values to string
+    // }
+    // //Attach keyup handler to each OTP input field
+    // $("input[name='valid_otp[]']").keyup(function() {
+    //     validateOTP(); //Call the validateOTP function on keyup event
+    // });
+    $(document).ready(function(){
+        $('#email').keyup(function(){
+            //Reset error message
+            $('#error_email').text("");
+            //$('#otp-input-group input').val('');
+            var email = $("#email").val();
+            var name = $("#name").val();
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if(email.length == ""){
+                $('#error_email').text("Please enter a valid email address");
+                $('#email').focus();
+                //$('#Email_Send_OTP').prop('disabled', true);
+                return false;
+            }else if(!emailRegex.test(email)){
+                $('#error_email').text("Please enter a valid email address");
+                $('#email').focus();
+                return false;
+                //$('#Email_Send_OTP').prop('disabled',true);
+            }//else{
+            //     $('#Email_Send_OTP').html('Sending...');
+            //     $.ajax({
+            //         url: "",
+            //         type: "GET",
+            //         data: {name: name, email: email},
+            //         success: function(response) {
+            //             if(response.status == 200){
+            //                 $('#Email_Send_OTP').html('Send OTP');
+            //                 localStorage.setItem('otp', response.data);
+            //                 $('#otp_message').html('<span style="color: green;">' + response.data + '</span>');
+            //             }else if (response.status == 400){
+            //                 $('#Email_Send_OTP').html('Send OTP');
+            //                 $('#otp_message').html('<span style="color: red;">' + response.data + '</span>');
+            //             } else if (response.status == 500){
+            //                 $('#Email_Send_OTP').html('send OTP');
+            //                 $('#otp_message').html('<span style="color: red;">' + response.data + '</span>');
+            //             }
+            //             setTimeout(function(){
+            //                 $('#otp_message').html('');
+            //             },5000);
+            //         },
+                    //error: function(xhr, status, error) {
+                        //Handle error
+                    //}
+               //});
+            //}
+        });
+    });
 
     //first step verification
-    $(document).ready(function(){
-        $('#first_next').click(function(event){
-            event.preventDefault();
-            $('#error_name').text("");
-            $('#error_fname').text("");
-            $('#error_date_ofb').text("");
-            $('#error_phone').text("");
-            $('#error_email').text("");
-            
+    $(document).ready(function() {
+        $("#first_next").click(function(event) {
+            event.preventDefault(); // Prevent default action of <a> tag
+            // Reset error messages
+            $("#error_name").text("");
+            $("#error_fname").text("");
+            $("#error_date_ofb").text("");
+            $("#error_phone").text("");
+            $("#error_email").text("");
+
             var name = $("#name").val();
             var gender = $("input[name='gender']:checked").val();
-            var marital_status = $("input[name='marital_status']:checked").vale();
-            var father_name = $('#father_name').val();
-            var date_of_birth = $('#date_of_birth').val();
-            var phone = $('#phone').val();
-            var email = $('#email').val();
-
+            var marital_status = $("input[name='marital_status']:checked").val();
+            var father_name = $("#father_name").val();
+            var date_of_birth = $("#date_of_birth").val();
+            var phone = $("#phone").val();
+            var email = $("#email").val();
+            
             if (name.length == "") {
                 $("#error_name").text("Please enter your name");
                 $("#name").focus();
                 return false;
-            } else if(father_name.length == ""){
-                $('#error_fname').text("please enter your father name");
-                $('#father_name').focus();
+            } else if (father_name.length == "") {
+                $("#error_fname").text("Please enter your father's name");
+                $("#father_name").focus();
                 return false;
-            } else if(date_of_birth.length == ""){
-                $('#error_date_ofb').text("please choose your date of birth");
-                $('#date_of_birth').focus();
+            } else if (date_of_birth.length == "") {
+                $("#error_date_ofb").text("Please choose your date of birth");
+                $("#date_of_birth").focus();
                 return false;
-            }else if(phone.length != 10 || isNaN(phone)){
-                $('#error_phone').text("Please enter a valid number");
-                $('#phone').focus();
+            } else if (phone.length != 10 || isNaN(phone)) {
+                $("#error_phone").text("Please enter a valid 10-digit mobile number");
+                $("#phone").focus();
                 return false;
-            }else if(email.lengh == ""){
-                $('#error_email').text("Please enter the email address");
-                $('#email').focus();
+            } else if (email.length == "") {
+                $("#error_email").text("Please enter your email address");
+                $("#email").focus();
                 return false;
-            }
-            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailRegex.test(email)) {
-                    $("#error_email").text("Please enter a valid email address");
-                    $("#email").focus();
+            }else {
+                var currentDate = new Date();
+                var minDateOfBirth = new Date();
+                minDateOfBirth.setFullYear(currentDate.getFullYear() - 10);
+                var selectedDateOfBirth = new Date(date_of_birth);
+                if (selectedDateOfBirth > minDateOfBirth) {
+                    $("#error_date_ofb").text("Date of birth must be before 10 years from today");
+                    $("#date_of_birth").focus();
                     return false;
                 }
-            var verifiedEmail = localStorage.getItem('verified_email');
-            if(verifiedEmail == 1){
-                console.log('next-form');
-                localStorage.setItem('name',name);
-                localStorage.setItem('fname',father_name);
-                localStorage.setItem('dob',date_of_birth);
-                localStorage.setItem('gender',gender);
-                localStorage.setItem('phone',phone);
-                localStorage.setItem('marital_status', marital_status);
-                $(this).addClass('next-form');
-                //Button click
-                current_ff = $(this).parent().parent().parent();
-                next_ff = current_ff.next();
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        $("#error_email").text("Please enter a valid email address");
+                        $("#email").focus();
+                        return false;
+                    }
+                var verifiedEmail = localStorage.getItem('verified_email');
+                if (verifiedEmail == 1) {
+                    console.log('next-form');
+                    localStorage.setItem('name',name);
+                    localStorage.setItem('fname',father_name);
+                    localStorage.setItem('dob',date_of_birth);
+                    localStorage.setItem('gender',gender);
+                    localStorage.setItem('phone',phone);
+                    localStorage.setItem('marital_status',marital_status);
+                    $(this).addClass('next-form');
+                    // Button Click
+                    current_ff = $(this).parent().parent().parent();
+                    next_ff = current_ff.next();
 
-                //add class active
-                $(".step-list li").eq($(".tab-pannel").index(current_ff)).addClass("completed");
-                $(".step-list li").eq($(".tab-pannel").index(next_ff)).addClass("active");
+                    //Add Class Active
+                    $(".step-list li").eq($(".tab-pannel").index(current_ff)).addClass("completed");
+                    $(".step-list li").eq($(".tab-pannel").index(next_ff)).addClass("active");
 
-                //show the next steps
-                next_ff.show();
-                //hide the current step with style
-                current_ff.animate({opacity : 0}, {
-                    step: function(now){
+                    //show the next steps
+                    next_ff.show();
+                    //hide the current steps with style
+                    current_ff.animate({opacity: 0}, {
+                    step: function(now) {
                     // for making fielset appear animation
                     opacity = 1 - now;
+
                     current_ff.css({
-                        'display' : 'none',
+                        'display': 'none',
                         'position': 'relative'
                     });
-                    next_ff.css({opacity : 0});
+                    next_ff.css({'opacity': opacity});
                     }, duration: 500
-                });
-                setProgressBar(++current);
-            }else{
-                alert('here');
+                    });
+                    setProgressBar(++current);
+                }else{
+                    alert('here');
+                }
             }
         });
     });
 
+    //second step verification
+    $(document).ready(function(){
+        $('#second_next').click(function(event){
+            event.preventDefault();
+            $('#error_address').text("");
+            $('#error_landmark').text("");
+            $('#error_pincode').text("");
+            $('#error_city').text("");
+            $('#error_dist').text("");
+            $('#error_state').text("");
+            $('#error_country').text("");
+
+            var address = $("#address").val();
+            var landmark = $('#landmark').val();
+            var pincode = $('#pincode').val();
+            var city = $('#city').val();
+            var dist = $('#dist').val();
+            var state = $('#state').val();
+            var country = $('#country').val();
+
+            if(address.length == 0) {
+                $('#error_address').text("Please enter your address");
+                $('#address').focus();
+                return false;
+            }
+
+            //landmark is optional so we comment off
+            // else if(landmark.length == 0){
+            //     $('#error_landmark').text("Please enter your landmark");
+            //     $('#landmark').focus();
+            //     return false;
+            // }
+
+            else if(pincode.length != 6 || isNaN(pincode)){
+                $('#error_pincode').text("Enter a 6-digit Pincode");
+                $('#pincode').focus();
+                return false;
+            }
+            else if(city.length == ""){
+                $('#error_city').text("Please enter your city name");
+                $('#city').focus();
+                return false;
+            }
+            else if(dist.length == ""){
+                $('#error_dist').text("Please enter your district name");
+                $('#dist').focus();
+                return false;
+            }
+            else if(state.length == ""){
+                $('#error_state').text("Please enter your state name");
+                $('#state').focus();
+                return false;
+            }
+            else if(country.length == ""){
+                $('#error_country').text("Please enter your country name");
+                $('#country').focus();
+                return false;
+            }
+            else{
+                var verifiedEmail = localStorage.getItem('verified_email');
+                if(verifiedEmail == 1){
+                    localStorage.setItem('address', address);
+                    localStorage.setItem('landmark', landmark);
+                    localStorage.setItem('pincode', pincode);
+                    localStorage.setItem('city', city);
+                    localStorage.setItem('dist', dist);
+                    localStorage.setItem('state', state);
+                    localStorage.setItem('country', country);
+
+                    //add the next-form class
+                    $(this).addClass('next-form');
+
+                    //Button click
+                    var current_ff = $(this).parent().parent().parent();
+                    var next_ff = current_ff.next();
+
+                    //Add class active
+                    $(".step-list li").eq($(".tab-panel").index(current_ff)).addClass("completed");
+                    $(".step-list li").eq($(".tab-panel").index(next_ff)).addClass("active");
+
+                    //show the next steps
+                    next_ff.show();
+                    //Hide the current steps with style
+                    current_ff.animate({opacity: 0},{
+                        step: function(now) {
+                            //For making fieldset appear animation
+                            opacity = 1 - now;
+
+                            current_ff.css({
+                                 'display' : 'none',
+                                'position': 'relative'
+                            });
+                            next_ff.css({'opacity': opacity})  
+                        },duration: 500
+                    });
+                    setProgressBar(++current);
+                } else{
+                    alert("email is not verified");
+                   //localStorage.clear();
+                }
+            }
+        });
+
+    });
+
       // All Get localStorage
     // Retrieve the value of 'verified_email' from localStorage
-    var verifiedEmail = localStorage.getItem('verified_email');
-    var set_email = localStorage.getItem('email');
-    var set_name = localStorage.getItem('name');
-    var set_fname = localStorage.getItem('fname');
-    var set_dob = localStorage.getItem('dob');
-    var set_gender = localStorage.getItem('gender');
-    var set_phone = localStorage.getItem('phone');
+    var verifiedEmail   = 1;
+    var set_email       = localStorage.getItem('email');
+    var set_name        = localStorage.getItem('name');
+    var set_fname       = localStorage.getItem('fname');
+    var set_dob         = localStorage.getItem('dob');
+    var set_gender      = localStorage.getItem('gender');
+    var set_phone       = localStorage.getItem('phone');
     var set_marital_status = localStorage.getItem('marital_status');
     if (verifiedEmail == 1) {
         $('#verified_email').text('Email verified');
@@ -452,10 +674,41 @@
         });
     }
     if (set_marital_status) {
-        $('input[type="radio"][name="merital_status"]').each(function() {
+        $('input[type="radio"][name="marital_status"]').each(function() {
             if ($(this).val() === set_marital_status) {
                 $(this).prop('checked', true);
             }
         });
+    }
+
+    //second step
+    var set_address     = localStorage.getItem('address');
+    var set_landmark    = localStorage.getItem('landmark');
+    var set_pincode     = localStorage.getItem('pincode');
+    var set_city        = localStorage.getItem('city');
+    var set_dist        = localStorage.getItem('dist');
+    var set_state       = localStorage.getItem('state');
+    var set_country     = localStorage.getItem('country');
+  
+    if(set_address) {
+        $('#address').val(set_address);
+    }
+    if(set_landmark) {
+        $('#landmark').val(set_landmark);
+    }
+    if(set_pincode) {
+        $('#pincode').val(set_pincode);
+    }
+    if(set_city) {
+        $('#city').val(set_city);
+    }
+    if(set_dist) {
+        $('#dist').val(set_dist);
+    }
+    if(set_state) {
+        $('#state').val(set_state);
+    }
+    if(set_country) {
+        $('#country').val(set_country);
     }
 </script>
