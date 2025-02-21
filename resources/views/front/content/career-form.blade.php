@@ -244,7 +244,42 @@
                                                         class="required">*</span></label>
                                                 <select class="form-control" name="state" id="state">
                                                     <option selected disabled>Enter your state</option>
-                                                    <option value="West Bengal">West Bengal</option>
+                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                        <option value="Assam">Assam</option>
+                                                        <option value="Bihar">Bihar</option>
+                                                        <option value="Chandigarh">Chandigarh</option>
+                                                        <option value="Chhattisgarh">Chhattisgarh</option>
+                                                        <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                                        <option value="Daman and Diu">Daman and Diu</option>
+                                                        <option value="Delhi">Delhi</option>
+                                                        <option value="Lakshadweep">Lakshadweep</option>
+                                                        <option value="Puducherry">Puducherry</option>
+                                                        <option value="Goa">Goa</option>
+                                                        <option value="Gujarat">Gujarat</option>
+                                                        <option value="Haryana">Haryana</option>
+                                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                        <option value="Jharkhand">Jharkhand</option>
+                                                        <option value="Karnataka">Karnataka</option>
+                                                        <option value="Kerala">Kerala</option>
+                                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                        <option value="Maharashtra">Maharashtra</option>
+                                                        <option value="Manipur">Manipur</option>
+                                                        <option value="Meghalaya">Meghalaya</option>
+                                                        <option value="Mizoram">Mizoram</option>
+                                                        <option value="Nagaland">Nagaland</option>
+                                                        <option value="Odisha">Odisha</option>
+                                                        <option value="Punjab">Punjab</option>
+                                                        <option value="Rajasthan">Rajasthan</option>
+                                                        <option value="Sikkim">Sikkim</option>
+                                                        <option value="Tamil Nadu">Tamil Nadu</option>
+                                                        <option value="Telangana">Telangana</option>
+                                                        <option value="Tripura">Tripura</option>
+                                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                        <option value="Uttarakhand">Uttarakhand</option>
+                                                        <option value="West Bengal">West Bengal</option>
                                                 </select>
                                                 <p id="error_state" class="text-danger"></p>
                                             </div>
@@ -305,6 +340,362 @@
                                     </div>
                                 </div>
                             </div>
+
+                            {{-- third step --}}
+                            <div class="tab-pannel" id="step3">
+                                <div class="form-box">
+                                    <h3>Educational Qualification</h3>
+                                    <h4>10th Grade Qualification (Standard X)</h4>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Institution/School Name <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter your institution/school" name="x_school_name" id="x_school_name">
+                                                    <p id="error_x_school_name" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Affiliated Education Board <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter your affiliated education board" name="x_board_name" id="x_board_name">
+                                                    <p id="error_x_board_name" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Percentage Acquired <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter percentage acquired" name="x_percentage" id="x_percentage">
+                                                <p id="error_x_percentage" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Passing Year <span
+                                                        class="required">*</span></label>
+                                                <select class="form-control" name="x_passing_year" id="x_passing_year">
+                                                    <option selected disabled>Select passing year</option>
+                                                    @for ($year = 1980; $year <= 2015; $year++)
+                                                    <option value="{{$year}}">{{$year}}</option>
+                                                    @endfor
+                                                </select>
+                                                <p id="error_x_passing_year" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h4>12th Grade Qualification (Standard XII)</h4>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Institution/School Name <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter your institution/school" name="xii_school_name" id="xii_school_name">
+                                                <p id="error_xii_school_name" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Affiliated Education Board <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter your affiliated education board" name="xii_board_name" id="xii_board_name">
+                                                <p id="error_xii_board_name" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Percentage Acquired <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter percentage acquired" name="xii_percentage" id="xii_percentage">
+                                                <p id="error_xii_percentage" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Passing Year <span
+                                                        class="required">*</span></label>
+                                                <select class="form-control" name="xii_passing_year" id="xii_passing_year">
+                                                    <option selected disabled>Select passing year</option>
+                                                    @for ($year = 1980; $year <= date("Y"); $year++)
+                                                    <option value="{{$year}}">{{$year}}</option>
+                                                    @endfor
+                                                </select>
+                                                <p id="error_xii_passing_year" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <h4>After 12th Grade / Higher Qualification </h4>
+                                    <div class="row" id="12th">
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Qualification <span
+                                                        class="required">*</span></label>
+                                                <select class="form-control after_xii_qualification" name="after_xii_qualification[]" >
+                                                    <option selected disabled>Select your qualification</option>
+                                                    <option value="Dilpoma">Dilpoma</option>
+                                                    <option value="UG">UG</option>
+                                                    <option value="PG">PG</option>
+                                                    <option value="B.Ed.">B.Ed.</option>
+                                                    <option value="M.Ed.">M.Ed.</option>
+                                                    <option value="Teacher's Training">Teacher's Training</option>
+                                                    <option value="Ph.D">Ph.D</option>
+                                                </select>
+                                               
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Institution Name <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-control after_xii_institute_name"
+                                                    placeholder="Enter your institution name" name="after_xii_institute_name[]" >
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Affiliated Board/University <span class="required">*</span></label>
+                                                <input type="text" class="form-control after_xii_institute_board"
+                                                    placeholder="Enter affiliated board/university name" name="after_xii_institute_board[]" >
+                                            </div>
+                                        </div>
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Stream/Discipline Honours/Area of
+                                                    Specialisation <span class="required">*</span></label>
+                                                <input type="text" class="form-control after_xii_institute_stream"
+                                                    placeholder="Enter your area of specialisation" name="after_xii_institute_stream[]" >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Percentage Acquired <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-control after_xii_institute_percentage"
+                                                    placeholder="Enter percentage acquired" name="after_xii_institute_percentage[]" >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Passing Year <span
+                                                        class="required">*</span></label>
+                                                <select class="form-control after_xii_institute_passing_year" name="after_xii_institute_passing_year[]" >
+                                                    <option selected disabled>Select passing year</option>
+                                                    @for ($year = 1980; $year <= date("Y"); $year++)
+                                                    <option value="{{$year}}">{{$year}}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="add-cta-row">
+                                        <button type="button" class="btn btn-theme btn-add" id="add_other_Qualification">
+                                            <svg height="512pt" viewBox="0 0 512 512" width="512pt"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="m256 512c-141.164062 0-256-114.835938-256-256s114.835938-256 256-256 256 114.835938 256 256-114.835938 256-256 256zm0-480c-123.519531 0-224 100.480469-224 224s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0" />
+                                                <path
+                                                    d="m368 272h-224c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h224c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" />
+                                                <path
+                                                    d="m256 384c-8.832031 0-16-7.167969-16-16v-224c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v224c0 8.832031-7.167969 16-16 16zm0 0" />
+                                            </svg>
+                                            Add Another
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="step-form-cta-row">
+                                    <div class="step-prev">
+                                        <a href="javascript:void(0)" class="previous" id="goto_step_2">
+                                            <span class="btn btn-theme">
+                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                    height="512" x="0" y="0" viewBox="0 0 492 492"
+                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                    class="hovered-paths">
+                                                    <g>
+                                                        <path
+                                                            d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
+                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                            class="hovered-path"></path>
+                                                    </g>
+                                                </svg>
+                                                Prev
+                                            </span>
+                                        </a>
+                                    </div>
+                                   <div class="step-save">
+                                        <div id="education_alert_container"></div>
+                                    </div> 
+                                    <div class="step-next">
+                                        <a href="javascript:void(0)" id="third_next" class="">
+                                            <span class="btn btn-theme">
+                                                Next
+                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                    height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
+                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                    class="">
+                                                    <g>
+                                                        <path
+                                                            d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
+                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                            class=""></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            {{-- Fourth step --}}
+                            <div class="tab-pannel" id="step4">
+                                <div class="form-box">
+                                    <h3>Work Experience</h3>
+                                    <div class="row" id="work_experience_div">
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Experience Type <span class="required">*</span></label>
+                                                <input type="text" class="form-control experience-type" placeholder="Enter experience type" name="experience_type[]" required value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Experience Duration <span class="required">*</span></label>
+                                                <input type="text" class="form-control experience-duration" placeholder="Enter experience duration" name="experience_duration[]" required value="">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="add-cta-row">
+                                        <button type="button" class="btn btn-theme btn-add" id="add_experience">
+                                            <svg height="512pt" viewBox="0 0 512 512" width="512pt"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="m256 512c-141.164062 0-256-114.835938-256-256s114.835938-256 256-256 256 114.835938 256 256-114.835938 256-256 256zm0-480c-123.519531 0-224 100.480469-224 224s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0" />
+                                                <path
+                                                    d="m368 272h-224c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h224c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" />
+                                                <path
+                                                    d="m256 384c-8.832031 0-16-7.167969-16-16v-224c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v224c0 8.832031-7.167969 16-16 16zm0 0" />
+                                            </svg>
+                                            Add Another
+                                        </button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Present Salary (P.A.) (If you are a
+                                                    fresher, then put 0.0)<span class="required">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter your present salary" name="present_salary" id="present_salary">
+                                                <p id="error_present_salary" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Expected Salary (P.A.) <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter your expected salary" name="expected_salary" id="expected_salary">
+                                                <p id="error_expected_salary" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">If selected, time required to join <span class="required">*</span></label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Enter required time" name="join_time" id="join_time">
+                                                <p id="error_join_time" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-12">
+                                            <div class="form-group">
+                                                <label class="form-label">Do you know anyone at TIGS?</label>
+                                                <div class="gender-options">
+                                                    <label for="knowanyone1" class="custom-radio">
+                                                        Yes
+                                                        <input type="radio" name="knowanyone" id="knowanyone1"
+                                                            value="Yes">
+                                                        <span class="check-box">
+                                                            <span class="checkmark"></span>
+                                                        </span>
+                                                    </label>
+                                                    <label for="knowanyone2" class="custom-radio">
+                                                        No
+                                                        <input type="radio" name="knowanyone" id="knowanyone2"
+                                                            value="No" checked>
+                                                        <span class="check-box">
+                                                            <span class="checkmark"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12" id="mentionReferrence">
+                                            <div class="form-group">
+                                                <label class="form-label">Please mention the Name, Department,
+                                                    Designation</label>
+                                                <input type="text" class="form-control"
+                                                    placeholder="Mention referrence details" name="referrence_details" id="referrence_details">
+                                                    <p id="error_referrence_details" class="text-danger err-msg"></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="step-form-cta-row">
+                                    <div class="step-prev">
+                                        <a href="#" class="previous">
+                                            <span class="btn btn-theme">
+                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                    height="512" x="0" y="0" viewBox="0 0 492 492"
+                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                    class="hovered-paths">
+                                                    <g>
+                                                        <path
+                                                            d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
+                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                            class="hovered-path"></path>
+                                                    </g>
+                                                </svg>
+                                                Prev
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="step-save">
+                                        <div id="experience_alert_container"></div>
+                                    </div>
+                                    <div class="step-next">
+                                        <a href="javascript:void(0)" id="fourth_next" class="">
+                                            <span class="btn btn-theme">
+                                                Next
+                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                    height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
+                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                    class="">
+                                                    <g>
+                                                        <path
+                                                            d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
+                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                            class=""></path>
+                                                    </g>
+                                                </svg>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                         </form>
 
@@ -658,13 +1049,13 @@
             $("#error_phone").text("");
             $("#error_email").text("");
 
-            var name = $("#name").val();
-            var gender = $("input[name='gender']:checked").val();
-            var marital_status = $("input[name='marital_status']:checked").val();
-            var father_name = $("#father_name").val();
-            var date_of_birth = $("#date_of_birth").val();
-            var phone = $("#phone").val();
-            var email = $("#email").val();
+            var name            = $("#name").val();
+            var gender          = $("input[name='gender']:checked").val();
+            var marital_status  = $("input[name='marital_status']:checked").val();
+            var father_name     = $("#father_name").val();
+            var date_of_birth   = $("#date_of_birth").val();
+            var phone           = $("#phone").val();
+            var email           = $("#email").val();
 
             if (name.length == "") {
                 $("#error_name").text("Please enter your name");
@@ -687,8 +1078,8 @@
                 $("#email").focus();
                 return false;
             }else {
-                var currentDate = new Date();
-                var minDateOfBirth = new Date();
+                var currentDate         = new Date();
+                var minDateOfBirth      = new Date();
                 minDateOfBirth.setFullYear(currentDate.getFullYear() - 10);
                 var selectedDateOfBirth = new Date(date_of_birth);
                 if (selectedDateOfBirth > minDateOfBirth) {
@@ -756,13 +1147,13 @@
             $('#error_state').text("");
             $('#error_country').text("");
 
-            var address = $("#address").val();
-            var landmark = $('#landmark').val();
-            var pincode = $('#pincode').val();
-            var city = $('#city').val();
-            var dist = $('#dist').val();
-            var state = $('#state').val();
-            var country = $('#country').val();
+            var address     = $("#address").val();
+            var landmark    = $('#landmark').val();
+            var pincode     = $('#pincode').val();
+            var city        = $('#city').val();
+            var dist        = $('#dist').val();
+            var state       = $('#state').val();
+            var country     = $('#country').val();
 
             if(address.length == 0) {
                 $('#error_address').text("Please enter your address");
@@ -802,49 +1193,53 @@
                 $('#country').focus();
                 return false;
             }
-            else{
-                var verifiedEmail = localStorage.getItem('verified_email');
-                if(verifiedEmail == 1){
-                    localStorage.setItem('address', address);
-                    localStorage.setItem('landmark', landmark);
-                    localStorage.setItem('pincode', pincode);
-                    localStorage.setItem('city', city);
-                    localStorage.setItem('dist', dist);
-                    localStorage.setItem('state', state);
-                    localStorage.setItem('country', country);
+            // else{
+            //     var verifiedEmail = localStorage.getItem('verified_email');
+            //     if(verifiedEmail == 1){
+            //         localStorage.setItem('address', address);
+            //         localStorage.setItem('landmark', landmark);
+            //         localStorage.setItem('pincode', pincode);
+            //         localStorage.setItem('city', city);
+            //         localStorage.setItem('dist', dist);
+            //         localStorage.setItem('state', state);
+            //         localStorage.setItem('country', country);
 
-                    //add the next-form class
-                    $(this).addClass('next-form');
+            //         //add the next-form class
+            //         $(this).addClass('next-form');
 
-                    //Button click
-                    var current_ff = $(this).parent().parent().parent();
-                    var next_ff = current_ff.next();
+            //         //Button click
+            //         var current_ff = $(this).parent().parent().parent();
+            //         var next_ff = current_ff.next();
 
-                    //Add class active
-                    $(".step-list li").eq($(".tab-panel").index(current_ff)).addClass("completed");
-                    $(".step-list li").eq($(".tab-panel").index(next_ff)).addClass("active");
+            //         //Add class active
+            //         $(".step-list li").eq($(".tab-panel").index(current_ff)).addClass("completed");
+            //         $(".step-list li").eq($(".tab-panel").index(next_ff)).addClass("active");
 
-                    //show the next steps
-                    next_ff.show();
-                    //Hide the current steps with style
-                    current_ff.animate({opacity: 0},{
-                        step: function(now) {
-                            //For making fieldset appear animation
-                            opacity = 1 - now;
+            //         //show the next steps
+            //         next_ff.show();
+            //         //Hide the current steps with style
+            //         current_ff.animate({opacity: 0},{
+            //             step: function(now) {
+            //                 //For making fieldset appear animation
+            //                 opacity = 1 - now;
 
-                            current_ff.css({
-                                 'display' : 'none',
-                                'position': 'relative'
-                            });
-                            next_ff.css({'opacity': opacity})
-                        },duration: 500
-                    });
-                    setProgressBar(++current);
-                } else{
-                    alert("email is not verified");
-                   //localStorage.clear();
-                }
-            }
+            //                 current_ff.css({
+            //                      'display' : 'none',
+            //                     'position': 'relative'
+            //                 });
+            //                 next_ff.css({'opacity': opacity})
+            //             },duration: 500
+            //         });
+            //         setProgressBar(++current);
+            //     } else{
+            //         alert("email is not verified");
+            //        //localStorage.clear();
+            //     }
+            // }
+            $("#step2").hide();
+            $("#step3").show();
+            $('.step-list li').eq(0).removeClass('active');
+            $('.step-list li').eq(1).addClass('active');
         });
 
         // Back to step 1
@@ -854,10 +1249,251 @@
             $('.step-list li').eq(1).removeClass('active');
             $('.step-list li').eq(0).addClass('active');
         });
+       
+
+        //Third step verification
+        $(document).ready(function(){
+           
+            $('#third_next').click(function(event){
+                event.preventDefault();
+                $('#error_x_school_name').text("");
+                $('#error_x_board_name').text("");
+                $('#error_x_percentage').text("");
+                $('#error_x_passing_year').text("");
+                $('#error_xii_school_name').text("");
+                $('#error_xii_board_name').text("");
+                $('#error_xii_percentage').text("");
+                $('#error_xii_passing_year').text("");
+                // $("#error_after_xii_qualification").text("");
+                // $("#error_after_xii_institute_name").text("");
+                // $("#error_after_xii_institute_board").text("");
+                // $("#error_after_xii_institute_stream").text("");
+                // $("#error_after_xii_institute_percentage").text("");
+                // $("#error_after_xii_institute_passing_year").text("");
+
+                //Get input values
+                var x_school_name    = $("#x_school_name").val();
+                var x_board_name     = $("#x_board_name").val();
+                var x_percentage     = $("#x_percentage").val();
+                var x_passing_year   = $("#x_passing_year").val();
+                var xii_school_name  = $("#xii_school_name").val();
+                var xii_board_name   = $("xii_board_name").val();
+                var xii_percentage   = $("#xii_percentage").val();
+                var xii_passing_year = $("#xii_passing_year").val();
+
+                //validate higher study entry fields
+                var higherStudiesValid = true;
+                $(".after_xii_qualification").each(function(){
+                    var value = $(this).val();
+                    if(value === null || value === undefined || value.trim() === ""){
+                        higherStudiesValid = false;
+                        return false; // Exit the loop early if any field is empty
+                    }
+                });
+
+                $(".after_xii_institute_name").each(function(){
+                    var value = $(this).val();
+                    if(value === null || value === undefined || value.trim() === ""){
+                        higherStudiesValid = false;
+                        return false; // Exit the loop early if any field is empty
+                    }
+                });
+
+                $(".after_xii_institute_board").each(function(){
+                    var value = $(this).val();
+                    if(value === null || value === undefined || value.trim() === ""){
+                        higherStudiesValid = false;
+                        return false; // Exit the loop early if any field is empty
+                    }
+                });
+
+                $(".after_xii_institute_stream").each(function(){
+                    var value = $(this).val();
+                    if(value === null || value === undefined || value.trim() === ""){
+                        higherStudiesValid = false;
+                        return false; // Exit the loop early if any field is empty
+                    }
+                });
+
+                $(".after_xii_institute_percentage").each(function(){
+                    var value = $(this).val();
+                    if(value === null || value === undefined || value.trim() === ""){
+                        higherStudiesValid = false;
+                        return false; // Exit the loop early if any field is empty
+                    }
+                });
+
+                if(!higherStudiesValid){
+                    var alerDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">Please fill in all Higher Studies fields.</div>');
+                    $('#education_alert_container').append(alerDiv);
+                    setTimeout(function() {
+                        alerDiv.alert('close');
+                    }, 3000); // Close the alert after 3 seconds
+                    return false;
+                }
+                var after_xii_qualification             = $('#after_xii_qualification').val();
+                var after_xii_institute_name            = $('#after_xii_institute_name').val();
+                var after_xii_institute_board           = $('#after_xii_institute_board').val();
+                var after_xii_institute_stream          = $('#after_xii_institute_stream').val();
+                var after_xii_institute_percentage      = $('#after_xii_institute_percentage').val();
+                var after_xii_institute_percentage      = $('#after_xii_institute_percentage').val();
+                var after_xii_institute_passing_year    = $('#after_xii_institute_passing_year').val();
+            });
+
+            //validate input values
+            if(typeof x_school_name !== "string" || x_school_name.trim().length === 0){
+                $('#error_x_school_name').text("Please enter your School name");
+                //console.log(x_school_name, typeof x_school_name);
+                $('#x_school_name').focus();
+                return false;
+            }  else if(x_board_name.trim().length === 0){
+                $('#error_x_board_name').text("please enter your board name");
+                $('#x_board_name').focus();
+                return false;
+            } else if(x_percentage.trim().length === 0){
+                $('#error_x_percentage').text("Please enter your percentage");
+                $('#x_percentage').focus();
+                return false;
+            } else if(x_passing_year.trim().length === 0){
+                $('#error_x_passing_year').text("Please enter your passing year");
+                $('#x_passing_year').focus();
+                return false;
+            } else if(xii_school_name.trim().legth === 0){
+                $('#error_xii_school_name').text("Please enter your school name");
+                $('#xii_school_name').focus();
+                return false;
+            } else if(xii_board_name.trim().length === 0){
+                $('#error_xii_board_name').text("Please enter your board name");
+                $('#xii_board_name').focus();
+                return false;
+            } else if(xii_percentage.trim().length === 0){
+                $('#error_xii_percentage').text("Please enter your percentage");
+                $('#xii_percentage').focus();
+                return false;
+            } else if(xii_passing_year.trim().length === 0){
+                $('#error_xii_passing_year').text("Please enter your passing year");
+                $('#xii_passing_year').focus();
+                return false;
+            }
+            // else if (after_xii_qualification === null) {
+            //     $("#error_after_xii_qualification").text("Please select your qualification");
+            //     $("#after_xii_qualification").focus();
+            //     return false;
+            // } else if (after_xii_institute_name.trim().length === 0) {
+            //     $("#error_after_xii_institute_name").text("Please enter your institution name");
+            //     $("#after_xii_institute_name").focus();
+            //     return false;
+            // } else if (after_xii_institute_board.trim().length === 0) {
+            //     $("#error_after_xii_institute_board").text("Please enter your board name");
+            //     $("#after_xii_institute_board").focus();
+            //     return false;
+            // } else if (after_xii_institute_stream.trim().length === 0) {
+            //     $("#error_after_xii_institute_stream").text("Please enter your area of specialization");
+            //     $("#after_xii_institute_stream").focus();
+            //     return false;
+            // } else if (after_xii_institute_percentage.trim().length === 0) {
+            //     $("#error_after_xii_institute_percentage").text("Please enter your percentage");
+            //     $("#after_xii_institute_percentage").focus();
+            //     return false;
+            // } else if (after_xii_institute_passing_year === null) {
+            //     $("#error_after_xii_institute_passing_year").text("Please select your passing year");
+            //     $("#after_xii_institute_passing_year").focus();
+            //     return false;
+            // } 
+            else {
+                //Add data to localstorage
+                localStorage.setItem('x_school_name', x_school_name);
+                localStorage.setItem('x_board_name', x_board_name);
+                localStorage.setItem('x_percentage', x_percentage);
+                localStorage.setItem('x_passing_year', x_passing_year);
+                localStorage.setItem('xii_school_name', xii_school_name);
+                localStorage.setItem('xii_board_name', xii_board_name);
+                localStorage.setItem('xii_percentage', xii_percentage);
+                localStorage.setItem('xii_passing_year', xii_passing_year);
+                // localStorage.setItem('after_xii_qualification', after_xii_qualification);
+                // localStorage.setItem('after_xii_institute_name', after_xii_institute_name);
+                // localStorage.setItem('after_xii_institute_board', after_xii_institute_board);
+                // localStorage.setItem('after_xii_institute_stream', after_xii_institute_stream);
+                // localStorage.setItem('after_xii_institute_percentage', after_xii_institute_percentage);
+                // localStorage.setItem('after_xii_institute_passing_year', after_xii_institute_passing_year);
+
+                //Add the next-form class
+                $(this).addClass('next-form');
+
+                //Button Click
+                var current_ff = $(this).parent().parent().parent();
+                var next_ff = current_ff.next();
+
+                //Add class Active
+                $(".step-list li").eq($(".tab-pannel").index(current_ff)).addClass("completed");
+                $(".step-list li").eq($(".tab-pannel").index(next_ff)).addClass("active");
+
+                //show the next page
+                next_ff.show();
+
+                //Hide the current step with style
+                current_ff.animate({opacity: 0}, {
+                    step: function(now) {
+                        //For making fieldset appear animation
+                        opacity =  1 - now;
+
+                        current_ff.css({
+                            'display' : 'none',
+                            'position': 'relative'
+                        });
+                        next_ff.css({'opacity' : opacity});
+                    }, duration: 500
+                });
+                setProgressBar(++current);
+            }
+        });
+        //Back to step 2
+        $('#goto_step_2').click((event) => {
+            event.preventDefault();
+            $("#step3").hide();
+            $("#step2").show();
+            $('.step-list li').eq(2).removeClass('active');
+            $('.step-list li').eq(1).addClass('active');
+        });
+
+        //Fourth step verification
+
+        $(document).ready(function(){
+            $('#fourth_next').click(function(event){
+                event.preventDefault();
+                $('#error_present_salary').text("");
+                $('#error_expected_salary').text("");
+                $('#error_join_time').text("");
+                $('#error_referrence_details').text("");
+
+                var presentSalary       = $('#present_salary').val().trim();
+                var expectedSalary      = $('#expected_salary').val().trim();
+                var joinTime            = $('#join_time').val().trim();
+                var referrenceDetails   = $('#referrence_details').val().trim();
+                var knowAnyoneAtTigs    = $("input[name = 'knowanyone']:checked").val();
+                // Validate experience entry fields
+                var experienceValid = true;
+                $(".experience-type").each(function(){
+                    if($(this).val().trim() === ""){
+                        experienceValid = false;
+                        return false; // Exit the loop early if any field is empty
+                    }
+                });
+                $(".experience-duration").each(function(){
+                    if($(this).val().trim() === ""){
+                        experienceValid = false;
+                        return false;
+                    }
+                });
+            
+            });
+        })
     });
+   
 
     // All Get localStorage
     // Retrieve the value of 'verified_email' from localStorage
+    //first step
     var verifiedEmail   = 1;
     var set_email       = localStorage.getItem('email');
     var set_name        = localStorage.getItem('name');
