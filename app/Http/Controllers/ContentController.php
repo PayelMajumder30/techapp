@@ -22,7 +22,7 @@ class ContentController extends Controller
                 ->pluck('title');
 
         $uniqueCategories = Jobvacancy::with('category')
-                ->whereHas('category')               
+                ->whereHas('category')
                 ->select('category_id')
                 ->distinct()//remove duplicate id
                 ->get();
@@ -32,9 +32,9 @@ class ContentController extends Controller
         return view('front.content.career-confirmation');
     }
     public function CareerApplicationForm($slug){
-        $subject = Subject::latest()->where('deleted_at', 1)->where('status',1);
-        $unit = Unit::latest()->where('deleted_at', 1)->where('status', 1);
-        $post = Post::latest()->where('deleted_at', 1)->where('status', 1);
+        $subject = Subject::latest()->where('deleted_at', 1)->where('status',1)->get();
+        $unit = Unit::latest()->where('deleted_at', 1)->where('status', 1)->get();
+        $post = Post::latest()->where('deleted_at', 1)->where('status', 1)->get();
         $vacancy = Jobvacancy::where('slug', $slug)->first();
         if($vacancy){
             return view('front.content.career-form', compact('vacancy','subject','unit','post'));
@@ -42,5 +42,5 @@ class ContentController extends Controller
             return redirect()->back()->with('failure', 'Data not found!');
         }
     }
-    
+
 }
