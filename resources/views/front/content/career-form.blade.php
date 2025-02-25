@@ -5,6 +5,38 @@
         font-weight: 700;
         color: #6bc710 !important;
     }
+    .upload-row .btn-upload:hover {
+    background-color: #3c4497;
+    color: #fff;
+    }
+    .btn-upload.not-uploaded {
+        background-color: #6d6d6d;
+    }
+    .upload-row .doc-img-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+    }
+    .upload-row .doc-img-box img {
+        width: 100%;
+        max-width: 75px;
+    }
+    .upload-row .doc-img-box span {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        font-size: 17px;
+        font-weight: 400;
+        color: #6b6969;
+        letter-spacing: 1px;
+        line-height: 16px;
+        text-align: center;
+    }
+    
 </style>
 <div class="page-wrapper">
     <div class="page-wrapper">
@@ -28,764 +60,939 @@
                         <form id="registrationFormData" action="" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="job_id" value="{{$vacancy->id}}">
-                        <div class="tab-content">
-                            <div class="tab-panel" id="step1">
-                                <div class="form-box">
-                                    <h3>Personal Information</h3>
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Name<span class="required">*</span></label>
-                                                <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name">
-                                                <p id="error_name" class="text-danger err-msg"></p>
+                            <div class="tab-content">
+                                <div class="tab-panel" id="step1">
+                                    <div class="form-box">
+                                        <h3>Personal Information</h3>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Name<span class="required">*</span></label>
+                                                    <input type="text" name="name" id="name" class="form-control" placeholder="Enter your name">
+                                                    <p id="error_name" class="text-danger err-msg"></p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Father's Name</label>
-                                                <input type="text" name="father_name" id="father_name" class="form-control" placeholder="Enter your Father's name">
-                                                <p id="error_fname" class="text-danger err-msg"></p>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Father's Name</label>
+                                                    <input type="text" name="father_name" id="father_name" class="form-control" placeholder="Enter your Father's name">
+                                                    <p id="error_fname" class="text-danger err-msg"></p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Date of Birth<span class="required">*</span></label>
-                                                <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" placeholder="Enter your DOB" pattern="\d{2}-\d{2}-\d{4}" max="">
-                                                <p id="error_date_ofb" class="text-danger err-msg"></p>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Date of Birth<span class="required">*</span></label>
+                                                    <input type="date" name="date_of_birth" id="date_of_birth" class="form-control" placeholder="Enter your DOB" pattern="\d{2}-\d{2}-\d{4}" max="">
+                                                    <p id="error_date_ofb" class="text-danger err-msg"></p>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="col-xl-6 col-12">
-                                            <div class="form-group">
-                                                <label class="foem-label">Gender<span class="required">*</span></label>
-                                                <div class="gender-options">
-                                                    <label for="genop1" class="custom-radio">
-                                                        Male
-                                                        <input type="radio" name="gender" id="genop1" value="Male" checked>
-                                                        <span class="check-box">
-                                                            <span class="checkmark"></span>
-                                                        </span>
-                                                    </label>
-                                                    <label for="genop2" class="custom-radio">
-                                                        Female
-                                                        <input type="radio" name="gender" id="genop2" value="Female" checked>
-                                                        <span class="check-box">
-                                                            <span class="checkmark"></span>
-                                                        </span>
-                                                    </label>
-                                                    <label for="genop3" class="custom-radio">
-                                                        Rather Not Say
-                                                        <input type="radio" name="gender" id="genop3" value="others" checked>
-                                                        <span class="check-box">
-                                                            <span class="checkmark"></span>
-                                                        </span>
-                                                    </label>
-                                                    <p id="error_gender" class="text-danger err-msg"></p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label class="form-label">Contact No. (M) <span class="required">*</span></label>
-                                            <div class="form-group phone-input-group">
-                                                <div class="phone-code-col">
-                                                    <input type="text" class="form-control" placeholder=""
-                                                        value="+91" name="phone_code" readonly>
-                                                </div>
-                                                <div class="phone-number-col">
-                                                    <input type="text" class="form-control" placeholder="Enter your phone number" name="phone" id="phone">
-                                                </div>
-                                                <p id="error_phone" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group phone-input-group">
-                                                <div class="phone-number-col email-id-col">
-                                                    <label class="form-label">Email ID<span class="required">*</span></label>
-                                                    <input type="email" placeholder="enter valid email address" name="email" id="email" class="form-control" value="admin@gmail.com">
-                                                    <p id="verified_email" class="success-msg"></p>
-                                                    <p id="error_email" class="text-danger err-msg"></p>
-                                                </div>
-                                                {{-- <div class="phone-cta-col">
-                                                    <button type="button" class="btn btn-theme btn-cta" id="Email_Send_OTP" disabled>Send OTP</button>
-                                                </div> --}}
-                                                {{-- <p id="otp_message" class="font-weight-bold text-end success-msg"></p> --}}
-                                            </div>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="row">
-                                        <div class="col-12">
-                                            <label class="form-label">Enter OTP received on the email above<span class="required">*</span></label>
-                                            <div class="form-group phone-input-group" id="otp_full_div">
-                                                <div class="phone-number-col phone-otp-col email-otp-col">
-                                                    <div class="otp-input-group" id="inputs">
-                                                        <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
-                                                        <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
-                                                        <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
-                                                        <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
-                                                        <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
-                                                        <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
+                                            <div class="col-xl-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="foem-label">Gender<span class="required">*</span></label>
+                                                    <div class="gender-options">
+                                                        <label for="genop1" class="custom-radio">
+                                                            Male
+                                                            <input type="radio" name="gender" id="genop1" value="Male" checked>
+                                                            <span class="check-box">
+                                                                <span class="checkmark"></span>
+                                                            </span>
+                                                        </label>
+                                                        <label for="genop2" class="custom-radio">
+                                                            Female
+                                                            <input type="radio" name="gender" id="genop2" value="Female" checked>
+                                                            <span class="check-box">
+                                                                <span class="checkmark"></span>
+                                                            </span>
+                                                        </label>
+                                                        <label for="genop3" class="custom-radio">
+                                                            Rather Not Say
+                                                            <input type="radio" name="gender" id="genop3" value="others" checked>
+                                                            <span class="check-box">
+                                                                <span class="checkmark"></span>
+                                                            </span>
+                                                        </label>
+                                                        <p id="error_gender" class="text-danger err-msg"></p>
                                                     </div>
                                                 </div>
-
-                                                <div class="phone-cta-col">
-                                                    <span class="btn btn-theme btn-status disabled" id="validate_otp" onclick="validateOTP()">Validate
-                                                        OTP</span>
-                                                </div>
-                                                <p id="valid_otp_message" class="font-weight-bold success-msg"></p>
                                             </div>
                                         </div>
-                                    </div> --}}
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Marital Status <span
-                                                        class="required">*</span></label>
-                                                <div class="gender-options">
-                                                    <label for="marital1" class="custom-radio">
-                                                        Unmarried
-                                                        <input type="radio" name="marital_status" id="marital1" value="Unmarried" checked>
-                                                        <span class="check-box">
-                                                            <span class="checkmark"></span>
-                                                        </span>
-                                                    </label>
-                                                    <label for="marital2" class="custom-radio">
-                                                        Married
-                                                        <input type="radio" name="marital_status" id="marital2" value="married">
-                                                        <span class="check-box">
-                                                            <span class="checkmark"></span>
-                                                        </span>
-                                                    </label>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <label class="form-label">Contact No. (M) <span class="required">*</span></label>
+                                                <div class="form-group phone-input-group">
+                                                    <div class="phone-code-col">
+                                                        <input type="text" class="form-control" placeholder=""
+                                                            value="+91" name="phone_code" readonly>
+                                                    </div>
+                                                    <div class="phone-number-col">
+                                                        <input type="text" class="form-control" placeholder="Enter your phone number" name="phone" id="phone">
+                                                    </div>
+                                                    <p id="error_phone" class="text-danger err-msg"></p>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-
-                                <div class="step-form-cta-row">
-                                    <div class="step-prev"></div>
-                                    <div class="step-next">
-                                        {{-- next form --}}
-                                        <a href="javascript:void(0)" id="first_next" class="">
-                                            <span class="btn btn-theme">
-                                                Next
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
-                                                    height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="">
-                                                    <g>
-                                                        <path
-                                                            d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
-                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
-                                                            class=""></path>
-                                                    </g>
-                                                </svg>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            {{-- second step --}}
-                            <div class="tab-pannel" id="step2">
-                                <div class="form-box">
-                                    <h3>Address for Communication</h3>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Address <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your address" name="address" id="address">
-                                                    <p id="error_address" class="text-danger"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Nearest Landmark</label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your nearest landmark" name="landmark" id="landmark">
-                                                    <p id="error_landmark" class="text-danger"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Pincode <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your pin/postal code" name="pincode" id="pincode">
-                                                    <p id="error_pincode" class="text-danger"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">City <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your city" name="city" id="city">
-                                                    <p id="error_city" class="text-danger"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">District <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your district" name="dist" id="dist">
-                                                    <p id="error_dist" class="text-danger"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">State <span
-                                                        class="required">*</span></label>
-                                                <select class="form-control" name="state" id="state">
-                                                    <option selected disabled>Enter your state</option>
-                                                    <option value="Andhra Pradesh">Andhra Pradesh</option>
-                                                        <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
-                                                        <option value="Arunachal Pradesh">Arunachal Pradesh</option>
-                                                        <option value="Assam">Assam</option>
-                                                        <option value="Bihar">Bihar</option>
-                                                        <option value="Chandigarh">Chandigarh</option>
-                                                        <option value="Chhattisgarh">Chhattisgarh</option>
-                                                        <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
-                                                        <option value="Daman and Diu">Daman and Diu</option>
-                                                        <option value="Delhi">Delhi</option>
-                                                        <option value="Lakshadweep">Lakshadweep</option>
-                                                        <option value="Puducherry">Puducherry</option>
-                                                        <option value="Goa">Goa</option>
-                                                        <option value="Gujarat">Gujarat</option>
-                                                        <option value="Haryana">Haryana</option>
-                                                        <option value="Himachal Pradesh">Himachal Pradesh</option>
-                                                        <option value="Jammu and Kashmir">Jammu and Kashmir</option>
-                                                        <option value="Jharkhand">Jharkhand</option>
-                                                        <option value="Karnataka">Karnataka</option>
-                                                        <option value="Kerala">Kerala</option>
-                                                        <option value="Madhya Pradesh">Madhya Pradesh</option>
-                                                        <option value="Maharashtra">Maharashtra</option>
-                                                        <option value="Manipur">Manipur</option>
-                                                        <option value="Meghalaya">Meghalaya</option>
-                                                        <option value="Mizoram">Mizoram</option>
-                                                        <option value="Nagaland">Nagaland</option>
-                                                        <option value="Odisha">Odisha</option>
-                                                        <option value="Punjab">Punjab</option>
-                                                        <option value="Rajasthan">Rajasthan</option>
-                                                        <option value="Sikkim">Sikkim</option>
-                                                        <option value="Tamil Nadu">Tamil Nadu</option>
-                                                        <option value="Telangana">Telangana</option>
-                                                        <option value="Tripura">Tripura</option>
-                                                        <option value="Uttar Pradesh">Uttar Pradesh</option>
-                                                        <option value="Uttarakhand">Uttarakhand</option>
-                                                        <option value="West Bengal">West Bengal</option>
-                                                </select>
-                                                <p id="error_state" class="text-danger"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Country <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your country" name="country" id="country" value="India">
-                                                    <p id="error_country" class="text-danger"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="step-form-cta-row">
-                                    <div class="step-prev">
-                                        <a href="javascript:void(0)" class="previous" id="goto_step_1">
-                                            <span class="btn btn-theme">
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
-                                                    height="512" x="0" y="0" viewBox="0 0 492 492"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="hovered-paths">
-                                                    <g>
-                                                        <path
-                                                            d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
-                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
-                                                            class="hovered-path"></path>
-                                                    </g>
-                                                </svg>
-                                                Prev
-                                            </span>
-                                        </a>
-                                    </div>
-                                    <!-- <div class="step-save">
-                                        <button class="btn btn-theme-reverse">Save and Proceed</button>
-                                    </div> -->
-                                    <div class="step-next">
-                                        <a href="javascript:void(0)" id="second_next" class="">
-                                            <span class="btn btn-theme">
-                                                Next
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
-                                                    height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="">
-                                                    <g>
-                                                        <path
-                                                            d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
-                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
-                                                            class=""></path>
-                                                    </g>
-                                                </svg>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {{-- third step --}}
-                            <div class="tab-pannel" id="step3">
-                                <div class="form-box">
-                                    <h3>Educational Qualification</h3>
-                                    <h4>10th Grade Qualification (Standard X)</h4>
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Institution/School Name <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your institution/school" name="x_school_name" id="x_school_name">
-                                                    <p id="error_x_school_name" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Affiliated Education Board <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your affiliated education board" name="x_board_name" id="x_board_name">
-                                                    <p id="error_x_board_name" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Percentage Acquired <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter percentage acquired" name="x_percentage" id="x_percentage">
-                                                <p id="error_x_percentage" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Passing Year <span
-                                                        class="required">*</span></label>
-                                                <select class="form-control" name="x_passing_year" id="x_passing_year">
-                                                    <option selected disabled>Select passing year</option>
-                                                    @for ($year = 1980; $year <= 2015; $year++)
-                                                    <option value="{{$year}}">{{$year}}</option>
-                                                    @endfor
-                                                </select>
-                                                <p id="error_x_passing_year" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <h4>12th Grade Qualification (Standard XII)</h4>
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Institution/School Name <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your institution/school" name="xii_school_name" id="xii_school_name">
-                                                <p id="error_xii_school_name" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Affiliated Education Board <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your affiliated education board" name="xii_board_name" id="xii_board_name">
-                                                <p id="error_xii_board_name" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Percentage Acquired <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter percentage acquired" name="xii_percentage" id="xii_percentage">
-                                                <p id="error_xii_percentage" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Passing Year <span
-                                                        class="required">*</span></label>
-                                                <select class="form-control" name="xii_passing_year" id="xii_passing_year">
-                                                    <option selected disabled>Select passing year</option>
-                                                    @for ($year = 1980; $year <= date("Y"); $year++)
-                                                    <option value="{{$year}}">{{$year}}</option>
-                                                    @endfor
-                                                </select>
-                                                <p id="error_xii_passing_year" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <h4>After 12th Grade / Higher Qualification </h4>
-                                    <div class="row" id="12th">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Qualification <span
-                                                        class="required">*</span></label>
-                                                <select class="form-control after_xii_qualification" name="after_xii_qualification[]" >
-                                                    <option selected disabled>Select your qualification</option>
-                                                    <option value="Dilpoma">Dilpoma</option>
-                                                    <option value="UG">UG</option>
-                                                    <option value="PG">PG</option>
-                                                    <option value="B.Ed.">B.Ed.</option>
-                                                    <option value="M.Ed.">M.Ed.</option>
-                                                    <option value="Teacher's Training">Teacher's Training</option>
-                                                    <option value="Ph.D">Ph.D</option>
-                                                </select>
-                                               
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Institution Name <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control after_xii_institute_name"
-                                                    placeholder="Enter your institution name" name="after_xii_institute_name[]" >
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Affiliated Board/University <span class="required">*</span></label>
-                                                <input type="text" class="form-control after_xii_institute_board"
-                                                    placeholder="Enter affiliated board/university name" name="after_xii_institute_board[]" >
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Stream/Discipline Honours/Area of
-                                                    Specialisation <span class="required">*</span></label>
-                                                <input type="text" class="form-control after_xii_institute_stream"
-                                                    placeholder="Enter your area of specialisation" name="after_xii_institute_stream[]" >
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Percentage Acquired <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control after_xii_institute_percentage"
-                                                    placeholder="Enter percentage acquired" name="after_xii_institute_percentage[]" >
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Passing Year <span
-                                                        class="required">*</span></label>
-                                                <select class="form-control after_xii_institute_passing_year" name="after_xii_institute_passing_year[]" >
-                                                    <option selected disabled>Select passing year</option>
-                                                    @for ($year = 1980; $year <= date("Y"); $year++)
-                                                    <option value="{{$year}}">{{$year}}</option>
-                                                    @endfor
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="add-cta-row">
-                                        <button type="button" class="btn btn-theme btn-add" id="add_other_Qualification">
-                                            <svg height="512pt" viewBox="0 0 512 512" width="512pt"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="m256 512c-141.164062 0-256-114.835938-256-256s114.835938-256 256-256 256 114.835938 256 256-114.835938 256-256 256zm0-480c-123.519531 0-224 100.480469-224 224s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0" />
-                                                <path
-                                                    d="m368 272h-224c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h224c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" />
-                                                <path
-                                                    d="m256 384c-8.832031 0-16-7.167969-16-16v-224c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v224c0 8.832031-7.167969 16-16 16zm0 0" />
-                                            </svg>
-                                            Add Another
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="step-form-cta-row">
-                                    <div class="step-prev">
-                                        <a href="javascript:void(0)" class="previous" id="goto_step_2">
-                                            <span class="btn btn-theme">
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
-                                                    height="512" x="0" y="0" viewBox="0 0 492 492"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="hovered-paths">
-                                                    <g>
-                                                        <path
-                                                            d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
-                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
-                                                            class="hovered-path"></path>
-                                                    </g>
-                                                </svg>
-                                                Prev
-                                            </span>
-                                        </a>
-                                    </div>
-                                   <div class="step-save">
-                                        <div id="education_alert_container"></div>
-                                    </div> 
-                                    <div class="step-next">
-                                        <a href="javascript:void(0)" id="third_next" class="">
-                                            <span class="btn btn-theme">
-                                                Next
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
-                                                    height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="">
-                                                    <g>
-                                                        <path
-                                                            d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
-                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
-                                                            class=""></path>
-                                                    </g>
-                                                </svg>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {{-- Fourth step --}}
-                            <div class="tab-pannel" id="step4">
-                                <div class="form-box">
-                                    <h3>Work Experience</h3>
-                                    <div class="row" id="work_experience_div">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Experience Type <span class="required">*</span></label>
-                                                <input type="text" class="form-control experience-type" placeholder="Enter experience type" name="experience_type[]" required value="">
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Experience Duration <span class="required">*</span></label>
-                                                <input type="text" class="form-control experience-duration" placeholder="Enter experience duration" name="experience_duration[]" required value="">
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="add-cta-row">
-                                        <button type="button" class="btn btn-theme btn-add" id="add_experience">
-                                            <svg height="512pt" viewBox="0 0 512 512" width="512pt"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="m256 512c-141.164062 0-256-114.835938-256-256s114.835938-256 256-256 256 114.835938 256 256-114.835938 256-256 256zm0-480c-123.519531 0-224 100.480469-224 224s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0" />
-                                                <path
-                                                    d="m368 272h-224c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h224c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" />
-                                                <path
-                                                    d="m256 384c-8.832031 0-16-7.167969-16-16v-224c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v224c0 8.832031-7.167969 16-16 16zm0 0" />
-                                            </svg>
-                                            Add Another
-                                        </button>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Present Salary (P.A.) (If you are a
-                                                    fresher, then put 0.0)<span class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your present salary" name="present_salary" id="present_salary">
-                                                <p id="error_present_salary" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Expected Salary (P.A.) <span
-                                                        class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter your expected salary" name="expected_salary" id="expected_salary">
-                                                <p id="error_expected_salary" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">If selected, time required to join <span class="required">*</span></label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Enter required time" name="join_time" id="join_time">
-                                                <p id="error_join_time" class="text-danger err-msg"></p>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Do you know anyone at TIGS?</label>
-                                                <div class="gender-options">
-                                                    <label for="knowanyone1" class="custom-radio">
-                                                        Yes
-                                                        <input type="radio" name="knowanyone" id="knowanyone1"
-                                                            value="Yes">
-                                                        <span class="check-box">
-                                                            <span class="checkmark"></span>
-                                                        </span>
-                                                    </label>
-                                                    <label for="knowanyone2" class="custom-radio">
-                                                        No
-                                                        <input type="radio" name="knowanyone" id="knowanyone2"
-                                                            value="No" checked>
-                                                        <span class="check-box">
-                                                            <span class="checkmark"></span>
-                                                        </span>
-                                                    </label>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group phone-input-group">
+                                                    <div class="phone-number-col email-id-col">
+                                                        <label class="form-label">Email ID<span class="required">*</span></label>
+                                                        <input type="email" placeholder="enter valid email address" name="email" id="email" class="form-control" value="admin@gmail.com">
+                                                        <p id="verified_email" class="success-msg"></p>
+                                                        <p id="error_email" class="text-danger err-msg"></p>
+                                                    </div>
+                                                    {{-- <div class="phone-cta-col">
+                                                        <button type="button" class="btn btn-theme btn-cta" id="Email_Send_OTP" disabled>Send OTP</button>
+                                                    </div> --}}
+                                                    {{-- <p id="otp_message" class="font-weight-bold text-end success-msg"></p> --}}
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-12" id="mentionReferrence">
-                                            <div class="form-group">
-                                                <label class="form-label">Please mention the Name, Department,
-                                                    Designation</label>
-                                                <input type="text" class="form-control"
-                                                    placeholder="Mention referrence details" name="referrence_details" id="referrence_details">
-                                                    <p id="error_referrence_details" class="text-danger err-msg"></p>
+                                        {{-- <div class="row">
+                                            <div class="col-12">
+                                                <label class="form-label">Enter OTP received on the email above<span class="required">*</span></label>
+                                                <div class="form-group phone-input-group" id="otp_full_div">
+                                                    <div class="phone-number-col phone-otp-col email-otp-col">
+                                                        <div class="otp-input-group" id="inputs">
+                                                            <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
+                                                            <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
+                                                            <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
+                                                            <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
+                                                            <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
+                                                            <input type="text" class="form-control" name="valid_otp[]" maxlength="1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="phone-cta-col">
+                                                        <span class="btn btn-theme btn-status disabled" id="validate_otp" onclick="validateOTP()">Validate
+                                                            OTP</span>
+                                                    </div>
+                                                    <p id="valid_otp_message" class="font-weight-bold success-msg"></p>
+                                                </div>
+                                            </div>
+                                        </div> --}}
+                                        <div class="row">
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Marital Status <span
+                                                            class="required">*</span></label>
+                                                    <div class="gender-options">
+                                                        <label for="marital1" class="custom-radio">
+                                                            Unmarried
+                                                            <input type="radio" name="marital_status" id="marital1" value="Unmarried" checked>
+                                                            <span class="check-box">
+                                                                <span class="checkmark"></span>
+                                                            </span>
+                                                        </label>
+                                                        <label for="marital2" class="custom-radio">
+                                                            Married
+                                                            <input type="radio" name="marital_status" id="marital2" value="married">
+                                                            <span class="check-box">
+                                                                <span class="checkmark"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="step-form-cta-row">
-                                    <div class="step-prev">
-                                        <a href="javascript:void(0)" class="previous" id="goto_step_3">
-                                            <span class="btn btn-theme">
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
-                                                    height="512" x="0" y="0" viewBox="0 0 492 492"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="hovered-paths">
-                                                    <g>
-                                                        <path
-                                                            d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
-                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
-                                                            class="hovered-path"></path>
-                                                    </g>
-                                                </svg>
-                                                Prev
-                                            </span>
-                                        </a>
+
+                                    <div class="step-form-cta-row">
+                                        <div class="step-prev"></div>
+                                        <div class="step-next">
+                                            {{-- next form --}}
+                                            <a href="javascript:void(0)" id="first_next" class="">
+                                                <span class="btn btn-theme">
+                                                    Next
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="">
+                                                        <g>
+                                                            <path
+                                                                d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class=""></path>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </div>
                                     </div>
+                                </div>
+                                {{-- second step --}}
+                                <div class="tab-pannel" id="step2">
+                                    <div class="form-box">
+                                        <h3>Address for Communication</h3>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Address <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your address" name="address" id="address">
+                                                        <p id="error_address" class="text-danger"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Nearest Landmark</label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your nearest landmark" name="landmark" id="landmark">
+                                                        <p id="error_landmark" class="text-danger"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Pincode <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your pin/postal code" name="pincode" id="pincode">
+                                                        <p id="error_pincode" class="text-danger"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">City <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your city" name="city" id="city">
+                                                        <p id="error_city" class="text-danger"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">District <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your district" name="dist" id="dist">
+                                                        <p id="error_dist" class="text-danger"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">State <span
+                                                            class="required">*</span></label>
+                                                    <select class="form-control" name="state" id="state">
+                                                        <option selected disabled>Enter your state</option>
+                                                        <option value="Andhra Pradesh">Andhra Pradesh</option>
+                                                            <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                                                            <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                                                            <option value="Assam">Assam</option>
+                                                            <option value="Bihar">Bihar</option>
+                                                            <option value="Chandigarh">Chandigarh</option>
+                                                            <option value="Chhattisgarh">Chhattisgarh</option>
+                                                            <option value="Dadar and Nagar Haveli">Dadar and Nagar Haveli</option>
+                                                            <option value="Daman and Diu">Daman and Diu</option>
+                                                            <option value="Delhi">Delhi</option>
+                                                            <option value="Lakshadweep">Lakshadweep</option>
+                                                            <option value="Puducherry">Puducherry</option>
+                                                            <option value="Goa">Goa</option>
+                                                            <option value="Gujarat">Gujarat</option>
+                                                            <option value="Haryana">Haryana</option>
+                                                            <option value="Himachal Pradesh">Himachal Pradesh</option>
+                                                            <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                                                            <option value="Jharkhand">Jharkhand</option>
+                                                            <option value="Karnataka">Karnataka</option>
+                                                            <option value="Kerala">Kerala</option>
+                                                            <option value="Madhya Pradesh">Madhya Pradesh</option>
+                                                            <option value="Maharashtra">Maharashtra</option>
+                                                            <option value="Manipur">Manipur</option>
+                                                            <option value="Meghalaya">Meghalaya</option>
+                                                            <option value="Mizoram">Mizoram</option>
+                                                            <option value="Nagaland">Nagaland</option>
+                                                            <option value="Odisha">Odisha</option>
+                                                            <option value="Punjab">Punjab</option>
+                                                            <option value="Rajasthan">Rajasthan</option>
+                                                            <option value="Sikkim">Sikkim</option>
+                                                            <option value="Tamil Nadu">Tamil Nadu</option>
+                                                            <option value="Telangana">Telangana</option>
+                                                            <option value="Tripura">Tripura</option>
+                                                            <option value="Uttar Pradesh">Uttar Pradesh</option>
+                                                            <option value="Uttarakhand">Uttarakhand</option>
+                                                            <option value="West Bengal">West Bengal</option>
+                                                    </select>
+                                                    <p id="error_state" class="text-danger"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Country <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your country" name="country" id="country" value="India">
+                                                        <p id="error_country" class="text-danger"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="step-form-cta-row">
+                                        <div class="step-prev">
+                                            <a href="javascript:void(0)" class="previous" id="goto_step_1">
+                                                <span class="btn btn-theme">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492 492"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="hovered-paths">
+                                                        <g>
+                                                            <path
+                                                                d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class="hovered-path"></path>
+                                                        </g>
+                                                    </svg>
+                                                    Prev
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <!-- <div class="step-save">
+                                            <button class="btn btn-theme-reverse">Save and Proceed</button>
+                                        </div> -->
+                                        <div class="step-next">
+                                            <a href="javascript:void(0)" id="second_next" class="">
+                                                <span class="btn btn-theme">
+                                                    Next
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="">
+                                                        <g>
+                                                            <path
+                                                                d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class=""></path>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- third step --}}
+                                <div class="tab-pannel" id="step3">
+                                    <div class="form-box">
+                                        <h3>Educational Qualification</h3>
+                                        <h4>10th Grade Qualification (Standard X)</h4>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Institution/School Name <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your institution/school" name="x_school_name" id="x_school_name">
+                                                        <p id="error_x_school_name" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Affiliated Education Board <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your affiliated education board" name="x_board_name" id="x_board_name">
+                                                        <p id="error_x_board_name" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Percentage Acquired <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter percentage acquired" name="x_percentage" id="x_percentage">
+                                                    <p id="error_x_percentage" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Passing Year <span
+                                                            class="required">*</span></label>
+                                                    <select class="form-control" name="x_passing_year" id="x_passing_year">
+                                                        <option selected disabled>Select passing year</option>
+                                                        @for ($year = 1980; $year <= 2015; $year++)
+                                                        <option value="{{$year}}">{{$year}}</option>
+                                                        @endfor
+                                                    </select>
+                                                    <p id="error_x_passing_year" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4>12th Grade Qualification (Standard XII)</h4>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Institution/School Name <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your institution/school" name="xii_school_name" id="xii_school_name">
+                                                    <p id="error_xii_school_name" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Affiliated Education Board <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your affiliated education board" name="xii_board_name" id="xii_board_name">
+                                                    <p id="error_xii_board_name" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Percentage Acquired <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter percentage acquired" name="xii_percentage" id="xii_percentage">
+                                                    <p id="error_xii_percentage" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Passing Year <span
+                                                            class="required">*</span></label>
+                                                    <select class="form-control" name="xii_passing_year" id="xii_passing_year">
+                                                        <option selected disabled>Select passing year</option>
+                                                        @for ($year = 1980; $year <= date("Y"); $year++)
+                                                        <option value="{{$year}}">{{$year}}</option>
+                                                        @endfor
+                                                    </select>
+                                                    <p id="error_xii_passing_year" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <h4>After 12th Grade / Higher Qualification </h4>
+                                        <div class="row" id="12th">
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Qualification <span
+                                                            class="required">*</span></label>
+                                                    <select class="form-control after_xii_qualification" name="after_xii_qualification[]" >
+                                                        <option selected disabled>Select your qualification</option>
+                                                        <option value="Dilpoma">Dilpoma</option>
+                                                        <option value="UG">UG</option>
+                                                        <option value="PG">PG</option>
+                                                        <option value="B.Ed.">B.Ed.</option>
+                                                        <option value="M.Ed.">M.Ed.</option>
+                                                        <option value="Teacher's Training">Teacher's Training</option>
+                                                        <option value="Ph.D">Ph.D</option>
+                                                    </select>
+                                                
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Institution Name <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control after_xii_institute_name"
+                                                        placeholder="Enter your institution name" name="after_xii_institute_name[]" >
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Affiliated Board/University <span class="required">*</span></label>
+                                                    <input type="text" class="form-control after_xii_institute_board"
+                                                        placeholder="Enter affiliated board/university name" name="after_xii_institute_board[]" >
+                                                </div>
+                                            </div>
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Stream/Discipline Honours/Area of
+                                                        Specialisation <span class="required">*</span></label>
+                                                    <input type="text" class="form-control after_xii_institute_stream"
+                                                        placeholder="Enter your area of specialisation" name="after_xii_institute_stream[]" >
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Percentage Acquired <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control after_xii_institute_percentage"
+                                                        placeholder="Enter percentage acquired" name="after_xii_institute_percentage[]" >
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Passing Year <span
+                                                            class="required">*</span></label>
+                                                    <select class="form-control after_xii_institute_passing_year" name="after_xii_institute_passing_year[]" >
+                                                        <option selected disabled>Select passing year</option>
+                                                        @for ($year = 1980; $year <= date("Y"); $year++)
+                                                        <option value="{{$year}}">{{$year}}</option>
+                                                        @endfor
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="add-cta-row">
+                                            <button type="button" class="btn btn-theme btn-add" id="add_other_Qualification">
+                                                <svg height="512pt" viewBox="0 0 512 512" width="512pt"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="m256 512c-141.164062 0-256-114.835938-256-256s114.835938-256 256-256 256 114.835938 256 256-114.835938 256-256 256zm0-480c-123.519531 0-224 100.480469-224 224s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0" />
+                                                    <path
+                                                        d="m368 272h-224c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h224c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" />
+                                                    <path
+                                                        d="m256 384c-8.832031 0-16-7.167969-16-16v-224c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v224c0 8.832031-7.167969 16-16 16zm0 0" />
+                                                </svg>
+                                                Add Another
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="step-form-cta-row">
+                                        <div class="step-prev">
+                                            <a href="javascript:void(0)" class="previous" id="goto_step_2">
+                                                <span class="btn btn-theme">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492 492"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="hovered-paths">
+                                                        <g>
+                                                            <path
+                                                                d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class="hovered-path"></path>
+                                                        </g>
+                                                    </svg>
+                                                    Prev
+                                                </span>
+                                            </a>
+                                        </div>
                                     <div class="step-save">
-                                        <div id="experience_alert_container"></div>
-                                    </div>
-                                    <div class="step-next">
-                                        <a href="javascript:void(0)" id="fourth_next" class="">
-                                            <span class="btn btn-theme">
-                                                Next
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
-                                                    height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="">
-                                                    <g>
-                                                        <path
-                                                            d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
-                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
-                                                            class=""></path>
-                                                    </g>
-                                                </svg>
-                                            </span>
-                                        </a>
+                                            <div id="education_alert_container"></div>
+                                        </div> 
+                                        <div class="step-next">
+                                            <a href="javascript:void(0)" id="third_next" class="">
+                                                <span class="btn btn-theme">
+                                                    Next
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="">
+                                                        <g>
+                                                            <path
+                                                                d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class=""></path>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            {{-- {{Fifth step}} --}}
-                            <div class="tab-pannel" id="step5">
-                                <div class="form-box">
-                                    <h3>Apply For</h3>
-                                    <div class="row">
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Post applied for: <span class="required">*</span></label>
-                                                <select class="form-control" name="applied_post" id="applied_post">
-                                                    <option selected hidden>Select applied post</option>
-                                                    @foreach ($post as $item)
-                                                        <option value="{{$item->title}}">{{$item->title}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <p id="error_applied_post" class="text-danger err-msg"></p>
+                                {{-- Fourth step --}}
+                                <div class="tab-pannel" id="step4">
+                                    <div class="form-box">
+                                        <h3>Work Experience</h3>
+                                        <div class="row" id="work_experience_div">
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Experience Type <span class="required">*</span></label>
+                                                    <input type="text" class="form-control experience-type" placeholder="Enter experience type" name="experience_type[]" required value="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Experience Duration <span class="required">*</span></label>
+                                                    <input type="text" class="form-control experience-duration" placeholder="Enter experience duration" name="experience_duration[]" required value="">
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Unit name: <span class="required">*</span></label>
-                                                <select class="form-control" name="unit_name" id="unit_name">
-                                                    <option selected hidden>Select unit</option>
-                                                    @foreach ($unit as $item)
-                                                        <option value="{{$item->title}}">{{$item->title}}</option>
-                                                    @endforeach
-                                                </select>
-                                                <p id="error_unit_name" class="text-danger err-msg"></p>
+
+                                        <div class="add-cta-row">
+                                            <button type="button" class="btn btn-theme btn-add" id="add_experience">
+                                                <svg height="512pt" viewBox="0 0 512 512" width="512pt"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path
+                                                        d="m256 512c-141.164062 0-256-114.835938-256-256s114.835938-256 256-256 256 114.835938 256 256-114.835938 256-256 256zm0-480c-123.519531 0-224 100.480469-224 224s100.480469 224 224 224 224-100.480469 224-224-100.480469-224-224-224zm0 0" />
+                                                    <path
+                                                        d="m368 272h-224c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h224c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0" />
+                                                    <path
+                                                        d="m256 384c-8.832031 0-16-7.167969-16-16v-224c0-8.832031 7.167969-16 16-16s16 7.167969 16 16v224c0 8.832031-7.167969 16-16 16zm0 0" />
+                                                </svg>
+                                                Add Another
+                                            </button>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Present Salary (P.A.) (If you are a
+                                                        fresher, then put 0.0)<span class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your present salary" name="present_salary" id="present_salary">
+                                                    <p id="error_present_salary" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Expected Salary (P.A.) <span
+                                                            class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter your expected salary" name="expected_salary" id="expected_salary">
+                                                    <p id="error_expected_salary" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">If selected, time required to join <span class="required">*</span></label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Enter required time" name="join_time" id="join_time">
+                                                    <p id="error_join_time" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Do you know anyone at TIGS?</label>
+                                                    <div class="gender-options">
+                                                        <label for="knowanyone1" class="custom-radio">
+                                                            Yes
+                                                            <input type="radio" name="knowanyone" id="knowanyone1"
+                                                                value="Yes">
+                                                            <span class="check-box">
+                                                                <span class="checkmark"></span>
+                                                            </span>
+                                                        </label>
+                                                        <label for="knowanyone2" class="custom-radio">
+                                                            No
+                                                            <input type="radio" name="knowanyone" id="knowanyone2"
+                                                                value="No" checked>
+                                                            <span class="check-box">
+                                                                <span class="checkmark"></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12" id="mentionReferrence">
+                                                <div class="form-group">
+                                                    <label class="form-label">Please mention the Name, Department,
+                                                        Designation</label>
+                                                    <input type="text" class="form-control"
+                                                        placeholder="Mention referrence details" name="referrence_details" id="referrence_details">
+                                                        <p id="error_referrence_details" class="text-danger err-msg"></p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg-6 col-12">
-                                            <div class="form-group">
-                                                <label class="form-label">Subject: <span
-                                                        class="required">*</span></label>
-                                                    <select class="form-control" name="subject" id="subject">
-                                                        <option selected hidden>Select subject</option>
-                                                        @foreach ($subject as $item)
+                                    </div>
+                                    <div class="step-form-cta-row">
+                                        <div class="step-prev">
+                                            <a href="javascript:void(0)" class="previous" id="goto_step_3">
+                                                <span class="btn btn-theme">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492 492"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="hovered-paths">
+                                                        <g>
+                                                            <path
+                                                                d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class="hovered-path"></path>
+                                                        </g>
+                                                    </svg>
+                                                    Prev
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="step-save">
+                                            <div id="experience_alert_container"></div>
+                                        </div>
+                                        <div class="step-next">
+                                            <a href="javascript:void(0)" id="fourth_next" class="">
+                                                <span class="btn btn-theme">
+                                                    Next
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="">
+                                                        <g>
+                                                            <path
+                                                                d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class=""></path>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {{-- Fifth step --}}
+                                <div class="tab-pannel" id="step5">
+                                    <div class="form-box">
+                                        <h3>Apply For</h3>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Post applied for: <span class="required">*</span></label>
+                                                    <select class="form-control" name="applied_post" id="applied_post">
+                                                        <option selected hidden>Select applied post</option>
+                                                        @foreach ($post as $item)
                                                             <option value="{{$item->title}}">{{$item->title}}</option>
                                                         @endforeach
                                                     </select>
-                                                    <p id="error_subject" class="text-danger err-msg"></p>
+                                                    <p id="error_applied_post" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Unit name: <span class="required">*</span></label>
+                                                    <select class="form-control" name="unit_name" id="unit_name">
+                                                        <option selected hidden>Select unit</option>
+                                                        @foreach ($unit as $item)
+                                                            <option value="{{$item->title}}">{{$item->title}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    <p id="error_unit_name" class="text-danger err-msg"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Subject: <span
+                                                            class="required">*</span></label>
+                                                        <select class="form-control" name="subject" id="subject">
+                                                            <option selected hidden>Select subject</option>
+                                                            @foreach ($subject as $item)
+                                                                <option value="{{$item->title}}">{{$item->title}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                        <p id="error_subject" class="text-danger err-msg"></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="step-form-cta-row">
-                                    <div class="step-prev">
-                                        <a href="javascript:void(0)" class="previous" id="goto_step_4">
-                                            <span class="btn btn-theme">
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
-                                                    height="512" x="0" y="0" viewBox="0 0 492 492"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="hovered-paths">
-                                                    <g>
-                                                        <path
-                                                            d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
-                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
-                                                            class="hovered-path"></path>
-                                                    </g>
-                                                </svg>
-                                                Prev
-                                            </span>
-                                        </a>
+                                    <div class="step-form-cta-row">
+                                        <div class="step-prev">
+                                            <a href="javascript:void(0)" class="previous" id="goto_step_4">
+                                                <span class="btn btn-theme">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492 492"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="hovered-paths">
+                                                        <g>
+                                                            <path
+                                                                d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class="hovered-path"></path>
+                                                        </g>
+                                                    </svg>
+                                                    Prev
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <!-- <div class="step-save">
+                                            <button class="btn btn-theme-reverse">Save and Proceed</button>
+                                        </div> -->
+                                        <div class="step-next">
+                                            <a href="javascript:void(0)" id="fifth_next" class="">
+                                                <span class="btn btn-theme">
+                                                    Next
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="">
+                                                        <g>
+                                                            <path
+                                                                d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class=""></path>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                            </a>
+                                        </div>
                                     </div>
-                                    <!-- <div class="step-save">
-                                        <button class="btn btn-theme-reverse">Save and Proceed</button>
-                                    </div> -->
-                                    <div class="step-next">
-                                        <a href="javascript:void(0)" id="fifth_next" class="">
-                                            <span class="btn btn-theme">
-                                                Next
-                                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
-                                                    xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
-                                                    height="512" x="0" y="0" viewBox="0 0 492.004 492.004"
-                                                    style="enable-background:new 0 0 512 512" xml:space="preserve"
-                                                    class="">
-                                                    <g>
-                                                        <path
-                                                            d="M382.678 226.804 163.73 7.86C158.666 2.792 151.906 0 144.698 0s-13.968 2.792-19.032 7.86l-16.124 16.12c-10.492 10.504-10.492 27.576 0 38.064L293.398 245.9l-184.06 184.06c-5.064 5.068-7.86 11.824-7.86 19.028 0 7.212 2.796 13.968 7.86 19.04l16.124 16.116c5.068 5.068 11.824 7.86 19.032 7.86s13.968-2.792 19.032-7.86L382.678 265c5.076-5.084 7.864-11.872 7.848-19.088.016-7.244-2.772-14.028-7.848-19.108z"
-                                                            fill="#ffffff" opacity="1" data-original="#ffffff"
-                                                            class=""></path>
-                                                    </g>
-                                                </svg>
-                                            </span>
-                                        </a>
+                                </div>
+
+                                {{-- Final Step --}}
+                                <div class="tab-pannel" id="step6">
+                                    <div class="form-box">
+                                        <h3>Upload Documents</h3>
+                                        {{-- Aadhar card --}}
+                                        <div class="row upload-row">
+                                            <div class="col-lg-6 col-12 left-col">
+                                                <h4>Aadhar Card: <span class="required">*</span></h4>
+                                                <p>Note: Only .jpg, .jpeg, .png file formats supported. File size must be less than 70 kb.</p>
+                                                <label for="aadhar_card_file" id="aadhar_card_file_label" class="btn btn-theme btn-upload not-uploaded">
+                                                    <input type="file" accept="image/jpeg, image/png, image/jpg" style="display: none;" name="aadhar_card_file" id="aadhar_card_file">
+                                                    <img id="aadhar_card_file_logo" src="{{asset('frontend-assets/assets/icons/verified.png')}}" alt="Verified" class="upload-icon d-none">
+                                                    <span>Upload</span>
+                                                    <img src="{{asset('frontend-assets/assets/icons/upload.png')}}" alt="Upload" class="upload-icon">
+                                                </label>
+                                                <p id="error_aadhar_card_file" class="text-danger err-msg"></p>
+                                            </div>
+                                            <div class="col-lg-6 col-12 right-col">
+                                                <div class="doc-img-box">
+                                                    <span id="aadhar_card_file_view">
+                                                        <img src="{{asset('frontend-assets/assets/icons/uploaded-file.png')}}" alt="Uploaded File" class="upload-icon">
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        {{-- PAN card --}}
+                                        <div class="row upload-row">
+                                            <div class="col-lg-6 col-12 left-col">
+                                                <h4>PAN Card: <span class="required">*</span></h4>
+                                                <p>Note: Only .jpg, .jpeg, .png file formats supported. File size must
+                                                    be less than 70 kb.</p>
+                                                    <label for="pan_card_file" class="btn btn-theme btn-upload not-uploaded">
+                                                        <input type="file" accept="image/jpeg, image/png, image/jpg" style="display: none;" name="pan_card_file" id="pan_card_file">
+                                                        <img id="pan_card_file_logo" src="{{asset('frontend-assets/assets/icons/verified.png')}}" alt="Verified" class="upload-icon d-none">
+                                                        <span>Upload</span>
+                                                        <img src="{{asset('frontend-assets/assets/icons/upload.png')}}" alt="Upload" class="upload-icon">
+                                                    </label>
+                                                    <p id="error_pan_card_file" class="text-danger err-msg"></p>
+                                            </div>
+                                            <div class="col-lg-6 col-12 right-col">
+                                                <div class="doc-img-box">
+                                                    <span id="pan_card_file_view">
+                                                        <img src="{{asset('frontend-assets/assets/icons/uploaded-file.png')}}" alt="Upload" class="upload-icon">
+                                                    </span>
+                                                    <!-- <span>Your .JPG file upload</span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- Resume --}}
+                                        <div class="row upload-row">
+                                            <div class="col-lg-6 col-12 left-col">
+                                                <h4>Current CV with Passport size photo: <span class="required">*</span>
+                                                </h4>
+                                                <p>Note: Only .pdf, .doc, .docx file formats supported. File size must
+                                                    be less than 1.5 mb.</p>
+                                                    <label for="resume_file" class="btn btn-theme btn-upload not-uploaded">
+                                                        <input type="file" accept=".pdf, .doc, .docx" style="display: none;" name="resume_file" id="resume_file">
+                                                        <img id="resume_file_logo" src="{{asset('frontend-assets/assets/icons/verified.png')}}" alt="Verified" class="upload-icon d-none">
+                                                        <span>Upload</span>
+                                                        <img src="{{asset('frontend-assets/assets/icons/upload.png')}}" alt="Upload" class="upload-icon">
+                                                    </label>
+                                                    <p id="error_resume_file" class="text-danger err-msg"></p>
+                                            </div>
+                                            <div class="col-lg-6 col-12 right-col">
+                                                <div class="doc-img-box">
+                                                    <span id="resume_file_view">
+                                                        <img src="{{asset('frontend-assets/assets/icons/uploaded-file.png')}}" alt="Upload" class="upload-icon">
+                                                    </span>
+                                                    <!-- <span>Your .JPG file upload</span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- Signature --}}
+                                        <div class="row upload-row">
+                                            <div class="col-lg-6 col-12 left-col">
+                                                <h4>Signature: <span class="required">*</span></h4>
+                                                <p>Note: Only .jpg, .jpeg, .png file formats supported. File size must
+                                                    be less than 20 kb.</p>
+                                                    <label for="signature" class="btn btn-theme btn-upload not-uploaded">
+                                                        <input type="file" accept="image/jpeg, image/png, image/jpg" style="display: none;" name="signature" id="signature">
+                                                        <img id="signature_logo" src="{{asset('frontend-assets/assets/icons/verified.png')}}" alt="Verified" class="upload-icon d-none">
+                                                        <span>Upload</span>
+                                                        <img src="{{asset('frontend-assets/assets/icons/upload.png')}}" alt="Upload" class="upload-icon">
+                                                    </label>
+                                                    <p id="error_signature" class="text-danger err-msg"></p>
+                                            </div>
+                                            <div class="col-lg-6 col-12 right-col">
+                                                <div class="doc-img-box">
+                                                    <span id="signature_view">
+                                                        <img src="{{asset('frontend-assets/assets/icons/uploaded-file.png')}}" alt="Upload" class="upload-icon">
+                                                    </span>
+                                                    <!-- <span>Your .JPG file upload</span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- Admit card --}}
+                                        <div class="row upload-row">
+                                            <div class="col-lg-6 col-12 left-col">
+                                                <h4>10th Admit Card: <span class="required">*</span></h4>
+                                                <p>Note: Only .jpg, .jpeg, .png file formats supported. File size must
+                                                    be less than 70 kb.</p>
+                                                    <label for="x_admit_card" class="btn btn-theme btn-upload not-uploaded">
+                                                        <input type="file" accept="image/jpeg, image/png, image/jpg" style="display: none;" name="x_admit_card" id="x_admit_card">
+                                                        <img id="x_admit_card_logo" src="{{asset('frontend-assets/assets/icons/verified.png')}}" alt="Verified" class="upload-icon d-none">
+                                                        <span>Upload</span>
+                                                        <img src="{{asset('frontend-assets/assets/icons/upload.png')}}" alt="Upload" class="upload-icon">
+                                                    </label>
+                                                    <p id="error_x_admit_card" class="text-danger err-msg"></p>
+                                            </div>
+                                            <div class="col-lg-6 col-12 right-col">
+                                                <div class="doc-img-box">
+                                                    <span id="x_admit_card_view">
+                                                        <img src="{{asset('frontend-assets/assets/icons/uploaded-file.png')}}" alt="Upload" class="upload-icon">
+                                                    </span>
+                                                    <!-- <span>Your .JPG file upload</span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- photograph --}}
+                                        <div class="row upload-row">
+                                            <div class="col-lg-6 col-12 left-col">
+                                                <h4>Passport size photograph: <span class="required">*</span></h4>
+                                                <p>Note: Only .jpg, .jpeg, .png file formats supported. File size must
+                                                    be less than 50 kb.</p>
+                                                    <label for="image_file" class="btn btn-theme btn-upload not-uploaded">
+                                                        <input type="file" accept="image/jpeg, image/png, image/jpg" style="display: none;" name="image_file" id="image_file">
+                                                        <img id="image_file_logo" src="{{asset('frontend-assets/assets/icons/verified.png')}}" alt="Verified" class="upload-icon d-none">
+                                                        <span>Upload</span>
+                                                        <img src="{{asset('frontend-assets/assets/icons/upload.png')}}" alt="Upload" class="upload-icon">
+                                                    </label>
+                                                    <p id="error_image_file" class="text-danger err-msg"></p>
+                                            </div>
+                                            <div class="col-lg-6 col-12 right-col">
+                                                <div class="doc-img-box">
+                                                    <span id="image_file_view">
+                                                        <img src="{{asset('frontend-assets/assets/icons/uploaded-file.png')}}" alt="Upload" class="upload-icon">
+                                                    </span>
+                                                    <!-- <span>Your .JPG file upload</span> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="step-form-cta-row">
+                                        <div class="step-prev">
+                                            <a href="javascript:void(0)" class="previous" id="goto_step_5">
+                                                <span class="btn btn-theme">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="512"
+                                                        height="512" x="0" y="0" viewBox="0 0 492 492"
+                                                        style="enable-background:new 0 0 512 512" xml:space="preserve"
+                                                        class="hovered-paths">
+                                                        <g>
+                                                            <path
+                                                                d="M198.608 246.104 382.664 62.04c5.068-5.056 7.856-11.816 7.856-19.024 0-7.212-2.788-13.968-7.856-19.032l-16.128-16.12C361.476 2.792 354.712 0 347.504 0s-13.964 2.792-19.028 7.864L109.328 227.008c-5.084 5.08-7.868 11.868-7.848 19.084-.02 7.248 2.76 14.028 7.848 19.112l218.944 218.932c5.064 5.072 11.82 7.864 19.032 7.864 7.208 0 13.964-2.792 19.032-7.864l16.124-16.12c10.492-10.492 10.492-27.572 0-38.06L198.608 246.104z"
+                                                                fill="#ffffff" opacity="1" data-original="#ffffff"
+                                                                class="hovered-path"></path>
+                                                        </g>
+                                                    </svg>
+                                                    Prev
+                                                </span>
+                                            </a>
+                                        </div>
+                                        <div class="step-save">
+                                            <div id="final_alert_container"></div>
+                                        </div>
+                                        <div class="step-next">
+                                            <button type="button" class="btn btn-theme-reverse" id="final_submit">Submit</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-
-                        </div>
                         </form>
 
                         <!-- progress bar -->
@@ -1869,6 +2076,114 @@ $(document).ready(function() {
             $('.step-list li').eq(4).removeClass('active');
             $('.step-list li').eq(3).addClass('active');
         });
+
+        //Sixth step verification
+        $(document).ready(function() {
+        // Change event listener for file input elements
+        $("input[type=file]").change(function() {
+            readURL(this);
+        });
+    });
+
+    // Function to read and display the selected image or file
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader      = new FileReader();
+            var file        = input.files[0];
+            var fileType    = file.type;
+
+            reader.onload   = function(e) {
+                var viewId  = "#" + $(input).attr("id") + "_view";
+                var logo    = "#" + $(input).attr("id") + "_logo";
+                var fileUrl = e.target.result;
+                $(logo).removeClass("d-none"); // Show the logo
+                // Check if the file type is an image
+                if (fileType.includes("image")) {
+                    // Display the image
+                    $(viewId + " img").attr("src", fileUrl);
+                    
+                } else {
+                    // Display a link to download or view the file
+                    var fileName = file.name;
+                    var linkText = "View " + fileName;
+                    var link     = $('<a>', {
+                        text: linkText,
+                        href: fileUrl,
+                        target: "_blank"
+                    });
+                    $(viewId).empty().append(link);
+                }
+
+                // Remove the "not-uploaded" class from the button
+                $(input).closest(".upload-row").find(".btn-upload").removeClass("not-uploaded");
+            };
+
+            reader.readAsDataURL(file); // Convert to base64 string
+        }
+    }
+        // Final Step Validation
+        $('#final_submit').click(function(event){
+            event.preventDefault();
+            //Reset error message
+            $('#error_aadhar_card_file').text("");
+            $('#error_pan_card_file').text("");
+            $('#error_resume_file').text("");
+            $('#error_signature').text("");
+            $('#error_x_admit_card').text("");
+            $('#error_image_file').text("");  
+            
+            var aadhar_card_file = $('#aadhar_card_file')[0].files[0];
+            var pan_card_file    = $('#pan_card_file')[0].files[0];
+            var resume_file      = $('#resume_file')[0].files[0];
+            var signature        = $('#signature')[0].files[0];
+            var x_admit_card     = $('#x_admit_card')[0].files[0];
+            var image_file       = $('#image_file')[0].files[0];
+
+            var requiredFields = [
+                { field: aadhar_card_file, name: "Aadhar Card",     maxSize: 70 * 1024,         allowedTypes:["image/jpeg", "image/png"] },
+                { field: pan_card_file,    name: "PAN Card",        maxSize: 70 * 1024,         allowedTypes:["image/jpeg", "image/png"] },
+                { field: resume_file,      name: "Resume",          maxSize: 1.5 * 1024 * 1024, allowedTypes:["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] },
+                { field: signature,        name: "signature",       maxSize: 20 * 1024,         allowedTypes:["image/jpeg", "image/png"] },
+                { field: x_admit_card,     name: "10th Admin Card", maxSize: 50 * 1024,         allowedTypes:["image/jpeg", "image/png"] },
+                { field: image_file,       name: "photograph",      maxSize: 70 * 1024,         allowedTypes:["image/jpeg", "image/png"] }
+            ];
+
+            for(var i = 0; i<requiredFields.length; i++){
+                var fieldInfo = requiredFields[i];
+                if(!fieldInfo.field){
+                    var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">Please select ' + fieldInfo.name + ' file.</div>');
+                    $('#final_alert_container').append(alertDiv);
+                    setTimeout(function() {
+                        alertDiv.alert('close');
+                        checkNextFile();
+                    }, 2000);
+                    return false;
+                }
+                if(!checkFileType(fieldInfo.field, fieldInfo.allowedTypes)){
+                    var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">Please select ' + fieldInfo.name + ' file.</div>');
+                    $('#final_alert_container').append(alertDiv);
+                    setTimeout(function() {
+                        alertDiv.alert('close');
+                        checkNextFile();
+                    }, 2000);
+                    return false;
+                }
+                if (!checkFileSize(fieldInfo.field, fieldInfo.maxSize, fieldInfo.name + " must be less than " + (fieldInfo.maxSize / 1024) + " KB.")) {
+                    return false;
+                }
+            }
+
+            // If all validations pass, proceed with form submission (with ajax after controller)
+
+        });
+
+        $('#goto_step_5').click((event) => {
+            $("#step6").hide();
+            $("#step5").show();
+            $('.step-list li').eq(5).removeClass('active');
+            $('.step-list li').eq(4).addClass('active');
+        });
+        
 
     });
    
