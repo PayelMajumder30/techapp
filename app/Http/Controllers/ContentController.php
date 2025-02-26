@@ -43,4 +43,13 @@ class ContentController extends Controller
         }
     }
 
+
+
+    public function RegisterFinalSubmit(Request $request){
+        dd($request->all());
+    }
+
+
+
+
 }
