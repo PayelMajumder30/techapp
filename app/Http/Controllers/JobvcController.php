@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use App\Models\Jobcategories;
 use App\Models\Jobvacancy;
+use App\Models\Career;
 
 class JobvcController extends Controller
 {
@@ -133,6 +134,11 @@ class JobvcController extends Controller
             // Redirect back with an error message
             return redirect()->back()->with('failure', 'Failed to delete Job. Please try again.');
         }
+    }
+
+    public function UserApplication(Request $request){
+        $keyword = $request->keyword ?? '';
+
     }
 
 }
