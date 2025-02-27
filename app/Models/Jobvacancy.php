@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Jobvacancy extends Model
 {
     use HasFactory;
     protected $table = "job_vacancy";
-    protected $fillable = ['title', 'sub_title', 'gender', 'experience', 'no_of_vacancy', 
+    protected $fillable = ['title', 'slug','sub_title', 'gender', 'experience', 'no_of_vacancy', 
     'school_name', 'location', 'category_id','status'];
 
     public function category(){

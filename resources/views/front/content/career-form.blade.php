@@ -2177,6 +2177,52 @@ $(document).ready(function() {
             $('#registrationFormData').submit();
 
             // If all validations pass, proceed with form submission (with ajax after controller)
+            var formData = new FormData($("#registrationFormData")[0]);
+            $('#final_submit').text('PLEASE WAIT.. ');
+            $.ajax({
+                url: "{{route('front.career.application.form.submit')}}",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response.status == 200) {
+                        //localStorage.clear();
+                        $('#final_submit').text('SUBMIT');
+                        var alertDiv = $('<div class="alert alert-success alert-dismissible fade show" role="alert">' + response.message + '</div>');
+                        $('#final_alert_container').append(alertDiv);
+                        localStorage.setItem('application_id',response.data);
+                        setTimeout(function() {
+                            alertDiv.alert('close'); // Close the alert after 3 seconds
+                            window.location.href = "{{ route('front.career.confirmation') }}";
+                            //localStorage.clear();
+                        }, 2000);
+                    } else {
+                        $('#final_submit').text('SUBMIT');
+                        //localStorage.clear();
+                        var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">Something went wrong!</div>');
+                        $('#final_alert_container').append(alertDiv);
+                        setTimeout(function() {
+                            alertDiv.alert('close'); // Close the alert after 3 seconds
+                        }, 2000);
+                        //localStorage.clear();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Create a new alert div with the error message received from the server
+                    //localStorage.clear();
+                    $('#final_submit').text('SUBMIT');
+                    var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">' + error + '</div>');
+                    // Append the alert div to the final_alert_container element
+                    $('#final_alert_container').append(alertDiv);
+                    // Set a timeout to close the alert after 3 seconds
+                    setTimeout(function() {
+                        alertDiv.alert('close'); // Close the alert
+                    }, 3000); // 3000 milliseconds = 3 seconds
+                    //localStorage.clear();
+                }
+
+            });
 
         });
 
@@ -2307,5 +2353,91 @@ $(document).ready(function() {
     }
     if(set_country) {
         $('#country').val(set_country);
+    }
+
+    // Third Step
+    var set_x_school_name = localStorage.getItem('x_school_name');
+    var set_x_board_name = localStorage.getItem('x_board_name');
+    var set_x_percentage = localStorage.getItem('x_percentage');
+    var set_x_passing_year = localStorage.getItem('x_passing_year');
+    var set_xii_school_name = localStorage.getItem('xii_school_name');
+    var set_xii_board_name = localStorage.getItem('xii_board_name');
+    var set_xii_percentage = localStorage.getItem('xii_percentage');
+    var set_xii_passing_year = localStorage.getItem('xii_passing_year');
+    // var set_after_xii_qualification = localStorage.getItem('after_xii_qualification');
+    // var set_after_xii_institute_name = localStorage.getItem('after_xii_institute_name');
+    // var set_after_xii_institute_board = localStorage.getItem('after_xii_institute_board');
+    // var set_after_xii_institute_stream = localStorage.getItem('after_xii_institute_stream');
+    // var set_after_xii_institute_percentage = localStorage.getItem('after_xii_institute_percentage');
+    // var set_after_xii_institute_passing_year = localStorage.getItem('after_xii_institute_passing_year')
+
+    if (set_x_school_name) {
+        $('#x_school_name').val(set_x_school_name);
+    }
+    if (set_x_board_name) {
+        $('#x_board_name').val(set_x_board_name);
+    }
+    if (set_x_percentage) {
+        $('#x_percentage').val(set_x_percentage);
+    }
+    if (set_x_passing_year) {
+        $('#x_passing_year').val(set_x_passing_year);
+    }
+    if (set_xii_school_name) {
+        $('#xii_school_name').val(set_xii_school_name);
+    }
+    if (set_xii_board_name) {
+        $('#xii_board_name').val(set_xii_board_name);
+    }
+    if (set_xii_percentage) {
+        $('#xii_percentage').val(set_xii_percentage);
+    }
+    if (set_xii_passing_year) {
+        $('#xii_passing_year').val(set_xii_passing_year);
+    }
+    // if (set_after_xii_qualification) {
+    //     $('#after_xii_qualification').val(set_after_xii_qualification);
+    // }
+    // if (set_after_xii_institute_name) {
+    //     $('#after_xii_institute_name').val(set_after_xii_institute_name);
+    // }
+    // if (set_after_xii_institute_board) {
+    //     $('#after_xii_institute_board').val(set_after_xii_institute_board);
+    // }
+    // if (set_after_xii_institute_stream) {
+    //     $('#after_xii_institute_stream').val(set_after_xii_institute_stream);
+    // }
+    // if (set_after_xii_institute_percentage) {
+    //     $('#after_xii_institute_percentage').val(set_after_xii_institute_percentage);
+    // }
+    // if (set_after_xii_institute_passing_year) {
+    //     $('#after_xii_institute_passing_year').val(set_after_xii_institute_passing_year);
+    // }
+
+   // Retrieve data from localStorage
+    var setPresentSalary = localStorage.getItem('present_salary');
+    var setExpectedSalary = localStorage.getItem('expected_salary');
+    var setJoinTime = localStorage.getItem('join_time');
+    var setKnowAnyoneAtTigs = localStorage.getItem('knowanyone');
+    var setReferrenceDetails = localStorage.getItem('referrence_details');
+
+    // Populate fields with retrieved data
+    if (setPresentSalary) {
+        $('#present_salary').val(setPresentSalary);
+    }
+    if (setExpectedSalary) {
+        $('#expected_salary').val(setExpectedSalary);
+    }
+    if (setJoinTime) {
+        $('#join_time').val(setJoinTime);
+    }
+    if (setKnowAnyoneAtTigs) {
+        $("input[name='knowanyone'][value='" + setKnowAnyoneAtTigs + "']").prop('checked', true);
+    }
+    if(setKnowAnyoneAtTigs=="Yes"){
+        $("#mentionReferrence").addClass('show');
+    }
+    if (setReferrenceDetails) {
+        $('#referrence_details').val(setReferrenceDetails);
     }
 </script>
