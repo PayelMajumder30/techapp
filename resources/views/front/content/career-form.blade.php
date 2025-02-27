@@ -36,7 +36,7 @@
         line-height: 16px;
         text-align: center;
     }
-    
+
 </style>
 <div class="page-wrapper">
     <div class="page-wrapper">
@@ -57,7 +57,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <form id="registrationFormData" action="" method="post" enctype="multipart/form-data">
+                        <form id="registrationFormData" action="{{route('front.career.application.form.submit')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="job_id" value="{{$vacancy->id}}">
                             <div class="tab-content">
@@ -481,7 +481,7 @@
                                                         <option value="Teacher's Training">Teacher's Training</option>
                                                         <option value="Ph.D">Ph.D</option>
                                                     </select>
-                                                
+
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-12">
@@ -566,7 +566,7 @@
                                         </div>
                                     <div class="step-save">
                                             <div id="education_alert_container"></div>
-                                        </div> 
+                                        </div>
                                         <div class="step-next">
                                             <a href="javascript:void(0)" id="third_next" class="">
                                                 <span class="btn btn-theme">
@@ -842,7 +842,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                         {{-- PAN card --}}
                                         <div class="row upload-row">
                                             <div class="col-lg-6 col-12 left-col">
@@ -1309,12 +1309,12 @@ $(document).ready(function() {
                 </div>
 
 
-                                            
+
                 <div class="col-lg-12 text-end mb-4">
                     <button class="btn btn-theme btn-danger remove-qualification">Remove</button>
                 </div></div>`;
             $("#12th").append(QualificationEntry);
-            QualificationCount++; 
+            QualificationCount++;
         });
 
         // Remove qualification entry
@@ -1347,10 +1347,10 @@ $(document).ready(function() {
                             <label class="form-label">Experience Duration <span class="required">*</span></label>
                             <input type="text" class="form-control experience-duration" placeholder="Enter experience duration" name="experience_duration[]" required value="">
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-lg-12 text-end mb-4">
                     <button class="btn btn-theme btn-danger remove-experience">Remove</button>
-                    </div>                                   
+                    </div>
             </div>`;
             $('#work_experience_div').append(ExperienceEntry);
             ExperiencenCount++;
@@ -1677,10 +1677,10 @@ $(document).ready(function() {
             $('.step-list li').eq(1).removeClass('active');
             $('.step-list li').eq(0).addClass('active');
         });
-       
+
 
         //Third step verification
-        
+
         $("#third_next").click(function(event) {
             event.preventDefault(); // Prevent default action of <a> tag
 
@@ -1807,7 +1807,7 @@ $(document).ready(function() {
                 $("#error_xii_passing_year").text("Please select your passing year");
                 $("#xii_passing_year").focus();
                 return false;
-            } 
+            }
             // else if (after_xii_qualification === null) {
             //     $("#error_after_xii_qualification").text("Please select your qualification");
             //     $("#after_xii_qualification").focus();
@@ -1832,7 +1832,7 @@ $(document).ready(function() {
             //     $("#error_after_xii_institute_passing_year").text("Please select your passing year");
             //     $("#after_xii_institute_passing_year").focus();
             //     return false;
-            // } 
+            // }
             // else {
             //     // Add data to localStorage
             //     localStorage.setItem('x_school_name', x_school_name);
@@ -1849,10 +1849,10 @@ $(document).ready(function() {
             //     // localStorage.setItem('after_xii_institute_stream', after_xii_institute_stream);
             //     // localStorage.setItem('after_xii_institute_percentage', after_xii_institute_percentage);
             //     // localStorage.setItem('after_xii_institute_passing_year', after_xii_institute_passing_year);
-                
+
             //     // Add the next-form class
             //     $(this).addClass('next-form');
-                        
+
             //     // Button Click
             //     var current_ff = $(this).parent().parent().parent();
             //     var next_ff = current_ff.next();
@@ -1863,7 +1863,7 @@ $(document).ready(function() {
 
             //     // Show the next steps
             //     next_ff.show();
-                        
+
             //     // Hide the current steps with style
             //     current_ff.animate({opacity: 0}, {
             //         step: function(now) {
@@ -1891,7 +1891,7 @@ $(document).ready(function() {
             $('.step-list li').eq(2).removeClass('active');
             $('.step-list li').eq(1).addClass('active');
         });
-    
+
 
         //Fourth step verification
 
@@ -1921,7 +1921,7 @@ $(document).ready(function() {
                     return false; // Exit the loop early if any field is empty
                 }
             });
-            
+
             if(!experienceValid){
                 var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">Please fill in all experience fields.</div>');
                 $('#experience_alert_container').append(alertDiv);
@@ -1948,7 +1948,7 @@ $(document).ready(function() {
             } else if(knowAnyoneAtTigs == 'Yes' && referrenceDetails.length == 0){
                 $('#error_referrence_details').text("Please mention the referrence details");
                 $('#referrence_details').focus();
-                return false;  
+                return false;
             }
             // else{
             //     var verifiedEmail = 1;
@@ -2038,7 +2038,7 @@ $(document).ready(function() {
 
             //     // Add the next-form class
             //     $(this).addClass('next-form');
-                        
+
             //     // Button Click
             //     var current_ff = $(this).parent().parent().parent();
             //     var next_ff = current_ff.next();
@@ -2049,7 +2049,7 @@ $(document).ready(function() {
 
             //     // Show the next steps
             //     next_ff.show();
-                        
+
             //     // Hide the current steps with style
             //     current_ff.animate({opacity: 0}, {
             //         step: function(now) {
@@ -2101,7 +2101,7 @@ $(document).ready(function() {
                 if (fileType.includes("image")) {
                     // Display the image
                     $(viewId + " img").attr("src", fileUrl);
-                    
+
                 } else {
                     // Display a link to download or view the file
                     var fileName = file.name;
@@ -2130,8 +2130,8 @@ $(document).ready(function() {
             $('#error_resume_file').text("");
             $('#error_signature').text("");
             $('#error_x_admit_card').text("");
-            $('#error_image_file').text("");  
-            
+            $('#error_image_file').text("");
+
             var aadhar_card_file = $('#aadhar_card_file')[0].files[0];
             var pan_card_file    = $('#pan_card_file')[0].files[0];
             var resume_file      = $('#resume_file')[0].files[0];
@@ -2173,7 +2173,56 @@ $(document).ready(function() {
                 }
             }
 
+
+            $('#registrationFormData').submit();
+
             // If all validations pass, proceed with form submission (with ajax after controller)
+            var formData = new FormData($("#registrationFormData")[0]);
+            $('#final_submit').text('PLEASE WAIT.. ');
+            $.ajax({
+                url: "{{route('front.career.application.form.submit')}}",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response) {
+                    if (response.status == 200) {
+                        //localStorage.clear();
+                        $('#final_submit').text('SUBMIT');
+                        var alertDiv = $('<div class="alert alert-success alert-dismissible fade show" role="alert">' + response.message + '</div>');
+                        $('#final_alert_container').append(alertDiv);
+                        localStorage.setItem('application_id',response.data);
+                        setTimeout(function() {
+                            alertDiv.alert('close'); // Close the alert after 3 seconds
+                            window.location.href = "{{ route('front.career.confirmation') }}";
+                            //localStorage.clear();
+                        }, 2000);
+                    } else {
+                        $('#final_submit').text('SUBMIT');
+                        //localStorage.clear();
+                        var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">Something went wrong!</div>');
+                        $('#final_alert_container').append(alertDiv);
+                        setTimeout(function() {
+                            alertDiv.alert('close'); // Close the alert after 3 seconds
+                        }, 2000);
+                        //localStorage.clear();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    // Create a new alert div with the error message received from the server
+                    //localStorage.clear();
+                    $('#final_submit').text('SUBMIT');
+                    var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">' + error + '</div>');
+                    // Append the alert div to the final_alert_container element
+                    $('#final_alert_container').append(alertDiv);
+                    // Set a timeout to close the alert after 3 seconds
+                    setTimeout(function() {
+                        alertDiv.alert('close'); // Close the alert
+                    }, 3000); // 3000 milliseconds = 3 seconds
+                    //localStorage.clear();
+                }
+
+            });
 
         });
 
@@ -2183,10 +2232,51 @@ $(document).ready(function() {
             $('.step-list li').eq(5).removeClass('active');
             $('.step-list li').eq(4).addClass('active');
         });
-        
+
+        function checkFileSize(fileInput, maxSize, errorMessage) {
+        if (fileInput.size > maxSize) {
+            var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">' + errorMessage + '</div>');
+            $('#final_alert_container').append(alertDiv);
+            setTimeout(function() {
+                alertDiv.alert('close'); // Close the alert after 3 seconds
+            }, 2000);
+            return false;
+        }
+        return true;
+    }
+
+    function checkFileType(fileInput, allowedTypes) {
+        return allowedTypes.includes(fileInput.type);
+    }
+
+
+    function checkFileSize(fileInput, maxSize, errorMessage) {
+        if (fileInput && fileInput.size > maxSize) {
+            var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">' + errorMessage + '</div>');
+            $('#final_alert_container').append(alertDiv);
+            setTimeout(function() {
+                alertDiv.alert('close'); // Close the alert after 3 seconds
+            }, 2000);
+            return false;
+        }
+        return true;
+    }
+    function checkIfFileEmpty(file, fileName) {
+        if (!file) {
+            var alertDiv = $('<div class="alert alert-danger alert-dismissible fade show" role="alert">' + fileName + '  required</div>');
+            $('#final_alert_container').append(alertDiv);
+            setTimeout(function() {
+                alertDiv.alert('close'); // Close the alert after 3 seconds
+                checkNextFile(); // Check the next file after closing the alert
+            }, 2000);
+            return false;
+        }
+        return true;
+    }
+
 
     });
-   
+
 
     // All Get localStorage
     // Retrieve the value of 'verified_email' from localStorage
@@ -2263,5 +2353,91 @@ $(document).ready(function() {
     }
     if(set_country) {
         $('#country').val(set_country);
+    }
+
+    // Third Step
+    var set_x_school_name = localStorage.getItem('x_school_name');
+    var set_x_board_name = localStorage.getItem('x_board_name');
+    var set_x_percentage = localStorage.getItem('x_percentage');
+    var set_x_passing_year = localStorage.getItem('x_passing_year');
+    var set_xii_school_name = localStorage.getItem('xii_school_name');
+    var set_xii_board_name = localStorage.getItem('xii_board_name');
+    var set_xii_percentage = localStorage.getItem('xii_percentage');
+    var set_xii_passing_year = localStorage.getItem('xii_passing_year');
+    // var set_after_xii_qualification = localStorage.getItem('after_xii_qualification');
+    // var set_after_xii_institute_name = localStorage.getItem('after_xii_institute_name');
+    // var set_after_xii_institute_board = localStorage.getItem('after_xii_institute_board');
+    // var set_after_xii_institute_stream = localStorage.getItem('after_xii_institute_stream');
+    // var set_after_xii_institute_percentage = localStorage.getItem('after_xii_institute_percentage');
+    // var set_after_xii_institute_passing_year = localStorage.getItem('after_xii_institute_passing_year')
+
+    if (set_x_school_name) {
+        $('#x_school_name').val(set_x_school_name);
+    }
+    if (set_x_board_name) {
+        $('#x_board_name').val(set_x_board_name);
+    }
+    if (set_x_percentage) {
+        $('#x_percentage').val(set_x_percentage);
+    }
+    if (set_x_passing_year) {
+        $('#x_passing_year').val(set_x_passing_year);
+    }
+    if (set_xii_school_name) {
+        $('#xii_school_name').val(set_xii_school_name);
+    }
+    if (set_xii_board_name) {
+        $('#xii_board_name').val(set_xii_board_name);
+    }
+    if (set_xii_percentage) {
+        $('#xii_percentage').val(set_xii_percentage);
+    }
+    if (set_xii_passing_year) {
+        $('#xii_passing_year').val(set_xii_passing_year);
+    }
+    // if (set_after_xii_qualification) {
+    //     $('#after_xii_qualification').val(set_after_xii_qualification);
+    // }
+    // if (set_after_xii_institute_name) {
+    //     $('#after_xii_institute_name').val(set_after_xii_institute_name);
+    // }
+    // if (set_after_xii_institute_board) {
+    //     $('#after_xii_institute_board').val(set_after_xii_institute_board);
+    // }
+    // if (set_after_xii_institute_stream) {
+    //     $('#after_xii_institute_stream').val(set_after_xii_institute_stream);
+    // }
+    // if (set_after_xii_institute_percentage) {
+    //     $('#after_xii_institute_percentage').val(set_after_xii_institute_percentage);
+    // }
+    // if (set_after_xii_institute_passing_year) {
+    //     $('#after_xii_institute_passing_year').val(set_after_xii_institute_passing_year);
+    // }
+
+   // Retrieve data from localStorage
+    var setPresentSalary = localStorage.getItem('present_salary');
+    var setExpectedSalary = localStorage.getItem('expected_salary');
+    var setJoinTime = localStorage.getItem('join_time');
+    var setKnowAnyoneAtTigs = localStorage.getItem('knowanyone');
+    var setReferrenceDetails = localStorage.getItem('referrence_details');
+
+    // Populate fields with retrieved data
+    if (setPresentSalary) {
+        $('#present_salary').val(setPresentSalary);
+    }
+    if (setExpectedSalary) {
+        $('#expected_salary').val(setExpectedSalary);
+    }
+    if (setJoinTime) {
+        $('#join_time').val(setJoinTime);
+    }
+    if (setKnowAnyoneAtTigs) {
+        $("input[name='knowanyone'][value='" + setKnowAnyoneAtTigs + "']").prop('checked', true);
+    }
+    if(setKnowAnyoneAtTigs=="Yes"){
+        $("#mentionReferrence").addClass('show');
+    }
+    if (setReferrenceDetails) {
+        $('#referrence_details').val(setReferrenceDetails);
     }
 </script>
