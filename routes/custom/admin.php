@@ -64,6 +64,14 @@ Route::prefix('career')->middleware(['auth'])->group(function () {
         Route::post('update/{id}', [JobvcController::class, 'updateJob'])->name('jobvc.update');
         Route::delete('/delete/{id}', [JobvcController::class, 'desrtroyJob'])->name('jobvc.delete');
     });
+
+    // job application
+    Route::prefix('job_applications')->middleware(['auth'])->group(function(){
+        Route::get('/', [JobvcController::class, 'UserApplication'])->name('user.application.list');
+        Route::get('/view/{id}',[JobvcController::class, 'UserApplicationView'])->name('user.application.view');
+    });
+
+
 });
 
 Route::prefix('master_module')->middleware(['auth'])->group(function(){

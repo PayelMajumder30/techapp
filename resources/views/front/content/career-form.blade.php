@@ -1895,6 +1895,24 @@ $(document).ready(function() {
 
         //Fourth step verification
 
+        function toggleReferrenceDetails() {
+        var knowAnyoneAtTigs = $("input[name='knowanyone']:checked").val();
+        if (knowAnyoneAtTigs === "Yes") {
+            $("#mentionReferrence").show();  // Show the reference details box
+        } else {
+            $("#mentionReferrence").hide();  // Hide the reference details box
+            $('#referrence_details').val(""); // Clear the input when hidden
+        }
+        }
+
+        // Event listener for radio button change
+        $("input[name='knowanyone']").change(function(){
+            toggleReferrenceDetails();
+        });
+
+        // Run the function on page load in case of pre-selected value
+        toggleReferrenceDetails();
+
         $('#fourth_next').click(function(event){
             event.preventDefault();
             $('#error_present_salary').text("");
@@ -1909,13 +1927,7 @@ $(document).ready(function() {
             var knowAnyoneAtTigs    = $("input[name = 'knowanyone']:checked").val();
             // Validate experience entry fields
             var experienceValid = true;
-            $(".experience-type").each(function(){
-                if($(this).val().trim() === ""){
-                    experienceValid = false;
-                    return false; // Exit the loop early if any field is empty
-                }
-            });
-            $(".experience-duration").each(function(){
+            $(".experience-type", "experience-duration").each(function(){
                 if($(this).val().trim() === ""){
                     experienceValid = false;
                     return false; // Exit the loop early if any field is empty
@@ -2174,7 +2186,7 @@ $(document).ready(function() {
             }
 
 
-            $('#registrationFormData').submit();
+            //$('#registrationFormData').submit();
 
             // If all validations pass, proceed with form submission (with ajax after controller)
             var formData = new FormData($("#registrationFormData")[0]);
@@ -2415,10 +2427,10 @@ $(document).ready(function() {
     // }
 
    // Retrieve data from localStorage
-    var setPresentSalary = localStorage.getItem('present_salary');
-    var setExpectedSalary = localStorage.getItem('expected_salary');
-    var setJoinTime = localStorage.getItem('join_time');
-    var setKnowAnyoneAtTigs = localStorage.getItem('knowanyone');
+    var setPresentSalary     = localStorage.getItem('present_salary');
+    var setExpectedSalary    = localStorage.getItem('expected_salary');
+    var setJoinTime          = localStorage.getItem('join_time');
+    var setKnowAnyoneAtTigs  = localStorage.getItem('knowanyone');
     var setReferrenceDetails = localStorage.getItem('referrence_details');
 
     // Populate fields with retrieved data
