@@ -46,12 +46,12 @@
 @endsection
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script type="text/javascript">
-document.addEventListener("DOMContentLoaded", function() {
-    var application_id = localStorage.getItem('application_id');
-    if (application_id) {
-        document.getElementById('application_id').textContent = application_id;
-    }
-});
+    document.addEventListener("DOMContentLoaded", function() {
+        var application_id = localStorage.getItem('application_id');
+        if (application_id) {
+            document.getElementById('application_id').textContent = application_id;
+        }
+    });
 
     if (!sessionStorage.getItem('pageReloaded')) {
         // Clear the localStorage

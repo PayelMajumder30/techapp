@@ -8,6 +8,9 @@ use Illuminate\Support\Str;
 use App\Models\Jobcategories;
 use App\Models\Jobvacancy;
 use App\Models\Career;
+use App\Models\Unit;
+use App\Models\CareerExperience;
+use App\Models\CarrerHigherStudies;
 
 class JobvcController extends Controller
 {
@@ -136,9 +139,28 @@ class JobvcController extends Controller
         }
     }
 
+    //Job application
     public function UserApplication(Request $request){
-        $keyword = $request->keyword ?? '';
+        $keyword    = $request->keyword ?? '';
+        $query      = Career::query();
 
+        $query->when($keyword, function($query) use ($keyword){
+            $query->where('name', 'like', '%' . $keyword . '%')
+                ->orwhere('registration_id', 'like', '%' . $keyword . '%')
+                ->orwhere('email', 'like', '%' . $keyword . '%')
+                ->orwhere('phone', 'like', '%' . $keyword . '%')
+                ->orwhere('pincode', 'like', '%' . $keyword . '%');
+        });
+        $jobapp = $query->latest('id')->where('deleted_at', 1)->simplePaginate(10);
+        return view('job_application.index', compact('jobapp'));
+    }
+
+    public function UserApplicationView($id){
+        $jobapp         = Career::findOrFail($id);
+        $higherStudies  = CarrerHigherStudies::where('career_id', $id)->get();
+        $experience     = CareerExperience::where('career_id', $id)->get();
+
+        return view('job_application.view', compact('jobapp', 'higherStudies', 'experience'));
     }
 
 }

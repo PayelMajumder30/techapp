@@ -42,6 +42,26 @@
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <div class="main">
+        <header id="header">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-6 col-9">
+                        <a href="{{asset('')}}"><img src="{{asset('master/images/logo.png')}}" class="img-fluid" alt="logo"></a>
+                    </div>
+                    <div class="col-md-6 col-3 text-right home_icon">
+                        <span style="font-size:30px;cursor:pointer" onclick="openNav()" class="humber_icon1">&#9776;</span>
+                        <div id="myNav" class="overlay">
+                        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">
+                            <button type="button" class="close" aria-label="Close">
+                                <span aria-hidden="true"><img src="{{asset('master/images/closeicon.png')}}" class="img-fluid closeicon" alt=""></span>
+                            </button>
+                        </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+       
     @yield('content')
     <!-- <header id="header">
         <div class="container">
@@ -62,5 +82,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
     @yield('script')
+    <script>
+            function openNav() {
+                document.getElementById("myNav").style.height = "100%";
+            }
+            function closeNav() {
+                document.getElementById("myNav").style.height = "0%";
+            }
+    </script>
 </body>
 </html>

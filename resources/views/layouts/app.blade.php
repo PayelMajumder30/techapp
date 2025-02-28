@@ -114,7 +114,7 @@
                     <img src="{{ asset('backend-assets/images/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">{{ Auth::check() ? Auth::user()->type : "" }}</a>
+                    <a href="#" class="d-block">{{ Auth::check() ? Auth::user()->name : "" }}</a>
                 </div>
             </div>
 

@@ -10,7 +10,7 @@
                     <div class="card-header">
                         <div class="row mb-3">
                             <div class="col-md-12 text-right">
-                                <a href="{{route('jobvc.index')}}" class="btn btn-sm-primary"><i class="fa fa-chevron-left"></i>Back</a>                                
+                                <a href="{{route('jobvc.index')}}" class="btn btn-sm btn-primary"><i class="fa fa-chevron-left"></i>Back</a>                                
                             </div>
                         </div>
                     </div>
