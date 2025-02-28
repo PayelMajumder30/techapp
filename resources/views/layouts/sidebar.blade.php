@@ -86,7 +86,7 @@
                 {{-- @endif --}}
                 {{-- @if(in_array('Applications', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('job_application.index')}}"
                         class="nav-link {{ (request()->is('admin/career/applications*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Job Applications</p>
@@ -142,7 +142,7 @@
                 {{-- @endif
                 @if(in_array('Teaching Process', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('teaching_process.index')}}"
                         class="nav-link {{ (request()->is('admin/master-module/teaching-process*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Teaching Process</p>

@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
 use App\Models\StudentClass;
 use App\Models\Facilities;
 use App\Models\SubFacilities;
+use App\Models\TeachingProcess;
 use App\Interfaces\DepartmentInterface;
 
 
@@ -331,14 +332,14 @@ class DepartmentController extends Controller
             $subfacilities->save();
             DB::commit();
             return response()->json([
-            'status' => 200,
-            'message' => 'Status updated',
+            'status'    => 200,
+            'message'   => 'Status updated',
         ]);
         } catch (\Exception $e) {
             DB::rollback();
             return response()->json([
-            'status' => 400,
-            'message' => 'Failed to update Subfacility, try again',
+            'status'    => 400,
+            'message'   => 'Failed to update Subfacility, try again',
         ]);
         }
     }
@@ -372,9 +373,9 @@ class DepartmentController extends Controller
         DB::beginTransaction();
         try {
             $subfacility = SubFacilities::findOrFail($request->id);
-            $subfacility->title = $request->SubFacility_title;
-            $subfacility->desc = $request->SubFacility_description;             
-            $subfacility->facility_id = $request->facility_id;             
+            $subfacility->title         = $request->SubFacility_title;
+            $subfacility->desc          = $request->SubFacility_description;             
+            $subfacility->facility_id   = $request->facility_id;             
             $subfacility->save();
             // Commit the transaction if everything is successful
             DB::commit();
@@ -386,6 +387,84 @@ class DepartmentController extends Controller
             \Log::error($e);
             // Redirect back with an error message
             return redirect()->back()->with('failure', 'Failed to update SubFacility. Please try again.');
+        }
+    }
+
+    //teaching process
+    public function TeachingList(){
+        $teaching = TeachingProcess::latest()->get();
+        return view('teaching_process.index',compact('teaching'));
+    }
+
+    public function TeachingCreate(Request $request){
+        return view('teaching_process.create');
+    }
+
+    public function TeachingStore(Request $request){
+        DB::beginTransaction();
+        $request->validate([
+            'title'         => 'required|string|max:255|unique:teaching_process,title',
+            'description'   => 'required|string',
+            'image'         => 'required|mimes:jpg,jpeg,png,gif,svg,webp|max:1000',
+        ]);
+
+        try{
+            $teaching = new TeachingProcess();
+            $teaching->title        = $request->title;
+            $teaching->description  = $request->description;
+            //image
+            if($request->hasFile('image')){
+                $fileteach          = $request->file('image');
+                $fileImageName      = time() . rand(10000, 99999) . '.' . $fileteach->getClientOriginalExtension();
+                $fileteach->move(public_path('uploads/teaching'), $fileImageName);
+                $teaching->image    = 'uploads/teaching/' . $fileImageName;
+            }
+            $teaching->save();
+            DB::commit();
+            return redirect('teaching_process.index')->with('success', 'New process created');
+        }
+        catch(\Exception $e){
+            DB::rollback();
+            \Log::error($e);
+            return redirect()->back()->with('failure', 'Failed to create process, Please try again');
+        }
+    }
+
+    public function TeachingStatus($id)
+    {
+        DB::beginTransaction();
+    
+        try {
+            $teaching = TeachingProcess::findOrFail($id);
+            $teaching->status = !$teaching->status;
+            $teaching->save();
+            DB::commit();
+            return response()->json([
+            'status' => 200,
+            'message' => 'Status updated',
+            ]);
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response()->json([
+            'status' => 400,
+            'message' => 'Failed to update status, try again',
+            ]);
+        }
+    }
+
+    public function TeachingDelete(Request $request, $id){
+        DB::beginTransaction();
+        try {
+            $teaching = TeachingProcess::findOrFail($id);
+            $teaching->save();
+            DB::commit();
+            return redirect()->route('teaching_process.index')->with('success', 'Process deleted');
+        } catch (\Exception $e) {
+            DB::rollback();
+            // Log the exception if needed
+            \Log::error($e);
+            // Redirect back with an error message
+            return redirect()->back()->with('failure', 'Failed to delete Process. Please try again.');
         }
     }
     

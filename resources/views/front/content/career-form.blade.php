@@ -412,7 +412,7 @@
                                                             class="required">*</span></label>
                                                     <select class="form-control" name="x_passing_year" id="x_passing_year">
                                                         <option selected disabled>Select passing year</option>
-                                                        @for ($year = 1980; $year <= 2015; $year++)
+                                                        @for ($year = 1980; $year <= date("Y"); $year++)
                                                         <option value="{{$year}}">{{$year}}</option>
                                                         @endfor
                                                     </select>
@@ -2156,7 +2156,7 @@ $(document).ready(function() {
                 { field: pan_card_file,    name: "PAN Card",        maxSize: 70 * 1024,         allowedTypes:["image/jpeg", "image/png"] },
                 { field: resume_file,      name: "Resume",          maxSize: 1.5 * 1024 * 1024, allowedTypes:["application/pdf", "application/msword", "application/vnd.openxmlformats-officedocument.wordprocessingml.document"] },
                 { field: signature,        name: "signature",       maxSize: 20 * 1024,         allowedTypes:["image/jpeg", "image/png"] },
-                { field: x_admit_card,     name: "10th Admin Card", maxSize: 50 * 1024,         allowedTypes:["image/jpeg", "image/png"] },
+                { field: x_admit_card,     name: "10th Admit Card", maxSize: 50 * 1024,         allowedTypes:["image/jpeg", "image/png"] },
                 { field: image_file,       name: "photograph",      maxSize: 70 * 1024,         allowedTypes:["image/jpeg", "image/png"] }
             ];
 
@@ -2220,7 +2220,7 @@ $(document).ready(function() {
                         //localStorage.clear();
                     }
                 },
-                error: function(xhr, status, error) {
+                error: function(xhr, status, error) { //This function runs when the AJAX request fails (e.g., network issue, server error, validation error)
                     // Create a new alert div with the error message received from the server
                     //localStorage.clear();
                     $('#final_submit').text('SUBMIT');

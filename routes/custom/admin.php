@@ -67,8 +67,8 @@ Route::prefix('career')->middleware(['auth'])->group(function () {
 
     // job application
     Route::prefix('job_applications')->middleware(['auth'])->group(function(){
-        Route::get('/', [JobvcController::class, 'UserApplication'])->name('user.application.list');
-        Route::get('/view/{id}',[JobvcController::class, 'UserApplicationView'])->name('user.application.view');
+        Route::get('/', [JobvcController::class, 'UserApplication'])->name('job_application.index');
+        Route::get('/view/{id}',[JobvcController::class, 'UserApplicationView'])->name('job_application.view');
     });
 
 
@@ -111,6 +111,14 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
         Route::get('update/{id}',[FacultyController::class, 'editCurricular'])->name('extraCurricular.edit');
         Route::post('update/{id}',[FacultyController::class, 'updateCurricular'])->name('extraCurricular.update');
         Route::delete('delete/{id}', [FacultyController::class, 'destroyCurricular'])->name('extraCurricular.delete');
+    });
+
+    Route::prefix('teaching_process')->middleware(['auth'])->group(function(){
+        Route::get('/index', [DepartmentController::class, 'TeachingList'])->name('teaching_process.index');
+        Route::get('/create', [DepartmentController::class, 'TeachingCreate'])->name('teaching_process.create');
+        Route::post('/create', [DepartmentController::class, 'TeachingStore'])->name('teaching_process.store');
+        Route::get('/status/{id}', [DepartmentController::class, 'TeachingStatus'])->name('teaching_process.status');
+        Route::delete('/delete/{id}', [DepartmentController::class, 'TeachingDelete'])->name('teaching_process.delete');
     });
 
 });
