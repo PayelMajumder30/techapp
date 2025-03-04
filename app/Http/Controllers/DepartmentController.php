@@ -436,7 +436,8 @@ class DepartmentController extends Controller
     
         try {
             $teaching = TeachingProcess::findOrFail($id);
-            $teaching->status = !$teaching->status;
+            //$teaching->status = !$teaching->status;
+            $teaching->status = $teaching->status == "1" ? "0" : "1"; 
             $teaching->save();
             DB::commit();
             return response()->json([
@@ -445,6 +446,7 @@ class DepartmentController extends Controller
             ]);
         } catch (\Exception $e) {
             DB::rollback();
+            //dd($e->getMessage());
             return response()->json([
             'status' => 400,
             'message' => 'Failed to update status, try again',
@@ -456,7 +458,7 @@ class DepartmentController extends Controller
         DB::beginTransaction();
         try {
             $teaching = TeachingProcess::findOrFail($id);
-            $teaching->save();
+            $teaching->delete();
             DB::commit();
             return redirect()->route('teaching_process.index')->with('success', 'Process deleted');
         } catch (\Exception $e) {
@@ -467,5 +469,51 @@ class DepartmentController extends Controller
             return redirect()->back()->with('failure', 'Failed to delete Process. Please try again.');
         }
     }
+
+    public function TeachingEdit($id){
+        $teaching = TeachingProcess::findOrFail($id);
+        return view('teaching_process.edit', compact('teaching'));
+    }
+    public function TeachingUpdate(Request $request){
+        DB::beginTransaction();
+
+        $request->validate([
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('teaching_process','title')->ignore($request->id),
+            ],
+            'description' => [
+                'required',
+                'string',
+            ],
+            'image' => [
+                'mimes:jpg,jpeg,png,gif,svg,webp',
+                'max:1000'
+            ],
+        ]);
+        try{
+            $teaching = TeachingProcess::findOrFail($request->id);
+            $teaching->title        = $request->title;
+            $teaching->description  = $request->description;
+            if($request->hasFile('image')){
+                $fileteach = $request->file('image');
+                $fileImageName = time() . rand(10000,99999) . '.' . $fileteach->getClientOriginalExtension();
+                $fileteach->move(public_path('uploads/teaching'),$fileImageName);
+
+                $teaching->image = 'uploads/teaching/' . $fileImageName;
+            }
+            $teaching->save();
+            DB::commit();
+            return redirect()->route('teaching_process.index')->with('success', 'Process updated successfully');
+        }
+        catch(\Exception $e){
+            DB::rollback();
+            \Log::error($e);
+            return redirect()->back()->with('failure', 'Failed to update process');
+        }
+    }
+
     
 }

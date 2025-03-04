@@ -263,7 +263,7 @@
         {{-- @endif
         @if(in_array('SEO MANAGEMENT', $RolePass)) --}}
         <li class="nav-item {{ (request()->is('admin/seo*')) ? 'menu-open' : '' }}">
-            <a href=""
+            <a href="{{route('seo.index')}}"
                 class="nav-link {{ (request()->is('admin/seo*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-file-alt"></i>
                 <p>SEO Management <i class="right fas fa-angle-left"></i></p>

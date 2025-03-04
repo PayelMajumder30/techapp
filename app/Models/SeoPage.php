@@ -5,9 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TeachingProcess extends Model
+class SeoPage extends Model
 {
     use HasFactory;
-    protected $table = "teaching_process";
-    protected $fillable = ['title', 'image', 'description', 'status'];
+    protected $table = "seo_pages"; 
 }

@@ -133,7 +133,7 @@ class JobvcController extends Controller
             DB::rollback();
             // Log the exception if needed
             \Log::error($e);
-            dd($e->getMessage());
+            //dd($e->getMessage());
             // Redirect back with an error message
             return redirect()->back()->with('failure', 'Failed to delete Job. Please try again.');
         }
