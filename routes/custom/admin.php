@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{DashboardController,IndexController,PostController,UnitController,SubjectController,
-    JobController,JobvcController, DepartmentController, FacultyController};
+    JobController,JobvcController, DepartmentController, FacultyController, SeoController};
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::match(['get', 'post'],'/admission-form', [IndexController::class, 'formView'])->name('admission.index');
@@ -119,7 +119,17 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
         Route::post('/create', [DepartmentController::class, 'TeachingStore'])->name('teaching_process.store');
         Route::get('/status/{id}', [DepartmentController::class, 'TeachingStatus'])->name('teaching_process.status');
         Route::delete('/delete/{id}', [DepartmentController::class, 'TeachingDelete'])->name('teaching_process.delete');
+        Route::get('/edit/{id}', [DepartmentController::class, 'TeachingEdit'])->name('teaching_process.edit');
+        Route::post('/update', [DepartmentController::class, 'TeachingUpdate'])->name('teaching_process.update');
     });
+
+    Route::prefix('seo')->middleware(['auth'])->group(function(){
+        Route::get('/index', [SeoController::class, 'index'])->name('seo.index');
+        Route::get('/detail/{id}', [SeoController::class, 'detail'])->name('seo.detail');
+        Route::get('/edit/{id}', [SeoController::class, 'edit'])->name('seo.edit');
+        Route::post('/update', [SeoController::class, 'update'])->name('seo.update');
+    });
+
 
 });
 

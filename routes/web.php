@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\IndexeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,3 +38,7 @@ Route::name('front.')->group(function() {
         Route::post('/register/application/submit', [ContentController::class, 'RegisterFinalSubmit'])->name('application.form.submit');
     });
 });
+Route::get('/extra-curricular',[IndexeController::class,'extra_curricular'])->name('extra_curricular.index');
+Route::get('/teaching-process',[IndexeController::class, 'teachingProcess'])->name('teachingprocess.index');
+
+

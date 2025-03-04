@@ -56,13 +56,13 @@
                                     <td>{{ Str::limit($item->description, 100) }}</td>
                                     <td>
                                         <div class="custom-control custom-switch mt-1" data-toggle="tooltip" title="Toggle status">
-                                        <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" {{ ($item->status == 1) ? 'checked' : '' }} onchange="statusToggle('{{ route('facilities.status', $item->id) }}')">
+                                        <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" {{ ($item->status == 1) ? 'checked' : '' }} onchange="statusToggle('{{ route('teaching_process.status', $item->id) }}')">
                                         <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
                                         </div>
                                     </td>
                                     <td class="d-flex text-right">
                                         <div class="btn-group">
-                                            <a href="" class="btn btn-sm btn-dark" data-toggle="tooltip" title="Edit">
+                                            <a href="{{route('teaching_process.edit', ['id' => $item->id])}}" class="btn btn-sm btn-dark" data-toggle="tooltip" title="Edit">
                                                 <i class="fa fa-edit"></i>
                                             </a>
                                             <form action="{{route('teaching_process.delete', ['id' => $item->id])}}" method="POST" >
@@ -92,17 +92,18 @@
 <script>
     function statusToggle(url) {
         fetch(url, { method: 'GET' })
-            .then(response => {
-            if (response.ok) {
-            location.reload(); 
-        } else {
-            alert("Failed to update status. Please try again.");
-        }
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 200) {
+                location.reload();
+            } else {
+                alert("Failed to update status. Please try again.");
+            }
         })
             .catch(error => {
             console.error("Error:", error);
             alert("Something went wrong. Try again.");
             });
     }
-   </script>
+</script>
 @endsection
