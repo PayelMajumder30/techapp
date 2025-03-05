@@ -151,7 +151,7 @@
                 {{-- @endif
                 @if(in_array('Why Choose Us', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('choose_us.index')}}"
                         class="nav-link {{ (request()->is('admin/master-module/why-choose-us*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Why Choose Us</p>
