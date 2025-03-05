@@ -9,6 +9,7 @@ use App\Models\StudentClass;
 use App\Models\Facilities;
 use App\Models\SubFacilities;
 use App\Models\TeachingProcess;
+use App\Models\Chooseus;
 use App\Interfaces\DepartmentInterface;
 
 
@@ -340,7 +341,7 @@ class DepartmentController extends Controller
             return response()->json([
             'status'    => 400,
             'message'   => 'Failed to update Subfacility, try again',
-        ]);
+         ]);
         }
     }
    
@@ -515,5 +516,155 @@ class DepartmentController extends Controller
         }
     }
 
+    //Why choose us
+    public function ChooseUsIndex(Request $request){
+        $keyword = $request->keyword ?? '';
+        $query = Chooseus::query();
+        
+        if(!empty($keyword)){
+            $query->where($keyword, function($q) use ($keyword) {
+                $q->where('title', 'like', '%' . $keyword . '%')
+                      ->orWhere('description', 'like', '%' . $keyword . '%')
+                      ->orWhere('status', 'like', '%' . $keyword . '%');
+            });
+        }
+
     
+        // Ensure it always returns a collection
+        $choose = $query->latest()->get(); 
+        return view('choose_us.index', compact('choose'));
+    }
+    
+
+    public function ChooseUsStatus($id){
+        DB::beginTransaction();
+
+        try{
+            $choose = Chooseus::findOrFail($id);
+            $choose->status = $choose->status == "1" ? "0" : "1";
+            $choose->save();
+            DB::commit();
+            return response()->json([
+                'status'    => 200,
+                'message'   => 'status updated',
+            ]);
+        }
+        catch(\Exception $e){
+            DB::rollback();
+            return response()->json([
+                'status'    => 400,
+                'message'   => 'Failed to update status, try again',
+            ]);
+        }
+    }
+
+    public function ChooseUsCreate(){
+        return view('choose_us.create');
+    }
+
+    public function ChooseUsStore(Request $request){
+     
+        $request->validate([
+            'title'         =>'required|string|max:255|unique:why_choose_us,title',
+            'description'   =>'required|string|min:1',
+            'image'         =>'required|mimes:jpg,jpeg,png,gif,svg,webp|max:1000',
+        ]);   
+        
+        DB::beginTransaction();
+        try{
+            $choose = new Chooseus;
+            $choose->title          = $request->title;
+            $choose->description    = $request->description;
+            if ($request->hasFile('image')) {
+                $file1 = $request->file('image');
+                $fileImageName = time() . rand(10000, 99999) . '.' . $file1->getClientOriginalExtension();
+                $file1->move(public_path('uploads/chooseus'), $fileImageName);
+                // Store the full path of the uploaded file
+                $choose->image =  'uploads/chooseus/' . $fileImageName;
+            }
+            $choose->save();
+            // dd($choose);
+            DB::commit();
+            //dd($choose);
+            return redirect()->back();
+        }
+        catch(\Exception $e){
+            dd($e->getMessage());
+            DB::rollback();
+            // You can log the exception if needed
+           
+            \Log::error($e);
+            // Redirect back with an error message
+            return redirect()->back()->with('failure', 'Failed to create data. Please try again.');
+        }
+    }
+
+    public function ChooseUsEdit($id){
+        $choose = Chooseus::findorFail($id);
+        return view('choose_us.edit', compact('choose'));
+    }
+
+    public function ChooseUsUpdate(Request $request){
+        DB::beginTransaction();
+
+        $request->validate([
+            'title' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('why_choose_us', 'title')->ignore($request->id),
+            ],
+            'description'=>[
+                'required',
+                'string',
+            ],
+            'image'=>[
+                'mimes:jpg,jpeg,png,gif,svg,webp',
+                'max:1000'
+            ],
+        ]);
+
+        try {
+            $choose = Chooseus::findOrFail($request->id);
+            $choose->title = $request->title;
+            $choose->description = $request->description;
+            // Image update
+            if ($request->hasFile('image')) {
+                $file1 = $request->file('image');
+                $fileImageName = time() . rand(10000, 99999) . '.' . $file1->getClientOriginalExtension();
+                $file1->move(public_path('uploads/chooseus'), $fileImageName);
+
+                // Store the full path of the uploaded image
+                $choose->image = 'uploads/chooseus/' . $fileImageName;
+            }             
+            $choose->save();
+            // Commit the transaction if everything is successful
+            DB::commit();
+            return redirect()->route('choose_us.index')->with('success', 'Data updated successfully');
+        } catch (\Exception $e) {
+            // Rollback the transaction if an exception occurs
+            DB::rollback();
+            // You can log the exception if needed
+            \Log::error($e);
+            // Redirect back with an error message
+            return redirect()->back()->with('failure', 'Failed to update data. Please try again.');
+        }
+    }
+
+    public function ChooseUsDelete(Request $request, $id){
+        DB::beginTransaction();
+        try {
+            $teaching = Chooseus::findOrFail($id);
+            $teaching->delete();
+            DB::commit();
+            return redirect()->route('choose_us.index')->with('success', 'Data deleted');
+        } catch (\Exception $e) {
+            DB::rollback();
+            // Log the exception if needed
+            \Log::error($e);
+            // Redirect back with an error message
+            return redirect()->back()->with('failure', 'Failed to delete Data. Please try again.');
+        }
+    }
+   
 }

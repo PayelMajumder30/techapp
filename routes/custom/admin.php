@@ -112,11 +112,12 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
         Route::post('update/{id}',[FacultyController::class, 'updateCurricular'])->name('extraCurricular.update');
         Route::delete('delete/{id}', [FacultyController::class, 'destroyCurricular'])->name('extraCurricular.delete');
     });
-
+      
+    //Teaching process
     Route::prefix('teaching_process')->middleware(['auth'])->group(function(){
         Route::get('/index', [DepartmentController::class, 'TeachingList'])->name('teaching_process.index');
         Route::get('/create', [DepartmentController::class, 'TeachingCreate'])->name('teaching_process.create');
-        Route::post('/create', [DepartmentController::class, 'TeachingStore'])->name('teaching_process.store');
+        Route::post('/store', [DepartmentController::class, 'TeachingStore'])->name('teaching_process.store');
         Route::get('/status/{id}', [DepartmentController::class, 'TeachingStatus'])->name('teaching_process.status');
         Route::delete('/delete/{id}', [DepartmentController::class, 'TeachingDelete'])->name('teaching_process.delete');
         Route::get('/edit/{id}', [DepartmentController::class, 'TeachingEdit'])->name('teaching_process.edit');
@@ -129,8 +130,19 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
         Route::get('/edit/{id}', [SeoController::class, 'edit'])->name('seo.edit');
         Route::post('/update', [SeoController::class, 'update'])->name('seo.update');
     });
+  
+    //Why Choose Us
 
-
+    Route::prefix('why_choose_us')->middleware(['auth'])->group(function(){
+        Route::get('/', [DepartmentController::class, 'ChooseUsIndex'])->name('choose_us.index');
+        Route::get('/status/{id}', [DepartmentController::class, 'ChooseUsStatus'])->name('choose_us.status');
+        Route::get('/create',[DepartmentController::class, 'ChooseUsCreate'])->name('choose_us.create');
+        Route::post('/store', [DepartmentController::class, 'ChooseUsStore'])->name('choose_us.store');
+        Route::get('/edit/{id}', [DepartmentController::class, 'ChooseUsEdit'])->name('choose_us.edit');
+        Route::post('/update', [DepartmentController::class, 'ChooseUsUpdate'])->name('choose_us.update');
+        Route::delete('/delete/{id}', [DepartmentController::class, 'ChooseUsDelete'])->name('choose_us.delete');
+    });
+    
 });
 
 ?>

@@ -68,7 +68,7 @@
                                             <form action="{{route('teaching_process.delete', ['id' => $item->id])}}" method="POST" >
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this facility?')">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this process?')">
                                                     <i class="fa fa-trash"></i>
                                                 </button>
                                             </form>
