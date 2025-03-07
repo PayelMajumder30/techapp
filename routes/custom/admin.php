@@ -3,7 +3,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{DashboardController,IndexController,PostController,UnitController,SubjectController,
-    JobController,JobvcController, DepartmentController, FacultyController, SeoController};
+    JobController,JobvcController, DepartmentController, FacultyController, SeoController, ContentAController};
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::match(['get', 'post'],'/admission-form', [IndexController::class, 'formView'])->name('admission.index');
@@ -142,7 +142,33 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
         Route::post('/update', [DepartmentController::class, 'ChooseUsUpdate'])->name('choose_us.update');
         Route::delete('/delete/{id}', [DepartmentController::class, 'ChooseUsDelete'])->name('choose_us.delete');
     });
+
+    //Galleries
+    Route::prefix('galleries')->middleware(['auth'])->group(function(){
+        Route::get('/', [FacultyController::class, 'GalleryIndex'])->name('galleries.index');
+        Route::get('/create', [FacultyController::class, 'GalleryCreate'])->name('galleries.create');
+        Route::post('/store', [FacultyController::class, 'GalleryStore'])->name('galleries.store');
+        Route::get('/edit/{id}', [FacultyController::class, 'GalleryEdit'])->name('galleries.edit');
+        Route::post('/update', [FacultyController::class, 'GalleryUpdate'])->name('galleries.update');
+        Route::delete('/delete/{id}', [FacultyController::class, 'GalleryDelete'])->name('galleries.delete');
+    });
+
+    //Faculties
+    Route::prefix('faculty')->middleware(['auth'])->group(function(){
+        Route::get('/index', [FacultyController::class, 'FacultyIndex'])->name('faculty.index');
+        Route::get('/create', [FacultyController::class, 'FacultyCreate'])->name('faculty.create');
+        Route::post('/store', [FacultyController::class, 'FacultyStore'])->name('faculty.store');
+        Route::delete('/delete/{id}', [FacultyController::class, 'FacultyDelete'])->name('faculty.delete');
+        Route::get('/status/{id}', [FacultyController::class, 'FacultyStatus'])->name('faculty.status');
+        Route::get('/edit/{id}', [FacultyController::class, 'FacultyEdit'])->name('faculty.edit');
+        Route::post('/update', [FacultyController::class, 'FacultyUpdate'])->name('faculty.update');
+    });
     
+});
+   //settings
+   Route::prefix('settings')->middleware(['auth'])->group(function(){
+    Route::get('/',[ContentAController::class, 'settings'])->name('settings');
+    Route::post('/update',[ContentAController::class, 'settingsUpdate'])->name('settings.update');
 });
 
 ?>

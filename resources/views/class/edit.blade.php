@@ -1,6 +1,12 @@
 @extends('layouts.app')
 @section('content') 
 
+<style>
+    label.required::after {
+        content: " *";
+        color: red;
+    }
+</style>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -17,7 +23,7 @@
                         <form action="{{ route('class.update', ['id' => $data->id]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="title">Name *</label>
+                                <label for="title" class="required">Name </label>
                                 <input type="text" class="form-control" name="name" id="name" placeholder="Enter Name" value="{{ $data->name }}">
                                 @error('name') <p class="small text-danger">{{ $message }}</p> @enderror
                             </div>

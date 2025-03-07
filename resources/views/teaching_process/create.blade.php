@@ -1,6 +1,11 @@
 @extends('layouts.app')
 @section('content')
-
+<style>
+    label.required::after {
+        content: " *";
+        color: red;
+    }
+</style>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -14,20 +19,20 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form action="" method="post" enctype="multipart/form-data">
+                        <form action="{{route('teaching_process.store')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="title">Title *</label>
+                                <label for="title" class="required">Title</label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" value="{{ old('title') }}">
                                 @error('title') <p class="small text-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="form-group">
-                                <label for="title">Description *</label>
+                                <label for="title" class="required">Description</label>
                                 <textarea class="form-control" name="description" id="description" placeholder="Enter Description Here">{{ old('description') }}</textarea>
                                 @error('description') <p class="small text-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="form-group">
-                                <label for="title">Image *</label>
+                                <label for="title" class="required">Image </label>
                                 <input type="file" class="form-control" name="image" id="image" value="{{ old('image') }}">
                                 @error('image') <p class="small text-danger">{{ $message }}</p> @enderror
                             </div>

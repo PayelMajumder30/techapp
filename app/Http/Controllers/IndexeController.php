@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Extracurricular;
 use App\Models\TeachingProcess;
 use App\Models\Chooseus;
+use App\Models\Gallery;
+use App\Models\Faculty;
 
 class IndexeController extends Controller
 {
@@ -19,8 +21,13 @@ class IndexeController extends Controller
         return view('front.teaching', compact('Teachingprocess'));
     }
 
-    public function chooseUs(Request $request){
-        $data = Chooseus::latest()->get();
-        return view('front.chooseus', compact('data'));
+    public function home(Request $request){
+        $choice = Chooseus::latest()->get();
+        $galry = Gallery::latest()->get();
+        return view('front.home', compact('choice','galry'));
+    }
+    public function faculty(Request $request){
+        $faculty = Faculty::latest()->get();
+        return view('front.faculty', compact('faculty'));
     }
 }
