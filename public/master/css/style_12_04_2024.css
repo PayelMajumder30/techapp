@@ -1827,7 +1827,7 @@ textarea::placeholder {
     text-align: right;
 }
 .extra_curricular_cont2_cont a{
-    color: #fff;
+    color: #040b13;
 }
 .extra_curricular_cont2_cont a:hover{
     color: #fce013;
@@ -1840,113 +1840,10 @@ textarea::placeholder {
 
 /* Extra Curricular End */
 
-/* Teaching Process Open */
-.teaching_process_cont1 {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-.teaching_process_cont1:after {
-    position: absolute;
-    content: "";
-    background: #fce013;
-    left: 0;
-    top: 0;
-    height: 100%;
-    width: 70%;
-    z-index: 0;
-}
-.teaching_process_cont1 h2{
-    color: #2c3060;
-    font-weight: 600;
-}
-.teaching_process_cont1_cont a:hover{
-    color: #000;
-}
-.teaching_process_cont1_cont a:hover .fa{
-    color: #000;
-    padding-left: 0px;
-}
-.teaching_process_cont2 {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-.teaching_process_cont2:after {
-    position: absolute;
-    content: "";
-    background: #293b8d;
-    right: 0;
-    top: 0;
-    height: 100%;
-    width: 70%;
-    z-index: 0;
-}
-.teaching_process_cont2 h2{
-    color: #2c3060;
-    font-weight: 600;
-}
-.teaching_process_cont1_cont{
-    padding-left: 25%;
-    text-align: justify;
-}
-.teaching_process_cont1_cont .btn-primary:active{
-    background: #293b8c !important;
-    color: #fce013 !important;
-    border: 1px solid #293b8c !important;
-}
-.teaching_process_cont1_cont .btn-primary{
-    background: #293b8c;
-    color: #fce013;
-    border: 1px solid #293b8c;
-    font-weight: 500;
-    font-size: 15px;
-    padding: 6px 17px;
-}
-.teaching_process_cont1_cont .btn-primary:hover{
-    background: none;
-    color: #293b8c;
-    border: 1px solid #293b8c;
-}
+/* 
 
-.teaching_process_cont2_cont .btn-primary{
-    background: #fff;
-    color: #293b8c;
-    border: 1px solid #fff;
-    font-weight: 500;
-    font-size: 15px;
-    padding: 6px 17px;
-}
-.teaching_process_cont2_cont .btn-primary:hover{
-    background: none;
-    color: #fce013;
-    border: 1px solid #fce013;
-}
-.teaching_process_cont2_cont .btn-primary:active{
-    background: #fff !important;
-    color: #293b8c !important;
-    border: 1px solid #fff !important;
-}
 
-.teaching_process_cont2_cont h2, .teaching_process_cont2_cont p{
-    color: #fff;
-    text-align: justify;
-    text-align-last: right;
-}
-.teaching_process_cont2_cont{
-    padding-right: 25%;
-    text-align: right;
-}
-.teaching_process_cont2_cont a{
-    color: #fff;
-}
-.teaching_process_cont2_cont a:hover{
-    color: #fce013;
-}
-.teaching_process_cont2_cont a:hover .fa{
-    color: #fce013;
-    padding-left: 0px;
-}
+
 /* Teaching Process End */
 
 /* Testimonial Slider Open  */

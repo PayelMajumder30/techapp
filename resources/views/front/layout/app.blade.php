@@ -78,9 +78,11 @@
     <script src="{{ asset('backend-assets/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('backend-assets/js/custom.js') }}"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     @yield('script')
     <script>
             function openNav() {
@@ -90,5 +92,29 @@
                 document.getElementById("myNav").style.height = "0%";
             }
     </script>
+    <section class="footer">
+        <div class="container">
+            <div class="row pt-5 pb-4">
+                <div class="col-lg-6 col-md-12 pr-lg-5">
+                    <img src="{{asset('master/images/logo2.png')}}" class="img-fluid mb-4 footer_logo" alt="">
+                    <p class="text-white">Under the banner of unity and excellence, we forget paths of innovation. 
+                        Our all-girls school is a cradle for creativity, character, and courage.</p>
+                        <div class="address_box" id="location_box">
+                            <div class="row location_cont">
+                                <div class="col-md-2 col-2 pr-0"><span><i class="fa fa-map-marker" aria-hidden="true"></i></span></div>
+                                <div class="col-md-10 col-10 pl-0"><p class="mb-0 pl-0">{{ $settings[6]->content }}</p></div>
+                            </div>
+                            <p class="mb-1 contact_box"><span><i class="fa fa-phone" aria-hidden="true"></i></span> <a href="Tel:{{ $settings[0]->content }}">{{ $settings[0]->content }}</a></p>
+                            <p class="mb-1 contact_box"><span><i class="fa fa-envelope" aria-hidden="true"></i></span> <a href="mailto:{{ $settings[2]->content }}">{{ $settings[2]->content }}</a></p>
+                            <p class="mb-1 contact_box"><span><i class="fa fa-globe" aria-hidden="true"></i></span> <a href="mailto:{{ $settings[8]->content }}">{{ $settings[8]->content }}</a></p>
+                        </div>
+                </div>
+                <div class="col-md-12 text-center footer_bottom">
+                    <span class="border_bottom mt-lg-5 mt-md-5 mt-4 mb-4"></span>
+                    <p class="mb-0">Copyright @ {{date('Y')}}. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>

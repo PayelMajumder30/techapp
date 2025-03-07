@@ -185,7 +185,7 @@
                 </li> --}}
                 {{-- @if(in_array('Faculties', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('faculty.index')}}"
                         class="nav-link {{ (request()->is('admin/master-module/faculty*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Faculties</p>
@@ -203,7 +203,7 @@
                 {{-- @endif
                 @if(in_array('Gallery', $RolePass)) --}}
                     <li class="nav-item">
-                        <a href=""
+                        <a href="{{route('galleries.index')}}"
                             class="nav-link {{ (request()->is('admin/master-module/gallery*')) ? 'active active_nav_link' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Gallery</p>
@@ -272,7 +272,7 @@
         {{-- @endif
         @if(in_array('WEBSITE SETTINGS', $RolePass)) --}}
         <li class="nav-item {{ (request()->is('admin/settings*')) ? 'menu-open' : '' }}">
-            <a href=""
+            <a href="{{route('settings')}}"
                 class="nav-link {{ (request()->is('admin/settings*')) ? 'active' : '' }}">
                 <i class="nav-icon fas fa-file-alt"></i>
                 <p>Website Settings <i class="right fas fa-angle-left"></i></p>

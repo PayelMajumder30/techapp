@@ -40,6 +40,7 @@ Route::name('front.')->group(function() {
 });
 Route::get('/extra-curricular',[IndexeController::class,'extra_curricular'])->name('extra_curricular.index');
 Route::get('/teaching-process',[IndexeController::class, 'teachingProcess'])->name('teachingprocess.index');
-Route::get('/why-choose-us', [IndexeController::class, 'chooseUs'])->name('chooseus.index');
+Route::get('/home', [IndexeController::class, 'home'])->name('home.index');
+Route::get('/faculties', [IndexeController::class, 'faculty'])->name('faculties.index');
 
 

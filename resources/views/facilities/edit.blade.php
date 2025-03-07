@@ -1,5 +1,11 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    label.required::after {
+        content: " *";
+        color: red;
+    }
+</style>
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -16,23 +22,23 @@
                         <form action="{{ route('facilities.update', ['id' => $facilities->id]) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="title">Title *</label>
+                                <label for="title" class="required">Title </label>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" value="{{ $facilities->title }}">
                                 @error('title') <p class="small text-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="form-group">
-                                <label for="title">Description *</label>
+                                <label for="title" class="required">Description </label>
                                 <textarea class="form-control" name="description" id="description" placeholder="Enter Description Here">{{ $facilities->desc }}</textarea>
                                 @error('description') <p class="small text-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="form-group">
-                                <label for="title">Logo *</label>
+                                <label for="title" class="required">Logo </label>
                                 <img src="{{asset($facilities->logo)}}" alt="" srcset="" height="75px" width="75px" class="img-thumbnail" title="{{ $facilities->title}}'s logo">
                                 <input type="file" name="logo" id="logo" class="form-control">
                                 @error('logo') <p class="small text-danger">{{ $message }}</p> @enderror
                             </div>
                             <div class="form-group">
-                                <label for="title">Image *</label>
+                                <label for="title" class="required">Image </label>
                                 <img src="{{asset($facilities->image)}}" alt="" srcset="" height="100px" width="100px" class="img-thumbnail" title="{{ $facilities->title}}'s image">
                                 <input type="file" name="image" id="image" class="form-control">
                                 @error('image') <p class="small text-danger">{{ $message }}</p> @enderror
