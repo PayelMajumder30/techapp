@@ -11,6 +11,7 @@ use App\Interfaces\CategoryInterface;
 use App\Repositories\DepartmentRepository;
 use App\Repositories\CategoryRepository;
 use App\Models\Setting;
+use App\Models\SocialMedia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -41,6 +42,13 @@ class AppServiceProvider extends ServiceProvider
             //dd($settings);
         }
 
+        //socal media
+        $socialMediaTableExists = Schema::hasTable('social_media');
+        if($socialMediaTableExists){
+            $SocialMedia = SocialMedia::get();
+        }
+
         view()->share('settings', $settings);
+        view()->share('social_media', $SocialMedia);
     }
 }

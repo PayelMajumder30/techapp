@@ -58,6 +58,23 @@
                         </a>
                         </div>
                     </div>
+                    {{-- <div class="col-lg-4 col-md-12 text-left mt-lg-4 mt-md-5 pr-lg-5 order-lg-1 order-md-2 order-2">
+                        <div class="others_cont">
+                            <a href="{{asset('')}}"><img src="{{asset('master/images/logo2.png')}}" class="img-fluid menu_logo" alt="logo"></a>
+                            <p class="text-white mt-lg-5 mt-md-3 pr-lg-5">Under the banner of unity and excellence, we forge paths of innovation. Our all-girls school is a cradle for creativity, character, and courage.</p>
+                            <div class="social_media mt-3">
+                                <ul class="ml-0 pl-0">
+                                    @foreach ($social_media as $item)
+                                    <li>
+                                        <a href="{{$item->link}}">
+                                            <img src="{{asset($item->image)}}" alt="{{$item->title}}" width="100%">
+                                        </a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div> --}}
                 </div>
             </div>
         </header>

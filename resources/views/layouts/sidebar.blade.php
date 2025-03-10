@@ -212,7 +212,7 @@
                 {{-- @endif
                 @if(in_array('social_Media', $RolePass)) --}}
                 <li class="nav-item">
-                    <a href=""
+                    <a href="{{route('social.index')}}"
                         class="nav-link {{ (request()->is('admin/master-module/social-media*')) ? 'active active_nav_link' : '' }}">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Social Media</p>
@@ -242,7 +242,7 @@
                 {{-- @endif
                 @if(in_array('Leads', $RolePass)) --}}
                     <li class="nav-item">
-                        <a href=""
+                        <a href="{{route('lead.index')}}"
                             class="nav-link {{ (request()->is('admin/content/lead*')) ? 'active active_nav_link' : '' }}">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Leads</p>

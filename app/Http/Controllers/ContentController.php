@@ -11,6 +11,10 @@ use App\Models\Post;
 use App\Models\Career;
 use App\Models\CareerExperience;
 use App\Models\CarrerHigherStudies;
+use App\Models\Lead;
+use App\Models\SocialMedia;
+use App\Models\SeoPage;
+use App\Models\Setting;
 
 
 class ContentController extends Controller
@@ -186,6 +190,25 @@ class ContentController extends Controller
               // Log the error or handle it accordingly
               return response()->json(['error' => $e->getMessage()], 500);
               //echo "data failed to insert";
+        }
+    }
+
+    public function contact(Request $request){
+        $seo        = SeoPage::where('page', 'CONTACT')->first();
+        $setting    = Setting::get();
+        return view('front.contact', compact('seo', 'setting'));
+    }
+
+    public function contactEnquiry(Request $request){
+        $data = new Lead;
+        $data->full_name    = $request->full_name;
+        $data->mobile_no    = $request->callback_number;
+        $data->message      = $request->message;
+        $data->save();
+        if($data){
+            return response()->json(['status'=>200, 'message' => 'Form  submitted successfully']);
+        }else{
+            return response()->json(['status'=>500, 'message' => 'Something went wrong please try again later']);
         }
     }
 

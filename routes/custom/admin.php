@@ -3,7 +3,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{DashboardController,IndexController,PostController,UnitController,SubjectController,
-    JobController,JobvcController, DepartmentController, FacultyController, SeoController, ContentAController};
+    JobController,JobvcController, DepartmentController, FacultyController, SeoController, ContentAController, 
+    LeadController, SocialMediaController};
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth'])->name('dashboard');
 Route::match(['get', 'post'],'/admission-form', [IndexController::class, 'formView'])->name('admission.index');
@@ -162,6 +163,21 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
         Route::get('/status/{id}', [FacultyController::class, 'FacultyStatus'])->name('faculty.status');
         Route::get('/edit/{id}', [FacultyController::class, 'FacultyEdit'])->name('faculty.edit');
         Route::post('/update', [FacultyController::class, 'FacultyUpdate'])->name('faculty.update');
+    });
+
+    //Lead
+    Route::prefix('lead')->middleware(['auth'])->group(function(){
+        Route::get('/index', [LeadController::class, 'index'])->name('lead.index');
+    });
+
+    //social media
+    Route::prefix('social-media')->middleware(['auth'])->group(function(){
+        Route::get('/index', [SocialMediaController::class, 'index'])->name('social.index');
+        Route::get('/create', [SocialMediaController::class, 'create'])->name('social.create');
+        Route::post('/store', [SocialMediaController::class, 'store'])->name('social.store');
+        Route::delete('/delete/{id}', [SocialMediaController::class, 'delete'])->name('social.delete');
+        Route::get('/edit/{id}', [SocialMediaController::class, 'edit'])->name('social.edit');
+        Route::post('/update', [SocialMediaController::class, 'update'])->name('social.update');
     });
     
 });
