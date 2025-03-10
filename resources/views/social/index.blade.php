@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+
+
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -7,9 +9,8 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row mb-3">
-                            <h3>Class List</h3>
                             <div class="col-md-12 text-right">
-                                <a href="{{ route('class.create') }}" class="btn btn-sm btn-primary"> <i class="fa fa-plus"></i> Create</a>
+                                <a href="{{route('social.create')}}" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i>Create</a>
                             </div>
                         </div>
                         <div class="row">
@@ -18,15 +19,14 @@
                                 <form action="" method="get">
                                     <div class="d-flex justify-content-end">
                                         <div class="form-group ml-2">
-                                            <input type="search" class="form-control form-control-sm" name="keyword" id="keyword" value="{{ request()->input('keyword') }}" placeholder="Search something...">
+                                            <input type="search" class="form-control form-control-sm" name="keyword" id="keyword" value="{{request()->input('keyword')}}" placeholder="search something...">
                                         </div>
-
                                         <div class="form-group ml-2">
                                             <div class="btn-group">
                                                 <button type="submit" class="btn btn-sm btn-primary">
                                                     <i class="fa fa-filter"></i>
                                                 </button>
-                                                <a href="{{ url()->current() }}" class="btn btn-sm btn-light" data-toggle="tooltip" title="Clear filter">
+                                                <a href="{{url()->current()}}" class="btn btn-sm btn-light" data-toggle="tooltip" title="Clear filter">
                                                     <i class="fa fa-times"></i>
                                                 </a>
                                             </div>
@@ -40,32 +40,45 @@
                         <table class="table table-sm table-hover">
                             <thead>
                                 <tr>
-                                    <th style="width: 5%">#</th>
-                                    <th width="35%">Name</th>
-                                    <th>Status</th>
-                                    <th width="10%">Action</th>
+                                    <th style="width: 10px">#</th>
+                                    <th>Image</th>
+                                    <th>Title</th>
+                                    <th>Link</th>
+                                    <th style="width: 100px">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($data as $index => $item)
+                                @forelse($social as $index => $item)
                                     <tr>
-                                        <td>{{ $index+1}}</td>
-                                        <td>{{ $item->name }}</td>
+                                        <td>{{$index + $social->firstItem()}}</td>
                                         <td>
-                                            <div class="custom-control custom-switch mt-1" data-toggle="tooltip" title="Toggle status">
-                                            <input type="checkbox" class="custom-control-input" id="customSwitch{{$item->id}}" onchange="changeStatus('{{$item->id}}', '{{$item->status}}')" {{ ($item->status == 1) ? 'checked' : '' }} />
-                                            <label class="custom-control-label" for="customSwitch{{$item->id}}"></label>
+                                            <div class="d-flex">
+                                                @if (!empty($item->image) && file_exists(public_path($item->image)))
+                                                    <img src="{{asset($item->image)}}" alt="banner-image" style="height: 50px" class="img-thumbnail mr-2">
+                                                @else
+                                                    <img src="{{asset('backend-assets/images/placeholder.jpg')}}" alt="social-media-image" style="height: 50px" class="mr-2">
+                                                @endif
                                             </div>
                                         </td>
-                                        <td class="d-flex text-right">
+                                        <td>
+                                            <div class="title-part">
+                                                <p class="text-muted mb-0">{{$item->title}}</p>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="{{$item->link}}" target="_blank" class="btn btn-sm btn-dark" data-toggle="tooltip" title="link">
+                                                <i class="fa fa-link"></i>
+                                            </a>
+                                        </td>
+                                        <td class="d-flex">
                                             <div class="btn-group">
-                                                <a href="{{route('class.update', ['id' => $item->id])}}" class="btn btn-sm btn-dark" data-toggle="tooltip" title="Edit">
+                                                <a href="{{route('social.edit', $item->id)}}" class="btn btn-sm btn-info" data-toggle="tooltip" title="Edit">
                                                     <i class="fa fa-edit"></i>
                                                 </a>
-                                                <form action="{{route('class.delete', ['id' => $item->id])}}" method="POST" >
+                                                <form action="{{route('social.delete', $item->id)}}" method="POST" >
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this post?')" data-toggle="tooltip" title="delete">
+                                                    <button type="submit" class="btn btn-sm btn-dark" onclick="return confirm('Are you sure you want to delete this link?')" data-toggle="tooltip" title="delete">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
@@ -79,6 +92,9 @@
                                 @endforelse
                             </tbody>
                         </table>
+                        <div class="pagination-container">
+                            {{$social->appends($_GET)->links()}}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -86,25 +102,3 @@
     </div>
 </section>
 @endsection
-@section('script')
-<script>
-    function changeStatus (id, status) {
-        //if (confirm("Are you sure you want to change the status?")) {
-            $.ajax({
-                url: "{{route('class.change-status')}}",
-                type: 'post',
-                data: {
-                    'id' : id,
-                    'status': status,
-                    '_token': '{{ csrf_token() }}'
-                },
-                // success: function(response) {
-                //     const responseData = JSON.parse(response);
-                //     alert(responseData.message);
-                // }
-            });
-    }
-</script>
-@endsection
-
-

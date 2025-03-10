@@ -37,10 +37,23 @@ Route::name('front.')->group(function() {
         Route::get('/{slug}', [ContentController::class, 'CareerApplicationForm'])->name('application.form');
         Route::post('/register/application/submit', [ContentController::class, 'RegisterFinalSubmit'])->name('application.form.submit');
     });
+
+    //contact
+    Route::prefix('contact')->name('contact')->group(function(){
+        Route::get('/',[ContentController::class,'contact'])->name('contact.index');
+        Route::post('/enquiry',[ContentController::class,'contactEnquiry'])->name('contact.enquiry');
+    });
 });
 Route::get('/extra-curricular',[IndexeController::class,'extra_curricular'])->name('extra_curricular.index');
 Route::get('/teaching-process',[IndexeController::class, 'teachingProcess'])->name('teachingprocess.index');
 Route::get('/home', [IndexeController::class, 'home'])->name('home.index');
 Route::get('/faculties', [IndexeController::class, 'faculty'])->name('faculties.index');
+  //contact
+Route::prefix('contact')->name('contact.')->group(function(){
+    Route::get('/',[ContentController::class,'contact'])->name('index');
+    Route::post('/enquiry',[ContentController::class,'contactEnquiry'])->name('enquiry');
+});
+
+
 
 

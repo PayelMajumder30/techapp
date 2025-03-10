@@ -74,7 +74,7 @@
                                                 <form action="{{route('choose_us.delete',['id' => $item->id] )}}" method="POST" >
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this data?')">
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger" data-toggle="tooltip" title="delete" onclick="return confirm('Are you sure you want to delete this data?')">
                                                         <i class="fa fa-trash"></i>
                                                     </button>
                                                 </form>
