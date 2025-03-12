@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -18,7 +20,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+    // use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -26,6 +28,7 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = 'admin/dashboard';//change from home to dashboard
+    protected $guard = 'admin';
 
     /**
      * Create a new controller instance.
@@ -36,5 +39,21 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->intended('admin/dashboard');
+        }
+
+        return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
     }
 }
