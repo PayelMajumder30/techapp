@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Auth\LoginRegisterController;
-use App\Http\Controllers\{ContentController,IndexeController};
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Http\Controllers\{ContentController,IndexeController,userAuthController, HomeController};
 
 /*
 |--------------------------------------------------------------------------
@@ -27,7 +27,16 @@ Route::prefix('admin')->group(function() {
     require 'custom/admin.php';
 });
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/userregister',[userAuthController::class, 'showRegistrationForm'])->name('user.register');
+Route::post('/userregister',[userAuthController::class, 'register']);
+Route::get('/userlogin', [UserAuthController::class, 'showLoginForm'])->name('user.login');
+Route::post('/userlogin', [UserAuthController::class, 'login']);
+Route::post('/userlogout', [UserAuthController::class, 'logout'])->name('user.logout');
+
+
+
+// Only authenticated & verified users can access the home page
+Route::get('/home', [IndexeController::class, 'home'])->middleware(['auth', 'verified'])->name('home.index');
 
 // Route::get('/status/{id}',[CareerController::class, 'PostStatus'])->name('post.status');
 Route::name('front.')->group(function() {
@@ -46,7 +55,7 @@ Route::name('front.')->group(function() {
 });
 Route::get('/extra-curricular',[IndexeController::class,'extra_curricular'])->name('extra_curricular.index');
 Route::get('/teaching-process',[IndexeController::class, 'teachingProcess'])->name('teachingprocess.index');
-Route::get('/home', [IndexeController::class, 'home'])->name('home.index');
+//Route::get('/home', [IndexeController::class, 'home'])->name('home.index');
 Route::get('/faculties', [IndexeController::class, 'faculty'])->name('faculties.index');
   //contact
 Route::prefix('contact')->name('contact.')->group(function(){
