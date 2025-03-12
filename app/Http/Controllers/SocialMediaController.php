@@ -36,17 +36,19 @@ class SocialMediaController extends Controller
             'image.max'     => 'The image must not be greater than 1MB.',
         ]);
         if ($request->hasFile('image')) {
-            $file = $request->file('image'); 
-            $fileName = time() . rand(10000, 99999) . '.' . $file->getClientOriginalExtension();
-            $filePath = 'uploads/social/' . $fileName;
+            $file       = $request->file('image'); 
+            $fileName   = time() . rand(10000, 99999) . '.' . $file->getClientOriginalExtension();
+            $filePath   = 'uploads/social/' . $fileName;
             $file->move(public_path('uploads/social/'), $fileName);
+            //unlink($filePath);
+            //unlink(public_path('uploads/social/'.$fileName));
         } else {
             return redirect()->back()->with('failure', 'Please upload a valid image.');
         }
         try {
             $social = new SocialMedia;
             $social->title = ucwords($request->title);
-            $social->link   = $request->social_link;
+            $social->link  = $request->social_link;
             $social->image = $filePath;
             $social->save();
             // Commit the transaction if everything is successful
@@ -67,6 +69,9 @@ class SocialMediaController extends Controller
         DB::beginTransaction();
         try{
             $social = SocialMedia::findOrFail($id);
+            if(!empty($social->image) && file_exists(public_path($social->image))){
+                unlink(public_path($social->image));
+            }
             $social->delete();
             DB::commit();
             return redirect()->route('social.index')->with('success', 'Social media deleted');
@@ -86,25 +91,25 @@ class SocialMediaController extends Controller
 
     public function update(Request $request)
     {
-    $request->validate([
-    'title' => 'required|string|max:255',
-    'image' => 'nullable|image|mimes:jpg,jpeg,png,webp,gif,svg|max:1000',
-    'social_link' => 'required|string',
-    ],
-    [
-    'image.max' => 'the image must not be greater than 1 mb'
-    ]);
-   
-    $social = SocialMedia::findOrFail($request->id);
-    $social->title = ucwords($request->title);
-    $social->link = $request->social_link;
-   
-    if ($request->hasFile('image')) {
-    $path = $request->file('image')->store('social', 'public'); 
-    $social->image = $path;
-    }
-    $social->save();
-    return redirect()->route('social_media.index')->with('success','social media updated successfully');
+        $request->validate([
+        'title' => 'required|string|max:255',
+        'image' => 'nullable|image|mimes:jpg,jpeg,png,webp,gif,svg|max:1000',
+        'social_link' => 'required|string',
+        ],
+        [
+        'image.max' => 'the image must not be greater than 1 mb'
+        ]);
+    
+        $social = SocialMedia::findOrFail($request->id);
+        $social->title = ucwords($request->title);
+        $social->link = $request->social_link;
+    
+        if ($request->hasFile('image')) {
+        $path = $request->file('image')->store('social', 'public'); 
+        $social->image = $path;
+        }
+        $social->save();
+        return redirect()->route('social.index')->with('success','social media updated successfully');
     }
     
 }

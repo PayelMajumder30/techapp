@@ -2,7 +2,12 @@
 @section('content')
 
 <style>
-
+     .error{
+        color:red;
+    }
+    .alert{
+        width: fit-content !important;
+    }
 </style>
 <section class="innerbanner" style="background-image: url('master/images/innerbanner1.jpg')">
     <div class="container">
@@ -110,7 +115,11 @@
 <script>
     $(document).ready(function (){
         // jQuery Validate plugin setup
-        $('#contact_form').validate({
+        $('form').on('submit', function () {
+            let submitButton = $(this).find('button[type="submit"]');
+            submitButton.prop('disabled', true).text('Loading...');
+        });
+        $('#contactForm').validate({
             rules: {
                 full_name: "required",
                 callback_number: {
@@ -132,6 +141,8 @@
                 message: "Please enter your message"
             },
             submitHandler: function(form) {
+                let submitButton = $(form).find('button[type="submit"]');
+                submitButton.prop('disabled', true).text('Loading...');
                 $.ajax({
                     url: $(form).attr('action'),
                     type: 'POST',
@@ -141,13 +152,18 @@
                         var message = response.message;
                         var alertHtml =  '<div class="alert '+ alertClass +'" role="alert">'+ message +'</div>';
                         $('#alertData').append(alertHtml);
-                        $(form)[0].reset();
+                        if (response.status == 200) {
+                            $(form)[0].reset(); // Reset form fields
+                        }
+                        submitButton.prop('disabled', false).text('Submit');
                         $('.alert').delay(5000).fadeOut('slow', function(){
                             $(this).remove();
                         });
                     },
                     error: function(xhr, status, error) {
                         console.error(xhr.responseText);
+
+                        submitButton.prop('disabled', false).text('Submit');
                     }
                 });
                 return false;

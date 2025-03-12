@@ -56,25 +56,101 @@
                                 <span aria-hidden="true"><img src="{{asset('master/images/closeicon.png')}}" class="img-fluid closeicon" alt=""></span>
                             </button>
                         </a>
-                        </div>
-                    </div>
-                    {{-- <div class="col-lg-4 col-md-12 text-left mt-lg-4 mt-md-5 pr-lg-5 order-lg-1 order-md-2 order-2">
-                        <div class="others_cont">
-                            <a href="{{asset('')}}"><img src="{{asset('master/images/logo2.png')}}" class="img-fluid menu_logo" alt="logo"></a>
-                            <p class="text-white mt-lg-5 mt-md-3 pr-lg-5">Under the banner of unity and excellence, we forge paths of innovation. Our all-girls school is a cradle for creativity, character, and courage.</p>
-                            <div class="social_media mt-3">
-                                <ul class="ml-0 pl-0">
-                                    @foreach ($social_media as $item)
-                                    <li>
-                                        <a href="{{$item->link}}">
-                                            <img src="{{asset($item->image)}}" alt="{{$item->title}}" width="100%">
-                                        </a>
-                                    </li>
-                                    @endforeach
-                                </ul>
+                        <div class="overlay-content desktopmenu">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-12 text-left mt-lg-4 mt-md-5 pr-lg-5 order-lg-1 order-md-2 order-2">
+                                    <div class="others_cont">
+                                        <a href="{{asset('')}}"><img src="{{asset('master/images/logo2.png')}}" class="img-fluid menu_logo" alt="logo"></a>
+                                        <p class="text-white mt-lg-5 mt-md-3 pr-lg-5">Under the banner of unity and excellence, we forge paths of innovation. Our all-girls school is a cradle for creativity, character, and courage.</p>
+                                        <div class="social_media mt-3">
+                                            <ul class="ml-0 pl-0">
+                                                @foreach ($social_media as $item)
+                                                <li>
+                                                    <a href="{{$item->link}}">
+                                                        <img src="{{asset($item->image)}}" alt="{{$item->title}}" width="100%">
+                                                    </a>
+                                                </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-12 order-lg-2 order-md-1 order-1">
+                                    <div class="row">
+                                        <!-- <div class="col-lg-3 col-md-4 mt-4 text-left">
+                                            <h6 class="text-uppercase list_title"><a href="#">Home</a></h6>
+                                        </div> -->
+                                        <div class="col-lg-3 col-md-4 mt-4 text-left">
+                                            {{-- <h6 class="text-uppercase list_title">About</h6> --}}
+                                            {{-- <ul class="navbox pl-0 mb-0">
+                                                <li><a href="{{route('front.about.index')}}">About School</a></li>
+                                                <li><a href="">Director's Message</a></li>
+                                                <li><a href="">Principal's Message</a></li>
+                                                <li><a href="{{route('front.faculty.index')}}">Faculty</a></li>
+                                                <li><a href="{{route('front.extra_curricular.index')}}">Affiliation & Curriculum</a></li>
+                                                <li><a href="">FAQ's</a></li>
+                                            </ul> --}}
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 mt-4 text-left">
+                                            <h6 class="text-uppercase list_title">The School</h6>
+                                            <ul class="navbox pl-0 mb-0">
+                                                <li><a href="">Academics</a></li>
+                                                <li><a href="{{route('extra_curricular.index')}}">Extra Curricular</a></li>
+                                                <li><a href="{{route('faculties.index')}}">Faculty</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-lg-3 col-md-4 mt-4 text-left">
+                                            <h6 class="text-uppercase list_title">Admission</h6>
+                                            <ul class="navbox pl-0 mb-0">
+                                                {{-- <li><a href="">Admission Guidelines</a></li>
+                                                <li><a href="">Online Registration</a></li>
+                                                <li><a href="">Make an Enquiry</a></li> --}}
+                                                <li><a href="">Apply Now</a></li>
+
+                                            </ul> 
+                                        </div>
+                                        {{-- <div class="col-lg-3 col-md-4 mt-4 text-left">
+                                            <h6 class="text-uppercase list_title">Beyond Academics</h6>
+                                            <ul class="navbox pl-0 mb-0">
+                                                <li><a href="">Sports</a></li>
+                                                <li><a href="">Co-Curricular Activities</a></li>
+                                                <li><a href="">Expeditions & Study Tours</a></li>
+                                                <li><a href="">Youth Movement & Leadership Training</a></li>
+                                                <li><a href="">Scouts & Guides</a></li>
+                                                <li><a href="">Clubs & Hobbies</a></li>
+                                            </ul>
+                                        </div> --}}
+                                        {{-- <div class="col-lg-3 col-md-4 mt-4 text-left">
+                                            <h6 class="text-uppercase list_title">Facilities</h6>
+                                            <ul class="navbox pl-0 mb-0">
+                                                <li><a href="{{route('front.facility.index')}}">Campus</a></li>
+                                                <li><a href="">Policies</a></li>
+                                            </ul>
+                                        </div> --}}
+                                        {{-- <div class="col-lg-3 col-md-4 mt-4 text-left">
+                                            <h6 class="text-uppercase list_title">Gallery</h6>
+                                            <ul class="navbox pl-0 mb-0">
+                                                <li><a href="">Photo Gallery</a></li>
+                                                <li><a href="">Video Gallery</a></li>
+                                            </ul>
+                                        </div> --}}
+                                        <div class="col-lg-3 col-md-4 mt-4 text-left">
+                                            <h6 class="text-uppercase list_title"><a href="{{route('contact.index')}}">Contact</a></h6>
+                                            {{-- <ul class="navbox pl-0 mb-0">
+                                                @foreach ($pageContent as $item)
+                                                @if ($item->location == 'header')
+                                                    <li><a href="{{route('dynamicPage', $item->slug)}}">{{$item->page}}</a></li>
+                                                    @endif
+                                                @endforeach
+                                            </ul> --}}
+                                        </div>
+                                    </div>
+                                </div> 
                             </div>
                         </div>
-                    </div> --}}
+                        </div>
+                    </div>
+                    
                 </div>
             </div>
         </header>
