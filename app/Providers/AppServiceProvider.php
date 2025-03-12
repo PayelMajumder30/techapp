@@ -50,5 +50,6 @@ class AppServiceProvider extends ServiceProvider
 
         view()->share('settings', $settings);
         view()->share('social_media', $SocialMedia);
+        require_once app_path('Helper/helper.php'); //for helper.php
     }
 }

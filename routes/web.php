@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\ContentController;
-use App\Http\Controllers\IndexeController;
+use App\Http\Controllers\Auth\LoginRegisterController;
+use App\Http\Controllers\{ContentController,IndexeController};
 
 /*
 |--------------------------------------------------------------------------
@@ -54,6 +54,17 @@ Route::prefix('contact')->name('contact.')->group(function(){
     Route::post('/enquiry',[ContentController::class,'contactEnquiry'])->name('enquiry');
 });
 
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('/school', [SchoolController::class, 'index'])->name('school');
+// });
+Route::controller(LoginRegisterController::class)->group(function() {
+    Route::get('/register', 'register')->name('register');
+    Route::post('/store', 'store')->name('store');
+    Route::get('/login', 'login')->name('login');
+    Route::post('/authenticate', 'authenticate')->name('authenticate');
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
+    Route::post('/logout', 'logout')->name('logout');
+});
 
 
 

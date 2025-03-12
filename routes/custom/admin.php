@@ -168,6 +168,8 @@ Route::prefix('master_module')->middleware(['auth'])->group(function(){
     //Lead
     Route::prefix('lead')->middleware(['auth'])->group(function(){
         Route::get('/index', [LeadController::class, 'index'])->name('lead.index');
+        Route::get('/export', [LeadController::class, 'export'])->name('lead.export');
+        Route::get('/exportpdf',[LeadController::class, 'pdf'])->name('lead.pdf');
     });
 
     //social media
