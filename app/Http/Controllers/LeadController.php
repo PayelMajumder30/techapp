@@ -90,9 +90,9 @@ class LeadController extends Controller
         $query      = Lead::query();
 
         $query->when($keyword, function($query) use($keyword){
-            $query->where('full_name', 'like', '%'.$keyword.'%')
-                ->orWhere('full_name', 'like', '%'.$keyword. '%')
-                ->orWhere('mobile_no', 'like', '%'. $keyword . '%')
+            $query->where('full_name', 'like', '%'. $keyword .'%')
+                ->orWhere('full_name', 'like', '%'. $keyword .'%')
+                ->orWhere('mobile_no', 'like', '%'. $keyword .'%')
                 ->orWhere('message', 'like', '%'. $keyword . '%');
         });
 

@@ -56,6 +56,11 @@
                                 <span aria-hidden="true"><img src="{{asset('master/images/closeicon.png')}}" class="img-fluid closeicon" alt=""></span>
                             </button>
                         </a>
+                        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                            <div class="info">
+                                <a href="#" class="d-block"><strong>{{ Auth::check() ? Auth::user()->name : "" }}</strong></a>
+                            </div>
+                        </div>
                         <div class="overlay-content desktopmenu">
                             <div class="row">
                                 <div class="col-lg-4 col-md-12 text-left mt-lg-4 mt-md-5 pr-lg-5 order-lg-1 order-md-2 order-2">
@@ -90,6 +95,16 @@
                                                 <li><a href="{{route('front.extra_curricular.index')}}">Affiliation & Curriculum</a></li>
                                                 <li><a href="">FAQ's</a></li>
                                             </ul> --}}
+                                            <h6 class="text-uppercase list_title">
+                                                @auth
+                                                    <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+                                                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                                    @csrf
+                                                    </form>
+                                                @else
+                                                    <a href="{{ route('login') }}">Login</a>
+                                                @endauth
+                                            </h6>
                                         </div>
                                         <div class="col-lg-3 col-md-4 mt-4 text-left">
                                             <h6 class="text-uppercase list_title">The School</h6>
@@ -109,31 +124,7 @@
 
                                             </ul> 
                                         </div>
-                                        {{-- <div class="col-lg-3 col-md-4 mt-4 text-left">
-                                            <h6 class="text-uppercase list_title">Beyond Academics</h6>
-                                            <ul class="navbox pl-0 mb-0">
-                                                <li><a href="">Sports</a></li>
-                                                <li><a href="">Co-Curricular Activities</a></li>
-                                                <li><a href="">Expeditions & Study Tours</a></li>
-                                                <li><a href="">Youth Movement & Leadership Training</a></li>
-                                                <li><a href="">Scouts & Guides</a></li>
-                                                <li><a href="">Clubs & Hobbies</a></li>
-                                            </ul>
-                                        </div> --}}
-                                        {{-- <div class="col-lg-3 col-md-4 mt-4 text-left">
-                                            <h6 class="text-uppercase list_title">Facilities</h6>
-                                            <ul class="navbox pl-0 mb-0">
-                                                <li><a href="{{route('front.facility.index')}}">Campus</a></li>
-                                                <li><a href="">Policies</a></li>
-                                            </ul>
-                                        </div> --}}
-                                        {{-- <div class="col-lg-3 col-md-4 mt-4 text-left">
-                                            <h6 class="text-uppercase list_title">Gallery</h6>
-                                            <ul class="navbox pl-0 mb-0">
-                                                <li><a href="">Photo Gallery</a></li>
-                                                <li><a href="">Video Gallery</a></li>
-                                            </ul>
-                                        </div> --}}
+                                        
                                         <div class="col-lg-3 col-md-4 mt-4 text-left">
                                             <h6 class="text-uppercase list_title"><a href="{{route('contact.index')}}">Contact</a></h6>
                                             {{-- <ul class="navbox pl-0 mb-0">

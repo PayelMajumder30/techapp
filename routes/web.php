@@ -1,5 +1,6 @@
 <?php
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 // use App\Http\Controllers\Auth\LoginRegisterController;
@@ -35,7 +36,21 @@ Route::post('register', [RegisterController::class, 'register'])->name('register
 Route::prefix('admin')->group(function() {
     require 'custom/admin.php';
 });
+//Password reset
+// Route::post('/forgot-password', function(Request $request){
+//     $request->validate(['email'=>'required|email']);
+//     $status = Password::sendResetLink(
+//         $request->only('email')
+//     );
 
+//     return $status = Password::ResetLinkSent
+//         ? back()->with(['status' => __($status)])
+//         : back()->withErrors(['email' => __($status)]);
+// })->middleware('guest')->name('password.email');
+
+// Route::get('reset-password/{token}', function (string $token){
+//     return view('auth.reset-password', ['token' => $token]);
+// })->middleware('guest')->name('password.reset');
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/status/{id}',[CareerController::class, 'PostStatus'])->name('post.status');
@@ -48,19 +63,21 @@ Route::name('front.')->group(function() {
     });
 
     //contact
-    Route::prefix('contact')->name('contact')->group(function(){
-        Route::get('/',[ContentController::class,'contact'])->name('contact.index');
-        Route::post('/enquiry',[ContentController::class,'contactEnquiry'])->name('contact.enquiry');
-    });
+    // Route::prefix('contact')->name('contact')->group(function(){
+    //     Route::get('/',[ContentController::class,'contact'])->name('contact.index');
+    //     Route::post('/enquiry',[ContentController::class,'contactEnquiry'])->name('contact.enquiry');
+    // });
 });
-Route::get('/extra-curricular',[IndexeController::class,'extra_curricular'])->name('extra_curricular.index');
-Route::get('/teaching-process',[IndexeController::class, 'teachingProcess'])->name('teachingprocess.index');
-Route::get('/home', [IndexeController::class, 'home'])->name('home.index');
-Route::get('/faculties', [IndexeController::class, 'faculty'])->name('faculties.index');
-  //contact
-Route::prefix('contact')->name('contact.')->group(function(){
-    Route::get('/',[ContentController::class,'contact'])->name('index');
-    Route::post('/enquiry',[ContentController::class,'contactEnquiry'])->name('enquiry');
+Route::middleware(['auth'])->group(function (){
+    Route::get('/extra-curricular',[IndexeController::class,'extra_curricular'])->name('extra_curricular.index');
+    Route::get('/teaching-process',[IndexeController::class, 'teachingProcess'])->name('teachingprocess.index');
+    Route::get('/home', [IndexeController::class, 'home'])->name('home.index');
+    Route::get('/faculties', [IndexeController::class, 'faculty'])->name('faculties.index');
+    //contact
+    Route::prefix('contact')->name('contact.')->group(function(){
+        Route::get('/',[ContentController::class,'contact'])->name('index');
+        Route::post('/enquiry',[ContentController::class,'contactEnquiry'])->name('enquiry');
+    });
 });
 
 // Route::middleware(['auth'])->group(function () {

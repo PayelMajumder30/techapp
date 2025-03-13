@@ -22,11 +22,11 @@
                     @auth
                         <a href="{{ url('/home') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
                         <a href="#" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500"
-                        onclick="event.preventDefault();document.getElementById('front-logout-form').submit();"
+                        {{-- onclick="event.preventDefault();document.getElementById('front-logout-form').submit();"
                         >Logout</a>
-                        <form id="front-logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        <form id="front-logout-form" action="{{ route('logout') }}" method="POST">
                             @csrf
-                        </form>
+                        </form> --}}
 
                     @else
                         <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log in</a>

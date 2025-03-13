@@ -32,8 +32,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         view::composer('*', function($view) {
-            $user_role = Auth::check() ? Auth::user()->type : "";
-            view()->share('user_role', $user_role);
+            $admin_role = Auth::check() ? Auth::user()->type : "";
+            view()->share('admin_role', $admin_role);
         });
         
         $settingsTableExists = Schema::hasTable('settings');
