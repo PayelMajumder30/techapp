@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\AuthUser;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -20,15 +20,14 @@ class LoginController extends Controller
     |
     */
 
-    // use AuthenticatesUsers;
+    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
      *
      * @var string
      */
-    protected $redirectTo = 'admin/dashboard';//change from home to dashboard
-    protected $guard = 'admin';
+    protected $redirectTo = '/home';//change from home to dashboard
 
     /**
      * Create a new controller instance.
@@ -38,35 +37,22 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        $this->middleware('auth:admin')->only('logout');
+        $this->middleware('auth')->only('logout');
     }
 
     public function showLoginForm()
     {
-        return view('admin.login');
+        return view('auth.login');
     }
 
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('admin')->attempt($credentials)) {
-            return redirect()->intended('admin/dashboard');
+        if (Auth::guard()->attempt($credentials)) {
+            return redirect()->intended('/home');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials'])->onlyInput('email');
-    }
-
-    public function logout(Request $request) {
-        if(Auth::guard('admin')->check()) // this means that the admin was logged in.
-        {
-            Auth::guard('admin')->logout();
-            return redirect()->route('admin-login');
-        }
-
-        $this->guard()->logout();
-        $request->session()->invalidate();
-
-        return $this->loggedOut($request) ?: redirect('/admin');
     }
 }

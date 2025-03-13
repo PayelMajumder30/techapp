@@ -5,6 +5,20 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{DashboardController,IndexController,PostController,UnitController,SubjectController,
     JobController,JobvcController, DepartmentController, FacultyController, SeoController, ContentAController,
     LeadController, SocialMediaController};
+use App\Http\Controllers\Auth\{LoginController, RegisterController};
+
+Route::get('/', [DashboardController::class, 'home'])->name('admin-landing');
+Route::controller(LoginController::class)->group(function() {
+    Route::get('login', 'showLoginForm')->name('admin-login');
+    Route::post('login', 'login')->name('admin-login');
+    Route::post('authenticate', 'authenticate')->name('admin-authenticate');
+    Route::get('dashboard', 'dashboard')->name('admin-dashboard');
+    Route::post('logout', 'logout')->name('admin-logout');
+});
+Route::controller(RegisterController::class)->group(function() {
+    Route::get('register', 'showRegistrationForm')->name('admin-register');
+    Route::post('store', 'register')->name('admin-store');
+});
 
 Route::get('dashboard', [DashboardController::class, 'index'])->middleware(['auth:admin'])->name('dashboard');
 Route::match(['get', 'post'],'/admission-form', [IndexController::class, 'formView'])->name('admission.index');

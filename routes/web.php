@@ -2,8 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Auth\LoginRegisterController;
+// use App\Http\Controllers\Auth\LoginRegisterController;
 use App\Http\Controllers\{ContentController,IndexeController};
+use App\Http\Controllers\AuthUser\{LoginController, RegisterController};
 
 /*
 |--------------------------------------------------------------------------
@@ -20,7 +21,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Auth::routes();
+// Authentication Routes...
+Route::get('login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login'])->name('login');
+Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
+// Registration Routes...
+Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register'])->name('register');
 
 // Admin
 Route::prefix('admin')->group(function() {
